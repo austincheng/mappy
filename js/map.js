@@ -1161,7 +1161,10 @@
   // ----- Auto-advancing cross-fade slideshow inside the card -----
   const slideA = () => document.getElementById("memory-photo-a");
   const slideB = () => document.getElementById("memory-photo-b");
+  const bgA = () => document.getElementById("memory-bg-a");
+  const bgB = () => document.getElementById("memory-bg-b");
   let slideList = [], slideIdx = 0, slideTimer = null, slideFront = "a";
+  const SLIDE_HOLD = 1400;   // ms each photo is shown (fade is 0.5s via CSS)
 
   function placeSlug(p) {
     const i = PLACES.visited.indexOf(p);
@@ -1169,25 +1172,35 @@
       .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   }
 
+  function setLayer(which, src) {
+    const img = which === "a" ? slideA() : slideB();
+    const bg = which === "a" ? bgA() : bgB();
+    img.src = src; bg.src = src;
+    img.classList.add("active"); bg.classList.add("active");
+  }
+  function clearLayer(which) {
+    const img = which === "a" ? slideA() : slideB();
+    const bg = which === "a" ? bgA() : bgB();
+    img.classList.remove("active"); bg.classList.remove("active");
+  }
+
   function startSlideshow(photos) {
     stopSlideshow();
     slideList = photos || []; slideIdx = 0; slideFront = "a";
-    const a = slideA(), b = slideB();
-    a.classList.remove("active"); b.classList.remove("active");
-    if (!slideList.length) { a.style.display = b.style.display = "none"; return; }
-    a.style.display = b.style.display = "";
-    a.src = slideList[0]; a.classList.add("active");
-    if (slideList.length > 1) slideTimer = setInterval(advanceSlide, 2600);
+    [slideA(), slideB(), bgA(), bgB()].forEach(el => el.classList.remove("active"));
+    const empty = !slideList.length;
+    [slideA(), slideB(), bgA(), bgB()].forEach(el => el.style.display = empty ? "none" : "");
+    if (empty) return;
+    setLayer("a", slideList[0]);
+    if (slideList.length > 1) slideTimer = setInterval(advanceSlide, SLIDE_HOLD);
   }
   function advanceSlide() {
     if (slideList.length < 2) return;
     slideIdx = (slideIdx + 1) % slideList.length;
-    const front = slideFront === "a" ? slideA() : slideB();
-    const back = slideFront === "a" ? slideB() : slideA();
-    back.src = slideList[slideIdx];
-    back.classList.add("active");
-    front.classList.remove("active");
-    slideFront = slideFront === "a" ? "b" : "a";
+    const front = slideFront, back = slideFront === "a" ? "b" : "a";
+    setLayer(back, slideList[slideIdx]);
+    clearLayer(front);
+    slideFront = back;
   }
   function stopSlideshow() {
     if (slideTimer) { clearInterval(slideTimer); slideTimer = null; }
