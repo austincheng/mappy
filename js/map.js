@@ -43,7 +43,13 @@
   };
 
   // ---- Camera: scale (zoom) + center lon/lat ----
-  const camera = { scale: 1, lon: 10, lat: 25, tScale: 1, tLon: 10, tLat: 25 };
+  // Fly animations use a shared progress t (0..1) so zoom AND pan finish
+  // together. s0/lon0/lat0 are the start of the current fly.
+  const camera = {
+    scale: 1, lon: 10, lat: 25,
+    tScale: 1, tLon: 10, tLat: 25,
+    t: 1, s0: 1, lon0: 10, lat0: 25, flyDur: 0.9
+  };
   const MIN_SCALE = 0.9, MAX_SCALE = 80;
 
   // ---- Heart options (subtle only) ----
@@ -90,6 +96,12 @@
   let world = null, projection = null, path = null;
   let caDetail = null; // detailed California coastline (loaded at boot)
   const CA_BB = { minLon: -125.5, maxLon: -114, minLat: 32, maxLat: 42.5 };
+  const CARIB_BB = { minLon: -70.3, maxLon: -68.0, minLat: 11.9, maxLat: 12.9 };
+  // High-res coastline overlays drawn when zoomed in over their region.
+  const detailLayers = [
+    { geo: null, bb: CA_BB,    file: "libs/california_detail.geojson" },
+    { geo: null, bb: CARIB_BB, file: "libs/caribbean_detail.geojson" }
+  ];
   let dpr = Math.max(1, window.devicePixelRatio || 1);
   let W = 0, H = 0, driftT = 0;
   let userInteracting = false; // pauses idle drift once the user grabs control
@@ -114,9 +126,14 @@
   const dreamIdx = PLACES.visited.map((p, i) => i)
     .filter(i => kindOf(i) === "dream");                                // permanent
 
-  function inCA(i) {
+  // Tight San Francisco Bay Area box (roughly the 9-county region). Used ONLY
+  // for the "max 3 Bay" cap and the click-to-max-zoom — NOT the same as CA_BB
+  // (which covers the whole state for coastline detail). LA/San Diego are in
+  // CA_BB but NOT in the Bay, so they count as normal (non-Bay) locations.
+  const BAY_BB = { minLon: -122.8, maxLon: -121.5, minLat: 36.9, maxLat: 38.3 };
+  function inBay(i) {
     const c = PLACES.visited[i].coords;
-    return c[0] >= CA_BB.minLat && c[0] <= CA_BB.maxLat && c[1] >= CA_BB.minLon && c[1] <= CA_BB.maxLon;
+    return c[0] >= BAY_BB.minLat && c[0] <= BAY_BB.maxLat && c[1] >= BAY_BB.minLon && c[1] <= BAY_BB.maxLon;
   }
   function locKey(i) { const c = PLACES.visited[i].coords; return c[0].toFixed(2) + "," + c[1].toFixed(2); }
 
@@ -161,7 +178,7 @@
     const caLocs = new Set();
     for (const i of consumableOrder) {           // already in chronological order
       if (dismissed.has(i)) continue;
-      const isCA = inCA(i);
+      const isCA = inBay(i);
       const k = locKey(i);
       if (picked.length >= MAX_STORIES) break;    // 9th story -> stop
       if (isCA && !caLocs.has(k) && caLocs.size >= MAX_CA_LOCS) break; // 4th distinct Bay loc -> stop
@@ -211,33 +228,24 @@
   }
 
   // ---- Camera easing + helpers ----
+  // Begin a fly: snapshot the start and reset shared progress to 0.
+  function startFly() {
+    camera.s0 = camera.scale; camera.lon0 = camera.lon; camera.lat0 = camera.lat;
+    camera.t = 0;
+  }
+  function easeInOut(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+
   function easeCamera() {
-    clampCamera();
-    const ds = camera.tScale - camera.scale;
-    const dlon = camera.tLon - camera.lon;
-    const dlat = camera.tLat - camera.lat;
+    if (camera.t >= 1) return;    // not flying
+    // Advance shared progress. Both zoom & pan use the SAME eased value, so
+    // they reach the target on the same frame. ease-in-out so the zoom starts
+    // slowly (taming the big early geometric jump that read as "too fast").
+    camera.t = Math.min(1, camera.t + (1 / 60) / camera.flyDur);
+    const e = easeInOut(camera.t);
 
-    const scaleDone = Math.abs(Math.log(camera.tScale / camera.scale)) < 0.004;
-    const panDone = Math.abs(dlon) < 0.004 && Math.abs(dlat) < 0.004;
-    if (scaleDone && panDone) return;
-
-    // Zoom eases GEOMETRICALLY but slowly, so it reads as a gentle dive.
-    const zoomK = 0.07;
-    const prevScale = camera.scale;
-    camera.scale = Math.exp(Math.log(camera.scale) + (Math.log(camera.tScale) - Math.log(camera.scale)) * zoomK);
-
-    // Pan should resolve together with (slightly ahead of) the zoom so we're
-    // never panning while already deep — that lateral slide is what felt bad.
-    let panK;
-    const zoomSpan = Math.abs(Math.log(camera.tScale) - Math.log(prevScale));
-    if (zoomSpan > 0.01) {
-      // 1.4x the zoom's fractional progress -> pan finishes a touch earlier
-      panK = Math.min(1, 1.4 * Math.abs(Math.log(camera.scale) - Math.log(prevScale)) / zoomSpan);
-    } else {
-      panK = 0.1;   // pure pan (no zoom change): gentle lerp
-    }
-    camera.lon += dlon * panK;
-    camera.lat += dlat * panK;
+    camera.scale = Math.exp(Math.log(camera.s0) + (Math.log(camera.tScale) - Math.log(camera.s0)) * e);
+    camera.lon = camera.lon0 + (camera.tLon - camera.lon0) * e;
+    camera.lat = camera.lat0 + (camera.tLat - camera.lat0) * e;
 
     clampCamera();
     rebuildProjection();
@@ -284,6 +292,7 @@
       clampCamera();
       rebuildProjection();
     }
+    camera.t = 1;         // manual zoom cancels any in-progress fly
     userInteracting = true;
   }
 
@@ -665,11 +674,14 @@
   // ---- Main draw loop ----
   function draw() {
     driftT += 0.004;
-    if (!userInteracting && camera.tScale <= 1.02) {
-      camera.tLon = 10 + Math.sin(driftT * 0.4) * 5;
-      camera.tLat = 25 + Math.cos(driftT * 0.3) * 2.5;
-    }
     easeCamera();
+    // Gentle idle sway when not flying and fully zoomed out — move the camera
+    // directly (the fly tween is inactive while idle).
+    if (camera.t >= 1 && !userInteracting && camera.scale <= 1.02) {
+      camera.lon = camera.tLon = 10 + Math.sin(driftT * 0.4) * 5;
+      camera.lat = camera.tLat = 25 + Math.cos(driftT * 0.3) * 2.5;
+      rebuildProjection();
+    }
 
     // ---- Background ----
     ctx.clearRect(0, 0, W, H);
@@ -758,24 +770,26 @@
     }
 
     // Detailed California coastline (shows SF Bay + Peninsula) — only drawn
-    // when zoomed in and the view overlaps California, so the coarse world
-    // blob is replaced with an accurate shape right where the pins cluster.
-    if (caDetail && camera.scale > 2.5) {
-      // Screen-space bounding box of the CA region.
-      const tl = projection([CA_BB.minLon, CA_BB.maxLat]);
-      const br = projection([CA_BB.maxLon, CA_BB.minLat]);
-      if (tl && br && br[0] > 0 && tl[0] < W && br[1] > 0 && tl[1] < H) {
-        ctx.save();
-        // 1) Erase the coarse CA blob back to ocean over the CA bbox.
-        ctx.fillStyle = C.ocean;
-        ctx.fillRect(tl[0], tl[1], br[0] - tl[0], br[1] - tl[1]);
-        // 2) Draw the accurate land polygon (bay/peninsula carved out).
-        ctx.beginPath(); path(caDetail);
-        ctx.fillStyle = C.land; ctx.fill();
-        ctx.lineWidth = 1.1;
-        ctx.strokeStyle = "rgba(230,120,150,0.35)";
-        ctx.stroke();
-        ctx.restore();
+    // High-res coastline overlays (California, Caribbean, …) — drawn when
+    // zoomed in and the view overlaps the region, replacing the coarse world
+    // blob with accurate shapes (SF Bay; Aruba & the Antilles).
+    if (camera.scale > 2.5) {
+      for (const layer of detailLayers) {
+        if (!layer.geo) continue;
+        const bb = layer.bb;
+        const tl = projection([bb.minLon, bb.maxLat]);
+        const br = projection([bb.maxLon, bb.minLat]);
+        if (tl && br && br[0] > 0 && tl[0] < W && br[1] > 0 && tl[1] < H) {
+          ctx.save();
+          ctx.fillStyle = C.ocean;
+          ctx.fillRect(tl[0], tl[1], br[0] - tl[0], br[1] - tl[1]);
+          ctx.beginPath(); path(layer.geo);
+          ctx.fillStyle = C.land; ctx.fill();
+          ctx.lineWidth = 1.1;
+          ctx.strokeStyle = "rgba(230,120,150,0.35)";
+          ctx.stroke();
+          ctx.restore();
+        }
       }
     }
 
@@ -1019,14 +1033,20 @@
     camera.tLon = lon;
     camera.tLat = lat;
     clampCamera();
+    // Longer dives for bigger zoom changes so they stay gentle.
+    const zoomSpan = Math.abs(Math.log((scale || camera.scale) / camera.scale));
+    camera.flyDur = Math.min(2.6, 1.2 + zoomSpan * 0.28);
+    startFly();
   }
 
   function discover(index) {
+    // Opening a new pin dismisses whatever was already open (moving on = dismiss).
+    if (openIndex != null && openIndex !== index) dismissOpen();
     const pl = PLACES.visited[index];
     openIndex = index;              // remember which pin's card is open
-    // Bay Area pins fly all the way in (dense cluster); elsewhere a moderate
-    // zoom is plenty.
-    const scale = inCA(index) ? MAX_SCALE : 7;
+    // Zoom level: per-pin override (pl.zoom) wins; else Bay pins fly all the
+    // way in; else a moderate default.
+    const scale = pl.zoom != null ? pl.zoom : (inBay(index) ? MAX_SCALE : 7);
     centerOn(pl.coords[1], pl.coords[0], scale);
     showMemory(pl);
   }
@@ -1073,6 +1093,7 @@
       if (a && b) {
         camera.lon = camera.tLon = camera.lon + (b[0] - a[0]);
         camera.lat = camera.tLat = camera.lat + (b[1] - a[1]);
+        camera.t = 1;   // manual pan cancels any in-progress fly
         clampCamera();
         rebuildProjection();
       }
@@ -1098,26 +1119,36 @@
   canvas.addEventListener("click", (e) => {
     if (dragMoved) return; // was a pan, not a click
     const h = hitTest(e.clientX, e.clientY);
-    if (!h) return;
+    if (!h) {
+      // Clicked empty map: dismiss the open pin and zoom fully out.
+      closeAndZoomOut();
+      return;
+    }
     if (h.kind === "visited") discover(h.index);
     else if (h.kind === "here") Sequencer.go(Sequencer.PHASES.FINAL_PIN, { here: PLACES.here });
   });
 
-  document.getElementById("memory-close").addEventListener("click", () => {
+  // Dismiss the open pin (window advances) and ease back out to the full map.
+  function closeAndZoomOut() {
     hideMemory();
-    dismissOpen();          // consume the pin so the rolling window advances
-    // Zoom back out to the full map so other places come back into view.
+    dismissOpen();
     if (!hereRevealed) {
       userInteracting = false;
       camera.tScale = 1;
+      camera.tLon = camera.lon;    // keep current center; just zoom out
+      camera.tLat = camera.lat;
+      camera.flyDur = 0.9;
+      startFly();
     }
-  });
+  }
+
+  document.getElementById("memory-close").addEventListener("click", closeAndZoomOut);
 
   // Keyboard: +/- zoom (centered), h = reveal here, r = reset, 0 = reset view
   window.addEventListener("keydown", (e) => {
     if (e.key === "=" || e.key === "+") zoomAt(W / 2, H / 2, 1.3);
     if (e.key === "-" || e.key === "_") zoomAt(W / 2, H / 2, 1 / 1.3);
-    if (e.key === "0") { userInteracting = false; camera.tScale = 1; }
+    if (e.key === "0") { userInteracting = false; camera.tScale = 1; camera.tLon = camera.lon; camera.tLat = camera.lat; camera.flyDur = 0.9; startFly(); }
     if (e.key === "h" && !hereRevealed) { PLACES.visited.forEach((_, i) => dismissed.add(i)); revealHere(); }
     if (e.key === "r") location.reload();
   });
@@ -1140,8 +1171,11 @@
     });
 
   // Detailed California coastline (optional enhancement; non-blocking).
-  fetch("libs/california_detail.geojson")
-    .then(r => r.json())
-    .then(geo => { caDetail = geo; })
-    .catch(err => console.warn("California detail not loaded:", err));
+  // Load each high-res coastline overlay (non-blocking).
+  detailLayers.forEach((layer) => {
+    fetch(layer.file)
+      .then(r => r.json())
+      .then(geo => { layer.geo = geo; })
+      .catch(err => console.warn("Detail layer not loaded:", layer.file, err));
+  });
 })();

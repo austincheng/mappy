@@ -21,7 +21,7 @@ const PLACES = {
     { kind:"memory", name:"Santa Clara, CA", coords:[37.3541,-121.9552], date:"August 6, 2023", note:"Our first date at Beque.", folder:"photos/230806_First_Date_Beque" },
     { kind:"memory", name:"Sunnyvale, CA", coords:[37.3688,-122.0363], date:"August 15, 2023", note:"Our first day together.", folder:"photos/230815_First_Day_Rokko_PhoSaigon" },
     { kind:"memory", name:"San Francisco, CA", coords:[37.7749,-122.4194], date:"September 24, 2023", note:"A date night in San Francisco.", folder:"photos/230924_SF_TonysPizzaNapoletana_MountTamalpais_Shooting_Star" },
-    { kind:"memory", name:"Maui, HI", coords:[20.7984,-156.3319], date:"September 28, 2023", note:"Our first vacation together.", folder:"photos/230928_Maui_Day_1" },
+    { kind:"memory", name:"Maui, HI", coords:[20.7984,-156.3319], zoom:14, date:"September 28, 2023", note:"Our first vacation together.", folder:"photos/230928_Maui_Day_1" },
     { kind:"memory", name:"Birmingham, AL", coords:[33.5186,-86.8104], date:"October 11, 2023", note:"Early on, Coco often traveled for work — so we fell in love over video calls.", folder:"photos/231011_Video_Call" },
     { kind:"memory", name:"Taichung, Taiwan", nameZh:"台中", coords:[24.1477,120.6736], date:"November 24, 2023", note:"My first time in Taiwan with you, meeting your parents.", folder:"photos/231124_TPEToTaichung_TaoBanWu" },
     { kind:"memory", name:"Tainan, Taiwan", nameZh:"台南", coords:[22.9999,120.2270], date:"December 3, 2023", note:"Our first getaway, just the two of us.", folder:"photos/231203_Tainan_Day_1" },
@@ -80,8 +80,8 @@ const PLACES = {
     { kind:"memory", name:"Brentwood, CA", coords:[37.9319,-121.6958], date:"May 9, 2026", note:"Picking mulberries in Brentwood.", folder:"photos/260509_VeryMulberry_Teazentea" },
     { kind:"memory", name:"Cupertino, CA", coords:[37.3220,-122.0580], date:"May 31, 2026", note:"Our first time paddleboarding at Stevens Creek Reservoir.", folder:"photos/260531_StevensCreekReservoirSUP_CurryHyuga" },
     { kind:"memory", name:"San Francisco, CA", coords:[37.7786,-122.3893], date:"June 8, 2026", note:"The first of many Giants games!", folder:"photos/260608_GiantsGame" },
-    { kind:"memory", name:"Big Island, HI", coords:[19.5429,-155.6659], date:"July 1, 2026", note:"Our first time on the Big Island of Hawaii.", folder:"photos/260701_Hawaii" },
-    { kind:"memory", name:"Oahu, HI", coords:[21.4389,-158.0001], date:"July 6, 2026", note:"We visited Oahu, too.", folder:"photos/260701_Hawaii" },
+    { kind:"memory", name:"Big Island, HI", coords:[19.5429,-155.6659], zoom:14, date:"July 1, 2026", note:"Our first time on the Big Island of Hawaii.", folder:"photos/260701_Hawaii" },
+    { kind:"memory", name:"Oahu, HI", coords:[21.4389,-158.0001], zoom:16, date:"July 6, 2026", note:"We visited Oahu, too.", folder:"photos/260701_Hawaii" },
     { kind:"memory", name:"Lake Tahoe, CA", coords:[39.0968,-120.0324], date:"August 15, 2026", note:"A summer visit to Lake Tahoe, right after a Giants game.", folder:"photos/260815_Tahoe" },
     { kind:"memory", name:"San Jose, CA", coords:[37.3290,-121.8880], date:"August 27, 2026", note:"A Mamamoo concert.", folder:"photos/260827_Mamamoo_Concert" },
     { kind:"memory", name:"San Francisco, CA", coords:[37.7786,-122.3893], date:"September 26, 2026", note:"Our final Giants game together after an eventful season.", folder:"photos/260926_GiantsGame" },
@@ -94,7 +94,7 @@ const PLACES = {
     // ----- Dream / someday pins (stars) -----
     { kind:"dream", name:"Iseltwald, Switzerland", coords:[46.6910,7.9560], note:"A someday trip, inspired by Crash Landing on You (over taro balls)." },
     { kind:"dream", name:"Bolivia", coords:[-16.2902,-63.5887], note:"Our next adventure — Coco's learning Spanish for it." },
-    { kind:"dream", name:"Aruba", coords:[12.5211,-69.9683], note:"Our honeymoon someday — at least that's what we said in all those sales presentations." },
+    { kind:"dream", name:"Aruba", coords:[12.5211,-69.9683], zoom:28, note:"Our honeymoon someday — at least that's what we said in all those sales presentations." },
     { kind:"dream", name:"Tanzania", coords:[-6.3690,34.8888], note:"A safari we keep dreaming about." },
     { kind:"dream", name:"New Zealand", coords:[-44.0,170.5], note:"Exploring the grasslands of New Zealand, someday." },
     { kind:"dream", name:"Alaska", coords:[64.2008,-149.4937], note:"Seeing the Northern Lights together." }
