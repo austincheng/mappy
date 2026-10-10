@@ -1218,8 +1218,9 @@
   // ---- Memory card ----
   function showMemory(place) {
     const card = document.getElementById("memory-card");
-    document.getElementById("memory-place").textContent = place.nameZh
-      ? `${place.name} · ${place.nameZh}` : place.name;
+    // English-only display for now. nameZh is retained in the data for a
+    // future full-Chinese translation layer, but never shown inline here.
+    document.getElementById("memory-place").textContent = place.name;
     document.getElementById("memory-date").textContent = place.date || "";
     document.getElementById("memory-note").textContent = place.note || "";
 

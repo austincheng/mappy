@@ -100,7 +100,7 @@ const PLACES = {
     // ----- Dream / someday pins (stars) -----
     { kind:"dream", name:"Bolivia", coords:[-16.2902,-63.5887], note:"Our next adventure — you're learning Spanish for it." },
     { kind:"dream", name:"Aruba", coords:[12.5211,-69.9683], zoom:28, note:"Our honeymoon? At least that's what we said in all those sales presentations." },
-    { kind:"dream", name:"Tanzania", coords:[-6.3690,34.8888], note:"A safari we keep dreaming about." },
+    { kind:"dream", name:"Tanzania", coords:[-6.3690,34.8888], note:"A safari is also at the top of our list of next travel destinations." },
     { kind:"dream", name:"New Zealand", coords:[-44.0,170.5], note:"Exploring the grasslands of New Zealand, someday." },
     { kind:"dream", name:"Alaska", coords:[64.2008,-149.4937], note:"We wish to see the Northern Lights together." }
   ],
