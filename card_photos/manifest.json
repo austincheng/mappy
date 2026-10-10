@@ -1,528 +1,844 @@
 {
-  "santa-clara-ca-august-6-2023": [
-    "card_photos/santa-clara-ca-august-6-2023/p0.jpg",
-    "card_photos/santa-clara-ca-august-6-2023/p1.jpg",
-    "card_photos/santa-clara-ca-august-6-2023/p2.jpg",
-    "card_photos/santa-clara-ca-august-6-2023/p3.jpg",
-    "card_photos/santa-clara-ca-august-6-2023/p4.jpg"
-  ],
-  "sunnyvale-ca-august-15-2023": [
-    "card_photos/sunnyvale-ca-august-15-2023/p0.jpg",
-    "card_photos/sunnyvale-ca-august-15-2023/p1.jpg",
-    "card_photos/sunnyvale-ca-august-15-2023/p2.jpg",
-    "card_photos/sunnyvale-ca-august-15-2023/p3.jpg",
-    "card_photos/sunnyvale-ca-august-15-2023/p4.jpg"
-  ],
-  "san-francisco-ca-september-24-2023": [
-    "card_photos/san-francisco-ca-september-24-2023/p0.jpg",
-    "card_photos/san-francisco-ca-september-24-2023/p1.jpg",
-    "card_photos/san-francisco-ca-september-24-2023/p2.jpg",
-    "card_photos/san-francisco-ca-september-24-2023/p3.jpg",
-    "card_photos/san-francisco-ca-september-24-2023/p4.jpg"
-  ],
-  "maui-hi-september-28-2023": [
-    "card_photos/maui-hi-september-28-2023/p0.jpg",
-    "card_photos/maui-hi-september-28-2023/p1.jpg",
-    "card_photos/maui-hi-september-28-2023/p2.jpg",
-    "card_photos/maui-hi-september-28-2023/p3.jpg",
-    "card_photos/maui-hi-september-28-2023/p4.jpg"
-  ],
-  "birmingham-al-october-11-2023": [
-    "card_photos/birmingham-al-october-11-2023/p0.jpg"
-  ],
-  "taichung-taiwan-november-24-2023": [
-    "card_photos/taichung-taiwan-november-24-2023/p0.jpg",
-    "card_photos/taichung-taiwan-november-24-2023/p1.jpg",
-    "card_photos/taichung-taiwan-november-24-2023/p2.jpg",
-    "card_photos/taichung-taiwan-november-24-2023/p3.jpg",
-    "card_photos/taichung-taiwan-november-24-2023/p4.jpg"
-  ],
-  "tainan-taiwan-december-3-2023": [
-    "card_photos/tainan-taiwan-december-3-2023/p0.jpg",
-    "card_photos/tainan-taiwan-december-3-2023/p1.jpg",
-    "card_photos/tainan-taiwan-december-3-2023/p2.jpg",
-    "card_photos/tainan-taiwan-december-3-2023/p3.jpg",
-    "card_photos/tainan-taiwan-december-3-2023/p4.jpg"
-  ],
-  "taoyuan-taiwan-december-7-2023": [
-    "card_photos/taoyuan-taiwan-december-7-2023/p0.jpg",
-    "card_photos/taoyuan-taiwan-december-7-2023/p1.jpg",
-    "card_photos/taoyuan-taiwan-december-7-2023/p2.jpg",
-    "card_photos/taoyuan-taiwan-december-7-2023/p3.jpg",
-    "card_photos/taoyuan-taiwan-december-7-2023/p4.jpg"
-  ],
-  "istanbul-turkey-december-27-2023": [
-    "card_photos/istanbul-turkey-december-27-2023/p0.jpg",
-    "card_photos/istanbul-turkey-december-27-2023/p1.jpg",
-    "card_photos/istanbul-turkey-december-27-2023/p2.jpg",
-    "card_photos/istanbul-turkey-december-27-2023/p3.jpg",
-    "card_photos/istanbul-turkey-december-27-2023/p4.jpg"
-  ],
-  "los-angeles-ca-december-30-2023": [
-    "card_photos/los-angeles-ca-december-30-2023/p0.jpg",
-    "card_photos/los-angeles-ca-december-30-2023/p1.jpg",
-    "card_photos/los-angeles-ca-december-30-2023/p2.jpg",
-    "card_photos/los-angeles-ca-december-30-2023/p3.jpg",
-    "card_photos/los-angeles-ca-december-30-2023/p4.jpg"
-  ],
-  "fremont-ca-january-20-2024": [
-    "card_photos/fremont-ca-january-20-2024/p0.jpg",
-    "card_photos/fremont-ca-january-20-2024/p1.jpg",
-    "card_photos/fremont-ca-january-20-2024/p2.jpg",
-    "card_photos/fremont-ca-january-20-2024/p3.jpg",
-    "card_photos/fremont-ca-january-20-2024/p4.jpg"
-  ],
-  "fremont-ca-february-17-2024": [
-    "card_photos/fremont-ca-february-17-2024/p0.jpg",
-    "card_photos/fremont-ca-february-17-2024/p1.jpg",
-    "card_photos/fremont-ca-february-17-2024/p2.jpg",
-    "card_photos/fremont-ca-february-17-2024/p3.jpg",
-    "card_photos/fremont-ca-february-17-2024/p4.jpg"
-  ],
-  "san-jose-ca-february-25-2024": [
-    "card_photos/san-jose-ca-february-25-2024/p0.jpg",
-    "card_photos/san-jose-ca-february-25-2024/p1.jpg",
-    "card_photos/san-jose-ca-february-25-2024/p2.jpg",
-    "card_photos/san-jose-ca-february-25-2024/p3.jpg",
-    "card_photos/san-jose-ca-february-25-2024/p4.jpg"
-  ],
-  "san-jose-ca-april-6-2024": [
-    "card_photos/san-jose-ca-april-6-2024/p0.jpg",
-    "card_photos/san-jose-ca-april-6-2024/p1.jpg",
-    "card_photos/san-jose-ca-april-6-2024/p2.jpg"
-  ],
-  "yosemite-ca-may-4-2024": [
-    "card_photos/yosemite-ca-may-4-2024/p0.jpg",
-    "card_photos/yosemite-ca-may-4-2024/p1.jpg",
-    "card_photos/yosemite-ca-may-4-2024/p2.jpg",
-    "card_photos/yosemite-ca-may-4-2024/p3.jpg",
-    "card_photos/yosemite-ca-may-4-2024/p4.jpg"
-  ],
-  "san-jose-ca-june-9-2024": [
-    "card_photos/san-jose-ca-june-9-2024/p0.jpg",
-    "card_photos/san-jose-ca-june-9-2024/p1.jpg",
-    "card_photos/san-jose-ca-june-9-2024/p2.jpg",
-    "card_photos/san-jose-ca-june-9-2024/p3.jpg",
-    "card_photos/san-jose-ca-june-9-2024/p4.jpg"
-  ],
-  "seattle-wa-june-15-2024": [
-    "card_photos/seattle-wa-june-15-2024/p0.jpg",
-    "card_photos/seattle-wa-june-15-2024/p1.jpg",
-    "card_photos/seattle-wa-june-15-2024/p2.jpg",
-    "card_photos/seattle-wa-june-15-2024/p3.jpg",
-    "card_photos/seattle-wa-june-15-2024/p4.jpg"
-  ],
-  "iguazu-falls-brazil-june-27-2024": [
-    "card_photos/iguazu-falls-brazil-june-27-2024/p0.jpg"
-  ],
-  "paris-france-august-3-2024": [
-    "card_photos/paris-france-august-3-2024/p0.jpg",
-    "card_photos/paris-france-august-3-2024/p1.jpg",
-    "card_photos/paris-france-august-3-2024/p2.jpg",
-    "card_photos/paris-france-august-3-2024/p3.jpg",
-    "card_photos/paris-france-august-3-2024/p4.jpg"
-  ],
-  "felton-ca-september-7-2024": [
-    "card_photos/felton-ca-september-7-2024/p0.jpg",
-    "card_photos/felton-ca-september-7-2024/p1.jpg",
-    "card_photos/felton-ca-september-7-2024/p2.jpg",
-    "card_photos/felton-ca-september-7-2024/p3.jpg",
-    "card_photos/felton-ca-september-7-2024/p4.jpg"
-  ],
-  "oakland-ca-september-8-2024": [
-    "card_photos/oakland-ca-september-8-2024/p0.jpg",
-    "card_photos/oakland-ca-september-8-2024/p1.jpg",
-    "card_photos/oakland-ca-september-8-2024/p2.jpg",
-    "card_photos/oakland-ca-september-8-2024/p3.jpg",
-    "card_photos/oakland-ca-september-8-2024/p4.jpg"
-  ],
-  "san-jose-ca-august-15-2024": [
-    "card_photos/san-jose-ca-august-15-2024/p0.jpg",
-    "card_photos/san-jose-ca-august-15-2024/p1.jpg",
-    "card_photos/san-jose-ca-august-15-2024/p2.jpg",
-    "card_photos/san-jose-ca-august-15-2024/p3.jpg",
-    "card_photos/san-jose-ca-august-15-2024/p4.jpg"
-  ],
-  "tibet-china-october-24-2024": [
-    "card_photos/tibet-china-october-24-2024/p0.jpg",
-    "card_photos/tibet-china-october-24-2024/p1.jpg",
-    "card_photos/tibet-china-october-24-2024/p2.jpg",
-    "card_photos/tibet-china-october-24-2024/p3.jpg"
-  ],
-  "los-angeles-ca-november-28-2024": [
-    "card_photos/los-angeles-ca-november-28-2024/p0.jpg",
-    "card_photos/los-angeles-ca-november-28-2024/p1.jpg",
-    "card_photos/los-angeles-ca-november-28-2024/p2.jpg",
-    "card_photos/los-angeles-ca-november-28-2024/p3.jpg",
-    "card_photos/los-angeles-ca-november-28-2024/p4.jpg"
-  ],
-  "valley-of-fire-nv-december-1-2024": [
-    "card_photos/valley-of-fire-nv-december-1-2024/p0.jpg",
-    "card_photos/valley-of-fire-nv-december-1-2024/p1.jpg",
-    "card_photos/valley-of-fire-nv-december-1-2024/p2.jpg",
-    "card_photos/valley-of-fire-nv-december-1-2024/p3.jpg",
-    "card_photos/valley-of-fire-nv-december-1-2024/p4.jpg"
-  ],
-  "iseltwald-switzerland-december-7-2024": [
-    "card_photos/iseltwald-switzerland-december-7-2024/p0.jpg",
-    "card_photos/iseltwald-switzerland-december-7-2024/p1.jpg",
-    "card_photos/iseltwald-switzerland-december-7-2024/p2.jpg",
-    "card_photos/iseltwald-switzerland-december-7-2024/p3.jpg",
-    "card_photos/iseltwald-switzerland-december-7-2024/p4.jpg"
-  ],
-  "lake-tahoe-ca-december-14-2024": [
-    "card_photos/lake-tahoe-ca-december-14-2024/p0.jpg",
-    "card_photos/lake-tahoe-ca-december-14-2024/p1.jpg",
-    "card_photos/lake-tahoe-ca-december-14-2024/p2.jpg",
-    "card_photos/lake-tahoe-ca-december-14-2024/p3.jpg",
-    "card_photos/lake-tahoe-ca-december-14-2024/p4.jpg"
-  ],
-  "san-diego-ca-december-21-2024": [
-    "card_photos/san-diego-ca-december-21-2024/p0.jpg",
-    "card_photos/san-diego-ca-december-21-2024/p1.jpg",
-    "card_photos/san-diego-ca-december-21-2024/p2.jpg",
-    "card_photos/san-diego-ca-december-21-2024/p3.jpg",
-    "card_photos/san-diego-ca-december-21-2024/p4.jpg"
-  ],
-  "san-diego-ca-december-23-2024": [
-    "card_photos/san-diego-ca-december-23-2024/p0.jpg",
-    "card_photos/san-diego-ca-december-23-2024/p1.jpg",
-    "card_photos/san-diego-ca-december-23-2024/p2.jpg",
-    "card_photos/san-diego-ca-december-23-2024/p3.jpg",
-    "card_photos/san-diego-ca-december-23-2024/p4.jpg"
-  ],
-  "laguna-beach-ca-december-25-2024": [
-    "card_photos/laguna-beach-ca-december-25-2024/p0.jpg",
-    "card_photos/laguna-beach-ca-december-25-2024/p1.jpg",
-    "card_photos/laguna-beach-ca-december-25-2024/p2.jpg",
-    "card_photos/laguna-beach-ca-december-25-2024/p3.jpg",
-    "card_photos/laguna-beach-ca-december-25-2024/p4.jpg"
-  ],
-  "san-francisco-ca-december-31-2024": [
-    "card_photos/san-francisco-ca-december-31-2024/p0.jpg",
-    "card_photos/san-francisco-ca-december-31-2024/p1.jpg",
-    "card_photos/san-francisco-ca-december-31-2024/p2.jpg",
-    "card_photos/san-francisco-ca-december-31-2024/p3.jpg",
-    "card_photos/san-francisco-ca-december-31-2024/p4.jpg"
-  ],
-  "berkeley-ca-january-28-2025": [
-    "card_photos/berkeley-ca-january-28-2025/p0.jpg",
-    "card_photos/berkeley-ca-january-28-2025/p1.jpg",
-    "card_photos/berkeley-ca-january-28-2025/p2.jpg",
-    "card_photos/berkeley-ca-january-28-2025/p3.jpg",
-    "card_photos/berkeley-ca-january-28-2025/p4.jpg"
-  ],
-  "santa-cruz-ca-february-22-2025": [
-    "card_photos/santa-cruz-ca-february-22-2025/p0.jpg",
-    "card_photos/santa-cruz-ca-february-22-2025/p1.jpg",
-    "card_photos/santa-cruz-ca-february-22-2025/p2.jpg",
-    "card_photos/santa-cruz-ca-february-22-2025/p3.jpg",
-    "card_photos/santa-cruz-ca-february-22-2025/p4.jpg"
-  ],
-  "kirkwood-ca-april-19-2025": [
-    "card_photos/kirkwood-ca-april-19-2025/p0.jpg",
-    "card_photos/kirkwood-ca-april-19-2025/p1.jpg",
-    "card_photos/kirkwood-ca-april-19-2025/p2.jpg",
-    "card_photos/kirkwood-ca-april-19-2025/p3.jpg",
-    "card_photos/kirkwood-ca-april-19-2025/p4.jpg"
-  ],
-  "reykjavik-iceland-june-18-2025": [
-    "card_photos/reykjavik-iceland-june-18-2025/p0.jpg",
-    "card_photos/reykjavik-iceland-june-18-2025/p1.jpg",
-    "card_photos/reykjavik-iceland-june-18-2025/p2.jpg",
-    "card_photos/reykjavik-iceland-june-18-2025/p3.jpg",
-    "card_photos/reykjavik-iceland-june-18-2025/p4.jpg",
-    "card_photos/reykjavik-iceland-june-18-2025/p5.jpg"
-  ],
-  "h-sav-k-iceland-june-23-2025": [
-    "card_photos/h-sav-k-iceland-june-23-2025/p0.jpg",
-    "card_photos/h-sav-k-iceland-june-23-2025/p1.jpg",
-    "card_photos/h-sav-k-iceland-june-23-2025/p2.jpg",
-    "card_photos/h-sav-k-iceland-june-23-2025/p3.jpg",
-    "card_photos/h-sav-k-iceland-june-23-2025/p4.jpg",
-    "card_photos/h-sav-k-iceland-june-23-2025/p5.jpg"
-  ],
-  "v-gar-faroe-islands-june-27-2025": [
-    "card_photos/v-gar-faroe-islands-june-27-2025/p0.jpg",
-    "card_photos/v-gar-faroe-islands-june-27-2025/p1.jpg",
-    "card_photos/v-gar-faroe-islands-june-27-2025/p2.jpg",
-    "card_photos/v-gar-faroe-islands-june-27-2025/p3.jpg",
-    "card_photos/v-gar-faroe-islands-june-27-2025/p4.jpg",
-    "card_photos/v-gar-faroe-islands-june-27-2025/p5.jpg"
-  ],
-  "eysturoy-faroe-islands-june-29-2025": [
-    "card_photos/eysturoy-faroe-islands-june-29-2025/p0.jpg",
-    "card_photos/eysturoy-faroe-islands-june-29-2025/p1.jpg",
-    "card_photos/eysturoy-faroe-islands-june-29-2025/p2.jpg",
-    "card_photos/eysturoy-faroe-islands-june-29-2025/p3.jpg",
-    "card_photos/eysturoy-faroe-islands-june-29-2025/p4.jpg",
-    "card_photos/eysturoy-faroe-islands-june-29-2025/p5.jpg"
-  ],
-  "t-rshavn-faroe-islands-june-30-2025": [
-    "card_photos/t-rshavn-faroe-islands-june-30-2025/p0.jpg",
-    "card_photos/t-rshavn-faroe-islands-june-30-2025/p1.jpg",
-    "card_photos/t-rshavn-faroe-islands-june-30-2025/p2.jpg",
-    "card_photos/t-rshavn-faroe-islands-june-30-2025/p3.jpg",
-    "card_photos/t-rshavn-faroe-islands-june-30-2025/p4.jpg",
-    "card_photos/t-rshavn-faroe-islands-june-30-2025/p5.jpg"
-  ],
-  "banff-canada-july-3-2025": [
-    "card_photos/banff-canada-july-3-2025/p0.jpg",
-    "card_photos/banff-canada-july-3-2025/p1.jpg",
-    "card_photos/banff-canada-july-3-2025/p2.jpg",
-    "card_photos/banff-canada-july-3-2025/p3.jpg",
-    "card_photos/banff-canada-july-3-2025/p4.jpg",
-    "card_photos/banff-canada-july-3-2025/p5.jpg"
-  ],
-  "coloma-ca-august-30-2025": [
-    "card_photos/coloma-ca-august-30-2025/p0.jpg",
-    "card_photos/coloma-ca-august-30-2025/p1.jpg",
-    "card_photos/coloma-ca-august-30-2025/p2.jpg",
-    "card_photos/coloma-ca-august-30-2025/p3.jpg",
-    "card_photos/coloma-ca-august-30-2025/p4.jpg"
-  ],
-  "sacramento-ca-august-31-2025": [
-    "card_photos/sacramento-ca-august-31-2025/p0.jpg",
-    "card_photos/sacramento-ca-august-31-2025/p1.jpg",
-    "card_photos/sacramento-ca-august-31-2025/p2.jpg",
-    "card_photos/sacramento-ca-august-31-2025/p3.jpg",
-    "card_photos/sacramento-ca-august-31-2025/p4.jpg"
-  ],
-  "lake-berryessa-ca-september-28-2025": [
-    "card_photos/lake-berryessa-ca-september-28-2025/p0.jpg",
-    "card_photos/lake-berryessa-ca-september-28-2025/p1.jpg",
-    "card_photos/lake-berryessa-ca-september-28-2025/p2.jpg",
-    "card_photos/lake-berryessa-ca-september-28-2025/p3.jpg",
-    "card_photos/lake-berryessa-ca-september-28-2025/p4.jpg"
-  ],
-  "alameda-ca-october-11-2025": [
-    "card_photos/alameda-ca-october-11-2025/p0.jpg",
-    "card_photos/alameda-ca-october-11-2025/p1.jpg",
-    "card_photos/alameda-ca-october-11-2025/p2.jpg",
-    "card_photos/alameda-ca-october-11-2025/p3.jpg",
-    "card_photos/alameda-ca-october-11-2025/p4.jpg"
-  ],
-  "sacramento-ca-october-12-2025": [
-    "card_photos/sacramento-ca-october-12-2025/p0.jpg",
-    "card_photos/sacramento-ca-october-12-2025/p1.jpg",
-    "card_photos/sacramento-ca-october-12-2025/p2.jpg",
-    "card_photos/sacramento-ca-october-12-2025/p3.jpg",
-    "card_photos/sacramento-ca-october-12-2025/p4.jpg"
-  ],
-  "mendocino-ca-october-18-2025": [
-    "card_photos/mendocino-ca-october-18-2025/p0.jpg",
-    "card_photos/mendocino-ca-october-18-2025/p1.jpg",
-    "card_photos/mendocino-ca-october-18-2025/p2.jpg",
-    "card_photos/mendocino-ca-october-18-2025/p3.jpg",
-    "card_photos/mendocino-ca-october-18-2025/p4.jpg"
-  ],
-  "taoyuan-taiwan-december-25-2025": [
-    "card_photos/taoyuan-taiwan-december-25-2025/p0.jpg",
-    "card_photos/taoyuan-taiwan-december-25-2025/p1.jpg",
-    "card_photos/taoyuan-taiwan-december-25-2025/p2.jpg",
-    "card_photos/taoyuan-taiwan-december-25-2025/p3.jpg",
-    "card_photos/taoyuan-taiwan-december-25-2025/p4.jpg"
-  ],
-  "taichung-taiwan-december-30-2025": [
-    "card_photos/taichung-taiwan-december-30-2025/p0.jpg",
-    "card_photos/taichung-taiwan-december-30-2025/p1.jpg",
-    "card_photos/taichung-taiwan-december-30-2025/p2.jpg",
-    "card_photos/taichung-taiwan-december-30-2025/p3.jpg",
-    "card_photos/taichung-taiwan-december-30-2025/p4.jpg"
-  ],
-  "tokyo-japan-january-7-2026": [
-    "card_photos/tokyo-japan-january-7-2026/p0.jpg",
-    "card_photos/tokyo-japan-january-7-2026/p1.jpg",
-    "card_photos/tokyo-japan-january-7-2026/p2.jpg",
-    "card_photos/tokyo-japan-january-7-2026/p3.jpg",
-    "card_photos/tokyo-japan-january-7-2026/p4.jpg",
-    "card_photos/tokyo-japan-january-7-2026/p5.jpg"
-  ],
-  "karuizawa-japan-january-10-2026": [
-    "card_photos/karuizawa-japan-january-10-2026/p0.jpg",
-    "card_photos/karuizawa-japan-january-10-2026/p1.jpg",
-    "card_photos/karuizawa-japan-january-10-2026/p2.jpg",
-    "card_photos/karuizawa-japan-january-10-2026/p3.jpg",
-    "card_photos/karuizawa-japan-january-10-2026/p4.jpg",
-    "card_photos/karuizawa-japan-january-10-2026/p5.jpg"
-  ],
-  "tokyo-japan-january-13-2026": [
-    "card_photos/tokyo-japan-january-13-2026/p0.jpg",
-    "card_photos/tokyo-japan-january-13-2026/p1.jpg",
-    "card_photos/tokyo-japan-january-13-2026/p2.jpg",
-    "card_photos/tokyo-japan-january-13-2026/p3.jpg",
-    "card_photos/tokyo-japan-january-13-2026/p4.jpg",
-    "card_photos/tokyo-japan-january-13-2026/p5.jpg"
-  ],
-  "oakland-ca-january-18-2026": [
-    "card_photos/oakland-ca-january-18-2026/p0.jpg",
-    "card_photos/oakland-ca-january-18-2026/p1.jpg",
-    "card_photos/oakland-ca-january-18-2026/p2.jpg",
-    "card_photos/oakland-ca-january-18-2026/p3.jpg",
-    "card_photos/oakland-ca-january-18-2026/p4.jpg"
-  ],
-  "modesto-ca-march-1-2026": [
-    "card_photos/modesto-ca-march-1-2026/p0.jpg",
-    "card_photos/modesto-ca-march-1-2026/p1.jpg",
-    "card_photos/modesto-ca-march-1-2026/p2.jpg",
-    "card_photos/modesto-ca-march-1-2026/p3.jpg",
-    "card_photos/modesto-ca-march-1-2026/p4.jpg"
-  ],
-  "heavenly-ca-march-15-2026": [
-    "card_photos/heavenly-ca-march-15-2026/p0.jpg",
-    "card_photos/heavenly-ca-march-15-2026/p1.jpg",
-    "card_photos/heavenly-ca-march-15-2026/p2.jpg",
-    "card_photos/heavenly-ca-march-15-2026/p3.jpg",
-    "card_photos/heavenly-ca-march-15-2026/p4.jpg"
-  ],
-  "santa-clara-ca-march-24-2026": [
-    "card_photos/santa-clara-ca-march-24-2026/p0.jpg",
-    "card_photos/santa-clara-ca-march-24-2026/p1.jpg",
-    "card_photos/santa-clara-ca-march-24-2026/p2.jpg",
-    "card_photos/santa-clara-ca-march-24-2026/p3.jpg",
-    "card_photos/santa-clara-ca-march-24-2026/p4.jpg"
-  ],
-  "fremont-ca-april-11-2026": [
-    "card_photos/fremont-ca-april-11-2026/p0.jpg",
-    "card_photos/fremont-ca-april-11-2026/p1.jpg",
-    "card_photos/fremont-ca-april-11-2026/p2.jpg",
-    "card_photos/fremont-ca-april-11-2026/p3.jpg",
-    "card_photos/fremont-ca-april-11-2026/p4.jpg"
-  ],
-  "brentwood-ca-may-9-2026": [
-    "card_photos/brentwood-ca-may-9-2026/p0.jpg",
-    "card_photos/brentwood-ca-may-9-2026/p1.jpg",
-    "card_photos/brentwood-ca-may-9-2026/p2.jpg",
-    "card_photos/brentwood-ca-may-9-2026/p3.jpg",
-    "card_photos/brentwood-ca-may-9-2026/p4.jpg"
-  ],
-  "cupertino-ca-may-31-2026": [
-    "card_photos/cupertino-ca-may-31-2026/p0.jpg",
-    "card_photos/cupertino-ca-may-31-2026/p1.jpg",
-    "card_photos/cupertino-ca-may-31-2026/p2.jpg",
-    "card_photos/cupertino-ca-may-31-2026/p3.jpg",
-    "card_photos/cupertino-ca-may-31-2026/p4.jpg"
-  ],
-  "san-francisco-ca-june-8-2026": [
-    "card_photos/san-francisco-ca-june-8-2026/p0.jpg",
-    "card_photos/san-francisco-ca-june-8-2026/p1.jpg",
-    "card_photos/san-francisco-ca-june-8-2026/p2.jpg",
-    "card_photos/san-francisco-ca-june-8-2026/p3.jpg",
-    "card_photos/san-francisco-ca-june-8-2026/p4.jpg"
-  ],
-  "big-island-hi-july-1-2026": [
-    "card_photos/big-island-hi-july-1-2026/p0.jpg",
-    "card_photos/big-island-hi-july-1-2026/p1.jpg",
-    "card_photos/big-island-hi-july-1-2026/p2.jpg",
-    "card_photos/big-island-hi-july-1-2026/p3.jpg",
-    "card_photos/big-island-hi-july-1-2026/p4.jpg"
-  ],
-  "oahu-hi-july-6-2026": [
-    "card_photos/oahu-hi-july-6-2026/p0.jpg",
-    "card_photos/oahu-hi-july-6-2026/p1.jpg",
-    "card_photos/oahu-hi-july-6-2026/p2.jpg",
-    "card_photos/oahu-hi-july-6-2026/p3.jpg",
-    "card_photos/oahu-hi-july-6-2026/p4.jpg"
-  ],
-  "lake-tahoe-ca-august-15-2026": [
-    "card_photos/lake-tahoe-ca-august-15-2026/p0.jpg",
-    "card_photos/lake-tahoe-ca-august-15-2026/p1.jpg",
-    "card_photos/lake-tahoe-ca-august-15-2026/p2.jpg",
-    "card_photos/lake-tahoe-ca-august-15-2026/p3.jpg",
-    "card_photos/lake-tahoe-ca-august-15-2026/p4.jpg"
-  ],
-  "san-jose-ca-august-27-2026": [
-    "card_photos/san-jose-ca-august-27-2026/p0.jpg",
-    "card_photos/san-jose-ca-august-27-2026/p1.jpg",
-    "card_photos/san-jose-ca-august-27-2026/p2.jpg",
-    "card_photos/san-jose-ca-august-27-2026/p3.jpg",
-    "card_photos/san-jose-ca-august-27-2026/p4.jpg"
-  ],
-  "san-francisco-ca-september-26-2026": [
-    "card_photos/san-francisco-ca-september-26-2026/p0.jpg",
-    "card_photos/san-francisco-ca-september-26-2026/p1.jpg",
-    "card_photos/san-francisco-ca-september-26-2026/p2.jpg",
-    "card_photos/san-francisco-ca-september-26-2026/p3.jpg",
-    "card_photos/san-francisco-ca-september-26-2026/p4.jpg"
-  ],
-  "saratoga-ca-october-4-2026": [
-    "card_photos/saratoga-ca-october-4-2026/p0.jpg",
-    "card_photos/saratoga-ca-october-4-2026/p1.jpg",
-    "card_photos/saratoga-ca-october-4-2026/p2.jpg",
-    "card_photos/saratoga-ca-october-4-2026/p3.jpg",
-    "card_photos/saratoga-ca-october-4-2026/p4.jpg"
-  ],
-  "fremont-ca-home": [
-    "card_photos/fremont-ca-home/p0.jpg",
-    "card_photos/fremont-ca-home/p1.jpg",
-    "card_photos/fremont-ca-home/p2.jpg",
-    "card_photos/fremont-ca-home/p3.jpg",
-    "card_photos/fremont-ca-home/p4.jpg"
-  ],
-  "santa-clara-ca-badminton": [
-    "card_photos/santa-clara-ca-badminton/p0.jpg",
-    "card_photos/santa-clara-ca-badminton/p1.jpg",
-    "card_photos/santa-clara-ca-badminton/p2.jpg",
-    "card_photos/santa-clara-ca-badminton/p3.jpg",
-    "card_photos/santa-clara-ca-badminton/p4.jpg"
-  ],
-  "milpitas-ca-june-19-2023": [
-    "card_photos/milpitas-ca-june-19-2023/p0.jpg",
-    "card_photos/milpitas-ca-june-19-2023/p1.jpg",
-    "card_photos/milpitas-ca-june-19-2023/p2.jpg",
-    "card_photos/milpitas-ca-june-19-2023/p3.jpg",
-    "card_photos/milpitas-ca-june-19-2023/p4.jpg"
-  ],
-  "las-vegas-nv-june-20-2024": [
-    "card_photos/las-vegas-nv-june-20-2024/p0.jpg",
-    "card_photos/las-vegas-nv-june-20-2024/p1.jpg",
-    "card_photos/las-vegas-nv-june-20-2024/p2.jpg",
-    "card_photos/las-vegas-nv-june-20-2024/p3.jpg",
-    "card_photos/las-vegas-nv-june-20-2024/p4.jpg",
-    "card_photos/las-vegas-nv-june-20-2024/p5.jpg"
-  ],
-  "grand-canyon-az-june-21-2024": [
-    "card_photos/grand-canyon-az-june-21-2024/p0.jpg",
-    "card_photos/grand-canyon-az-june-21-2024/p1.jpg",
-    "card_photos/grand-canyon-az-june-21-2024/p2.jpg",
-    "card_photos/grand-canyon-az-june-21-2024/p3.jpg",
-    "card_photos/grand-canyon-az-june-21-2024/p4.jpg",
-    "card_photos/grand-canyon-az-june-21-2024/p5.jpg"
-  ],
-  "page-az-june-22-2024": [
-    "card_photos/page-az-june-22-2024/p0.jpg",
-    "card_photos/page-az-june-22-2024/p1.jpg",
-    "card_photos/page-az-june-22-2024/p2.jpg",
-    "card_photos/page-az-june-22-2024/p3.jpg",
-    "card_photos/page-az-june-22-2024/p4.jpg",
-    "card_photos/page-az-june-22-2024/p5.jpg"
-  ],
-  "coyote-buttes-az-june-24-2024": [
-    "card_photos/coyote-buttes-az-june-24-2024/p0.jpg",
-    "card_photos/coyote-buttes-az-june-24-2024/p1.jpg",
-    "card_photos/coyote-buttes-az-june-24-2024/p2.jpg",
-    "card_photos/coyote-buttes-az-june-24-2024/p3.jpg",
-    "card_photos/coyote-buttes-az-june-24-2024/p4.jpg",
-    "card_photos/coyote-buttes-az-june-24-2024/p5.jpg"
-  ],
-  "aruba-dream": [
-    "card_photos/aruba-dream/p0.jpg",
-    "card_photos/aruba-dream/p1.jpg"
-  ],
-  "bolivia-dream": [
-    "card_photos/bolivia-dream/p0.jpg",
-    "card_photos/bolivia-dream/p1.jpg"
-  ],
-  "tanzania-dream": [
-    "card_photos/tanzania-dream/p0.jpg",
-    "card_photos/tanzania-dream/p1.jpg"
-  ],
-  "new-zealand-dream": [
-    "card_photos/new-zealand-dream/p0.jpg",
-    "card_photos/new-zealand-dream/p1.jpg"
-  ],
-  "alaska-dream": [
-    "card_photos/alaska-dream/p0.jpg",
-    "card_photos/alaska-dream/p1.jpg"
+  "230619_Milpitas": [
+    "card_photos/230619_Milpitas/p1.jpg",
+    "card_photos/230619_Milpitas/p3.jpg",
+    "card_photos/230619_Milpitas/Untitled.mp4",
+    "card_photos/230619_Milpitas/IMG_0271.JPG",
+    "card_photos/230619_Milpitas/IMG_E0272.JPG"
+  ],
+  "230806_SantaClara": [
+    "card_photos/230806_SantaClara/p0.jpg",
+    "card_photos/230806_SantaClara/p1.jpg",
+    "card_photos/230806_SantaClara/p2.jpg",
+    "card_photos/230806_SantaClara/p3.jpg",
+    "card_photos/230806_SantaClara/p4.jpg"
+  ],
+  "230815_Sunnyvale": [
+    "card_photos/230815_Sunnyvale/20230815_124830.jpg",
+    "card_photos/230815_Sunnyvale/20230815_124917.jpg",
+    "card_photos/230815_Sunnyvale/20230815_125524_1.jpg"
+  ],
+  "230924_SanFrancisco": [
+    "card_photos/230924_SanFrancisco/20230924_164835.jpg",
+    "card_photos/230924_SanFrancisco/20230924_185259.jpg",
+    "card_photos/230924_SanFrancisco/20230924_231531_1.jpg",
+    "card_photos/230924_SanFrancisco/p2.jpg",
+    "card_photos/230924_SanFrancisco/p4.jpg"
+  ],
+  "230928_Maui": [
+    "card_photos/230928_Maui/230928_20230928_080141.jpg",
+    "card_photos/230928_Maui/230928_20230928_085518.jpg",
+    "card_photos/230928_Maui/230928_20230928_164338.jpg",
+    "card_photos/230928_Maui/230928_20230928_174236.jpg",
+    "card_photos/230928_Maui/230928_20230928_181303.jpg",
+    "card_photos/230928_Maui/230928_20230928_202917.jpg",
+    "card_photos/230928_Maui/230928_20230928_205442.jpg",
+    "card_photos/230928_Maui/230928_20230928_210917.jpg",
+    "card_photos/230928_Maui/230929_20230929_133035.jpg",
+    "card_photos/230928_Maui/230929_20230929_180051.jpg",
+    "card_photos/230928_Maui/230930_20230930_135300.jpg",
+    "card_photos/230928_Maui/230930_20230930_163403.jpg",
+    "card_photos/230928_Maui/230930_20230930_164745.jpg",
+    "card_photos/230928_Maui/230930_20230930_164848.jpg",
+    "card_photos/230928_Maui/230930_20230930_173035.jpg",
+    "card_photos/230928_Maui/231001_20231001_144546.jpg",
+    "card_photos/230928_Maui/231001_20231001_161256.jpg",
+    "card_photos/230928_Maui/231001_20231001_170931.jpg",
+    "card_photos/230928_Maui/230928_IMG_1295.jpg",
+    "card_photos/230928_Maui/230929_IMG_1428.jpg",
+    "card_photos/230928_Maui/230929_IMG_1518.jpg",
+    "card_photos/230928_Maui/230930_IMG_1564.jpg",
+    "card_photos/230928_Maui/231001_IMG_1681.jpg",
+    "card_photos/230928_Maui/231001_IMG_1731.jpg",
+    "card_photos/230928_Maui/230928_IMG_6087.jpg",
+    "card_photos/230928_Maui/230929_IMG_6236.jpg",
+    "card_photos/230928_Maui/230929_IMG_7137.jpg"
+  ],
+  "231011_Birmingham": [
+    "card_photos/231011_Birmingham/Screenshot_20231021-020342_Messenger.jpg",
+    "card_photos/231011_Birmingham/IMG_1843.jpg",
+    "card_photos/231011_Birmingham/IMG_1993.PNG",
+    "card_photos/231011_Birmingham/IMG_2171.PNG"
+  ],
+  "231124_Taichung": [
+    "card_photos/231124_Taichung/p0.jpg",
+    "card_photos/231124_Taichung/p2.jpg",
+    "card_photos/231124_Taichung/IMG_2419.jpg",
+    "card_photos/231124_Taichung/IMG_2425.jpg"
+  ],
+  "231203_Tainan": [
+    "card_photos/231203_Tainan/PXL_20231203_065234041.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_071324020.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_081455225.MP.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_085513355.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_111936506.MP.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_115846993.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_121722575.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_130433081.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_135333919.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_141941263.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_143614077.jpg",
+    "card_photos/231203_Tainan/PXL_20231203_150605333.MP.jpg",
+    "card_photos/231203_Tainan/IMG_2616.jpg"
+  ],
+  "231207_Taoyuan": [
+    "card_photos/231207_Taoyuan/PXL_20231207_041210689.jpg",
+    "card_photos/231207_Taoyuan/PXL_20231207_050941815.jpg",
+    "card_photos/231207_Taoyuan/PXL_20231207_061445001.jpg",
+    "card_photos/231207_Taoyuan/PXL_20231207_063136639.MP.jpg",
+    "card_photos/231207_Taoyuan/PXL_20231207_115310597.jpg",
+    "card_photos/231207_Taoyuan/PXL_20231207_115844739.jpg"
+  ],
+  "231227_Istanbul": [
+    "card_photos/231227_Istanbul/PXL_20231228_041714145.jpg",
+    "card_photos/231227_Istanbul/Untitled.mp4"
+  ],
+  "231230_LosAngeles": [
+    "card_photos/231230_LosAngeles/PXL_20231230_230904451.jpg",
+    "card_photos/231230_LosAngeles/PXL_20231231_001901409.jpg",
+    "card_photos/231230_LosAngeles/PXL_20231231_001950306.jpg",
+    "card_photos/231230_LosAngeles/PXL_20231231_003134379.jpg",
+    "card_photos/231230_LosAngeles/PXL_20231231_004832984.jpg",
+    "card_photos/231230_LosAngeles/PXL_20231231_010809099.jpg",
+    "card_photos/231230_LosAngeles/PXL_20231231_024735345.MP.jpg",
+    "card_photos/231230_LosAngeles/PXL_20231231_040905763.jpg",
+    "card_photos/231230_LosAngeles/PXL_20231231_070121683.MP.jpg",
+    "card_photos/231230_LosAngeles/IMG_3770.jpg",
+    "card_photos/231230_LosAngeles/IMG_3820.jpg",
+    "card_photos/231230_LosAngeles/IMG_3833.jpg"
+  ],
+  "240120_Fremont": [
+    "card_photos/240120_Fremont/PXL_20240121_084317529.MP.jpg",
+    "card_photos/240120_Fremont/PXL_20240121_084403907.MP.jpg",
+    "card_photos/240120_Fremont/PXL_20240121_101637703.MP.jpg"
+  ],
+  "240217_Fremont": [
+    "card_photos/240217_Fremont/IMG_7747.jpg"
+  ],
+  "240225_SanJose": [
+    "card_photos/240225_SanJose/PXL_20240226_024235899.MP.jpg",
+    "card_photos/240225_SanJose/PXL_20240226_030041973.MP.jpg",
+    "card_photos/240225_SanJose/PXL_20240226_030151842.MP.jpg",
+    "card_photos/240225_SanJose/PXL_20240226_035312085.MP.jpg",
+    "card_photos/240225_SanJose/PXL_20240226_040500478.MP.jpg",
+    "card_photos/240225_SanJose/PXL_20240226_041052544.jpg"
+  ],
+  "240406_SanJose": [
+    "card_photos/240406_SanJose/p1.jpg",
+    "card_photos/240406_SanJose/p2.jpg"
+  ],
+  "240504_Yosemite": [
+    "card_photos/240504_Yosemite/p1.jpg"
+  ],
+  "240609_SanJose": [
+    "card_photos/240609_SanJose/p1.jpg",
+    "card_photos/240609_SanJose/p2.jpg",
+    "card_photos/240609_SanJose/p3.jpg"
+  ],
+  "240615_Seattle": [
+    "card_photos/240615_Seattle/PXL_20240615_225045930.MP.jpg",
+    "card_photos/240615_Seattle/PXL_20240615_225138282.MP.jpg",
+    "card_photos/240615_Seattle/IMG_4763.jpg"
+  ],
+  "240620_LasVegas": [
+    "card_photos/240620_LasVegas/240619_PXL_20240619_211239420.jpg",
+    "card_photos/240620_LasVegas/240619_PXL_20240619_232021453.MP.jpg",
+    "card_photos/240620_LasVegas/240619_PXL_20240620_053352131.MP.jpg",
+    "card_photos/240620_LasVegas/240619_PXL_20240620_054006097.jpg",
+    "card_photos/240620_LasVegas/240619_PXL_20240620_072410144.jpg",
+    "card_photos/240620_LasVegas/240620_PXL_20240620_184225127.jpg",
+    "card_photos/240620_LasVegas/240620_PXL_20240620_223038986.jpg",
+    "card_photos/240620_LasVegas/240620_PXL_20240620_224716358.jpg",
+    "card_photos/240620_LasVegas/240620_PXL_20240621_025141622.jpg",
+    "card_photos/240620_LasVegas/240620_PXL_20240621_040035840.jpg",
+    "card_photos/240620_LasVegas/240620_DSC01324.JPG",
+    "card_photos/240620_LasVegas/240619_IMG_4938.jpg"
+  ],
+  "240621_GrandCanyon": [
+    "card_photos/240621_GrandCanyon/PXL_20240621_172011693.jpg",
+    "card_photos/240621_GrandCanyon/PXL_20240621_190228343.jpg",
+    "card_photos/240621_GrandCanyon/PXL_20240621_222132055.jpg",
+    "card_photos/240621_GrandCanyon/PXL_20240621_230716408.MP.jpg",
+    "card_photos/240621_GrandCanyon/PXL_20240622_020906664.MP.jpg",
+    "card_photos/240621_GrandCanyon/PXL_20240622_023449968.jpg",
+    "card_photos/240621_GrandCanyon/PXL_20240622_024923265.MP.jpg",
+    "card_photos/240621_GrandCanyon/DSC01365.JPG",
+    "card_photos/240621_GrandCanyon/DSC01906.JPG",
+    "card_photos/240621_GrandCanyon/IMG_E5033.jpg",
+    "card_photos/240621_GrandCanyon/IMG_5115.jpg"
+  ],
+  "240622_Page": [
+    "card_photos/240622_Page/PXL_20240622_170819647.jpg",
+    "card_photos/240622_Page/PXL_20240622_171406388.jpg",
+    "card_photos/240622_Page/PXL_20240622_173327299.MP.jpg",
+    "card_photos/240622_Page/PXL_20240622_184929856.jpg",
+    "card_photos/240622_Page/PXL_20240622_185443076.jpg",
+    "card_photos/240622_Page/PXL_20240623_001151446.jpg",
+    "card_photos/240622_Page/PXL_20240623_004544043.MP.jpg",
+    "card_photos/240622_Page/PXL_20240623_024318793.MP.jpg",
+    "card_photos/240622_Page/PXL_20240623_024516186.jpg",
+    "card_photos/240622_Page/IMG_5147.jpg"
+  ],
+  "240624_CoyoteButtes": [
+    "card_photos/240624_CoyoteButtes/240623_PXL_20240623_161942790.jpg",
+    "card_photos/240624_CoyoteButtes/240623_PXL_20240623_224425742.jpg",
+    "card_photos/240624_CoyoteButtes/240624_PXL_20240624_113909880.jpg",
+    "card_photos/240624_CoyoteButtes/240624_PXL_20240624_121144459.jpg",
+    "card_photos/240624_CoyoteButtes/240624_PXL_20240624_142822247.MP.jpg",
+    "card_photos/240624_CoyoteButtes/240624_PXL_20240624_150357153.jpg",
+    "card_photos/240624_CoyoteButtes/240624_PXL_20240624_193533137.jpg",
+    "card_photos/240624_CoyoteButtes/240624_PXL_20240624_215320887.jpg",
+    "card_photos/240624_CoyoteButtes/240623_DSC02168.JPG",
+    "card_photos/240624_CoyoteButtes/240623_DSC02174.JPG",
+    "card_photos/240624_CoyoteButtes/240623_XIJC2372.JPG",
+    "card_photos/240624_CoyoteButtes/240624_DSC02415.JPG",
+    "card_photos/240624_CoyoteButtes/240624_IMG_5286.jpg"
+  ],
+  "240627_IguazuFalls": [
+    "card_photos/240627_IguazuFalls/IMG_5728.jpg"
+  ],
+  "240803_Paris": [
+    "card_photos/240803_Paris/IMG_7014.jpg"
+  ],
+  "240815_SanJose": [
+    "card_photos/240815_SanJose/PXL_20240816_014336653.jpg",
+    "card_photos/240815_SanJose/PXL_20240816_033618272.jpg",
+    "card_photos/240815_SanJose/PXL_20240816_034806364.jpg",
+    "card_photos/240815_SanJose/JWUU8789.JPG",
+    "card_photos/240815_SanJose/KJWK9754.JPG"
+  ],
+  "240907_Felton": [
+    "card_photos/240907_Felton/PXL_20240907_224936780.jpg",
+    "card_photos/240907_Felton/PXL_20240908_073625430.jpg",
+    "card_photos/240907_Felton/PXL_20240908_172326515.jpg",
+    "card_photos/240907_Felton/PXL_20240908_195042334.jpg",
+    "card_photos/240907_Felton/IMG_7292.jpg"
+  ],
+  "240908_Oakland": [
+    "card_photos/240908_Oakland/PXL_20240909_045756944.jpg",
+    "card_photos/240908_Oakland/PXL_20240909_050045183.MP.jpg"
+  ],
+  "241024_Tibet": [
+    "card_photos/241024_Tibet/PXL_20241024_162714031.jpg"
+  ],
+  "241128_LosAngeles": [
+    "card_photos/241128_LosAngeles/PXL_20241128_113552995.jpg",
+    "card_photos/241128_LosAngeles/PXL_20241129_080134295.jpg",
+    "card_photos/241128_LosAngeles/PXL_20241129_195359671.jpg",
+    "card_photos/241128_LosAngeles/PXL_20241130_000941572.jpg",
+    "card_photos/241128_LosAngeles/PXL_20241130_071830929.jpg",
+    "card_photos/241128_LosAngeles/PXL_20241130_225710814.jpg"
+  ],
+  "241201_ValleyOfFire": [
+    "card_photos/241201_ValleyOfFire/PXL_20241201_204806935.jpg",
+    "card_photos/241201_ValleyOfFire/PXL_20241201_213115672.jpg",
+    "card_photos/241201_ValleyOfFire/PXL_20241201_220200264.jpg",
+    "card_photos/241201_ValleyOfFire/PXL_20241201_220953453.jpg",
+    "card_photos/241201_ValleyOfFire/PXL_20241201_221319157.jpg",
+    "card_photos/241201_ValleyOfFire/PXL_20241201_231205363.jpg",
+    "card_photos/241201_ValleyOfFire/PXL_20241201_231947577.jpg"
+  ],
+  "241207_Iseltwald": [
+    "card_photos/241207_Iseltwald/PXL_20241208_033817777.jpg"
+  ],
+  "241214_LakeTahoe": [
+    "card_photos/241214_LakeTahoe/PXL_20241214_211120095.jpg",
+    "card_photos/241214_LakeTahoe/PXL_20241214_211343817.jpg",
+    "card_photos/241214_LakeTahoe/PXL_20241215_014534218.jpg",
+    "card_photos/241214_LakeTahoe/PXL_20241215_162905160.jpg",
+    "card_photos/241214_LakeTahoe/PXL_20241215_174513779.jpg",
+    "card_photos/241214_LakeTahoe/PXL_20241215_211608766.jpg",
+    "card_photos/241214_LakeTahoe/PXL_20241215_223251747.jpg"
+  ],
+  "241221_SanDiego": [
+    "card_photos/241221_SanDiego/PXL_20241222_030926378.jpg",
+    "card_photos/241221_SanDiego/PXL_20241222_055424196.jpg",
+    "card_photos/241221_SanDiego/PXL_20241222_195456063.jpg",
+    "card_photos/241221_SanDiego/PXL_20241223_035011052.jpg"
+  ],
+  "241223_SanDiego": [
+    "card_photos/241223_SanDiego/PXL_20241223_194838734.jpg",
+    "card_photos/241223_SanDiego/PXL_20241223_200532657.jpg",
+    "card_photos/241223_SanDiego/PXL_20241223_210002315.jpg",
+    "card_photos/241223_SanDiego/PXL_20241223_211156919.jpg",
+    "card_photos/241223_SanDiego/PXL_20241223_212214598.jpg",
+    "card_photos/241223_SanDiego/PXL_20241224_001954940.jpg",
+    "card_photos/241223_SanDiego/PXL_20241224_003709007.jpg",
+    "card_photos/241223_SanDiego/PXL_20241224_045746465.jpg",
+    "card_photos/241223_SanDiego/PXL_20241224_222359567.jpg",
+    "card_photos/241223_SanDiego/PXL_20241224_231821083.jpg",
+    "card_photos/241223_SanDiego/PXL_20241225_013034567.jpg",
+    "card_photos/241223_SanDiego/PXL_20241225_013434388.jpg"
+  ],
+  "241225_LagunaBeach": [
+    "card_photos/241225_LagunaBeach/PXL_20241225_202601091.jpg",
+    "card_photos/241225_LagunaBeach/PXL_20241225_203745254.jpg",
+    "card_photos/241225_LagunaBeach/PXL_20241225_205606805.jpg",
+    "card_photos/241225_LagunaBeach/PXL_20241225_221731137.jpg"
+  ],
+  "241231_SanFrancisco": [
+    "card_photos/241231_SanFrancisco/PXL_20250101_052133637.jpg",
+    "card_photos/241231_SanFrancisco/PXL_20250101_062741082.jpg",
+    "card_photos/241231_SanFrancisco/PXL_20250101_080404964.jpg"
+  ],
+  "250128_Berkeley": [
+    "card_photos/250128_Berkeley/20250128_133820.jpg",
+    "card_photos/250128_Berkeley/20250128_163909.jpg"
+  ],
+  "250222_SantaCruz": [
+    "card_photos/250222_SantaCruz/20250222_155345.jpg",
+    "card_photos/250222_SantaCruz/20250222_155410.jpg",
+    "card_photos/250222_SantaCruz/20250222_155457.jpg",
+    "card_photos/250222_SantaCruz/20250222_160043.jpg",
+    "card_photos/250222_SantaCruz/20250222_160733.jpg",
+    "card_photos/250222_SantaCruz/20250222_161252.jpg",
+    "card_photos/250222_SantaCruz/20250222_161910.jpg",
+    "card_photos/250222_SantaCruz/20250222_161924.jpg",
+    "card_photos/250222_SantaCruz/20250222_162153.jpg",
+    "card_photos/250222_SantaCruz/20250222_162523.jpg",
+    "card_photos/250222_SantaCruz/20250222_163241.jpg"
+  ],
+  "250419_Kirkwood": [
+    "card_photos/250419_Kirkwood/PXL_20250419_192237100.MP.jpg",
+    "card_photos/250419_Kirkwood/PXL_20250419_201347357.jpg",
+    "card_photos/250419_Kirkwood/PXL_20250419_203118859.jpg",
+    "card_photos/250419_Kirkwood/PXL_20250419_235240891.jpg",
+    "card_photos/250419_Kirkwood/PXL_20250420_014058117.jpg",
+    "card_photos/250419_Kirkwood/PXL_20250420_023307485.MP.jpg",
+    "card_photos/250419_Kirkwood/PXL_20250420_193105424.MP.jpg",
+    "card_photos/250419_Kirkwood/PXL_20250420_201928220.jpg",
+    "card_photos/250419_Kirkwood/PXL_20250420_212935071.MP.jpg"
+  ],
+  "250618_Reykjavik": [
+    "card_photos/250618_Reykjavik/250618_PXL_20250618_082409672.jpg",
+    "card_photos/250618_Reykjavik/250618_PXL_20250618_120546528.jpg",
+    "card_photos/250618_Reykjavik/250618_PXL_20250618_133716698.jpg",
+    "card_photos/250618_Reykjavik/250618_PXL_20250618_152213217.jpg",
+    "card_photos/250618_Reykjavik/250618_PXL_20250618_160323184.MP.jpg",
+    "card_photos/250618_Reykjavik/250618_PXL_20250618_165632872.MP.jpg",
+    "card_photos/250618_Reykjavik/250618_PXL_20250618_220223972.jpg",
+    "card_photos/250618_Reykjavik/250619_PXL_20250619_110352187.jpg",
+    "card_photos/250618_Reykjavik/250619_PXL_20250619_133607432.jpg",
+    "card_photos/250618_Reykjavik/250619_PXL_20250619_173956801.MP.jpg",
+    "card_photos/250618_Reykjavik/250619_PXL_20250619_203909774.jpg",
+    "card_photos/250618_Reykjavik/250620_PXL_20250620_114543079.jpg",
+    "card_photos/250618_Reykjavik/250620_PXL_20250620_174017066.jpg",
+    "card_photos/250618_Reykjavik/250620_PXL_20250620_201855649.MP.jpg",
+    "card_photos/250618_Reykjavik/250620_PXL_20250620_202417872.MP.jpg",
+    "card_photos/250618_Reykjavik/250620_20250620_213647.jpg",
+    "card_photos/250618_Reykjavik/250621_20250621_072351.jpg",
+    "card_photos/250618_Reykjavik/250621_PXL_20250621_104344820.jpg",
+    "card_photos/250618_Reykjavik/250621_PXL_20250621_135050203.jpg",
+    "card_photos/250618_Reykjavik/250621_PXL_20250621_153108048.jpg",
+    "card_photos/250618_Reykjavik/250621_PXL_20250621_170938489.MP.jpg",
+    "card_photos/250618_Reykjavik/250622_PXL_20250622_134042192.MP.jpg",
+    "card_photos/250618_Reykjavik/250622_PXL_20250622_170642599.jpg",
+    "card_photos/250618_Reykjavik/250622_PXL_20250622_180818842.jpg",
+    "card_photos/250618_Reykjavik/250622_20250622_203924.jpg",
+    "card_photos/250618_Reykjavik/250621_IMG_4147.jpg",
+    "card_photos/250618_Reykjavik/250621_IMG_4246.jpg",
+    "card_photos/250618_Reykjavik/250618_IMG_5239.JPG",
+    "card_photos/250618_Reykjavik/250618_IMG_5250.JPG",
+    "card_photos/250618_Reykjavik/250619_IMG_5314.JPG",
+    "card_photos/250618_Reykjavik/250619_IMG_5567.JPG",
+    "card_photos/250618_Reykjavik/250620_IMG_5664.JPG",
+    "card_photos/250618_Reykjavik/250620_IMG_6072.JPG",
+    "card_photos/250618_Reykjavik/250621_IMG_6376.JPG",
+    "card_photos/250618_Reykjavik/250622_IMG_6590.JPG",
+    "card_photos/250618_Reykjavik/250622_IMG_6595.JPG",
+    "card_photos/250618_Reykjavik/250618__MG_8563.JPG",
+    "card_photos/250618_Reykjavik/250618__MG_8577.JPG",
+    "card_photos/250618_Reykjavik/250622__MG_8847.JPG",
+    "card_photos/250618_Reykjavik/250622__MG_8904.JPG",
+    "card_photos/250618_Reykjavik/250622__MG_8973.JPG",
+    "card_photos/250618_Reykjavik/250620_DSC09010.JPG"
+  ],
+  "250623_Husavik": [
+    "card_photos/250623_Husavik/250626_20250626_125219.jpg",
+    "card_photos/250623_Husavik/250626_20250626_150713.jpg",
+    "card_photos/250623_Husavik/250625_IMG_0046.JPG",
+    "card_photos/250623_Husavik/250625__MG_0132.JPG",
+    "card_photos/250623_Husavik/250625__MG_0189.JPG",
+    "card_photos/250623_Husavik/250625__MG_0227.JPG",
+    "card_photos/250623_Husavik/250626__MG_0260.JPG",
+    "card_photos/250623_Husavik/250626_IMG_0273.JPG",
+    "card_photos/250623_Husavik/250626_IMG_0334.JPG",
+    "card_photos/250623_Husavik/250623_IMG_4456.jpg",
+    "card_photos/250623_Husavik/250626_IMG_4585.jpg",
+    "card_photos/250623_Husavik/250626_IMG_4626.jpg",
+    "card_photos/250623_Husavik/250624_IMG_6988.JPG",
+    "card_photos/250623_Husavik/250623__MG_9020.JPG",
+    "card_photos/250623_Husavik/250623__MG_9021.JPG",
+    "card_photos/250623_Husavik/250623__MG_9113.JPG",
+    "card_photos/250623_Husavik/250623__MG_9138.JPG",
+    "card_photos/250623_Husavik/250624_IMG_9245.JPG",
+    "card_photos/250623_Husavik/250624_IMG_9266.JPG",
+    "card_photos/250623_Husavik/250624_IMG_9387.JPG",
+    "card_photos/250623_Husavik/250624_IMG_9428.JPG",
+    "card_photos/250623_Husavik/250624_IMG_9507.JPG",
+    "card_photos/250623_Husavik/250624_IMG_9564.JPG",
+    "card_photos/250623_Husavik/250625__MG_9790.JPG",
+    "card_photos/250623_Husavik/250625_IMG_9846.JPG",
+    "card_photos/250623_Husavik/250625_IMG_9932.JPG",
+    "card_photos/250623_Husavik/250625_IMG_9954.JPG"
+  ],
+  "250627_Vagar": [
+    "card_photos/250627_Vagar/250627_PXL_20250627_075838571.MP.jpg",
+    "card_photos/250627_Vagar/250627_PXL_20250627_102424889.jpg",
+    "card_photos/250627_Vagar/250627_PXL_20250627_111159817.jpg",
+    "card_photos/250627_Vagar/250627_20250627_122029(0).jpg",
+    "card_photos/250627_Vagar/250701_PXL_20250701_104801013.jpg",
+    "card_photos/250627_Vagar/250701_PXL_20250701_112620426.MP.jpg",
+    "card_photos/250627_Vagar/250701_20250701_122201.jpg",
+    "card_photos/250627_Vagar/250701_PXL_20250701_135252143.MP.jpg",
+    "card_photos/250627_Vagar/250701_PXL_20250701_143628897.jpg",
+    "card_photos/250627_Vagar/250701_PXL_20250701_151901533.jpg",
+    "card_photos/250627_Vagar/250701_PXL_20250701_161614286.jpg",
+    "card_photos/250627_Vagar/250627__MG_0373.JPG",
+    "card_photos/250627_Vagar/250627_IMG_4736.jpg",
+    "card_photos/250627_Vagar/250701_IMG_5145.jpg",
+    "card_photos/250627_Vagar/250701_IMG_8027.JPG"
+  ],
+  "250629_Eysturoy": [
+    "card_photos/250629_Eysturoy/250628_PXL_20250628_144617039.jpg",
+    "card_photos/250629_Eysturoy/250628_20250628_155859.jpg",
+    "card_photos/250629_Eysturoy/250628_PXL_20250628_162333286.jpg",
+    "card_photos/250629_Eysturoy/250628_PXL_20250628_173759920.jpg",
+    "card_photos/250629_Eysturoy/250629__MG_0464.JPG",
+    "card_photos/250629_Eysturoy/250629__MG_0519.JPG",
+    "card_photos/250629_Eysturoy/250629__MG_0568.JPG",
+    "card_photos/250629_Eysturoy/250629__MG_0577.JPG",
+    "card_photos/250629_Eysturoy/250629__MG_0619.JPG",
+    "card_photos/250629_Eysturoy/250628_IMG_4776.jpg",
+    "card_photos/250629_Eysturoy/250628_IMG_4789.jpg",
+    "card_photos/250629_Eysturoy/250628_IMG_4823.jpg",
+    "card_photos/250629_Eysturoy/250628_IMG_4848.jpg",
+    "card_photos/250629_Eysturoy/250629_IMG_4890.jpg",
+    "card_photos/250629_Eysturoy/250628_IMG_7572.JPG",
+    "card_photos/250629_Eysturoy/250629__MG_9409.JPG",
+    "card_photos/250629_Eysturoy/250629__MG_9432.JPG",
+    "card_photos/250629_Eysturoy/250629__MG_9442.JPG",
+    "card_photos/250629_Eysturoy/250629__MG_9493.JPG",
+    "card_photos/250629_Eysturoy/250629__MG_9500.JPG"
+  ],
+  "250630_Torshavn": [
+    "card_photos/250630_Torshavn/PXL_20250630_125503848.jpg",
+    "card_photos/250630_Torshavn/PXL_20250630_182307608.MP.jpg",
+    "card_photos/250630_Torshavn/IMG_4979.jpg",
+    "card_photos/250630_Torshavn/IMG_5004.jpg",
+    "card_photos/250630_Torshavn/IMG_7822.JPG",
+    "card_photos/250630_Torshavn/IMG_7824.JPG",
+    "card_photos/250630_Torshavn/IMG_7829.JPG",
+    "card_photos/250630_Torshavn/IMG_7837.JPG",
+    "card_photos/250630_Torshavn/IMG_7843.JPG"
+  ],
+  "250703_Banff": [
+    "card_photos/250703_Banff/250703_PXL_20250703_081650331.jpg",
+    "card_photos/250703_Banff/250703_20250703_142751.jpg",
+    "card_photos/250703_Banff/250703_20250703_170812.jpg",
+    "card_photos/250703_Banff/250703_PXL_20250703_194839165.jpg",
+    "card_photos/250703_Banff/250703_PXL_20250703_230432895.MP.jpg",
+    "card_photos/250703_Banff/250703_PXL_20250703_231524213.jpg",
+    "card_photos/250703_Banff/250703_PXL_20250704_002436192.MP.jpg",
+    "card_photos/250703_Banff/250703_PXL_20250704_013122503.jpg",
+    "card_photos/250703_Banff/250703_PXL_20250704_015403447.MP.jpg",
+    "card_photos/250703_Banff/250703_PXL_20250704_022731999.MP.jpg",
+    "card_photos/250703_Banff/250703_PXL_20250704_030816782.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_175807995.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_180452001.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_181223755.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_182619349.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_183749573.MP.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_202741352.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_221510970.MP.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_224347154.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_233426698.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_233622006.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250704_234245788.jpg",
+    "card_photos/250703_Banff/250704_PXL_20250705_011447643.jpg",
+    "card_photos/250703_Banff/250705_20250705_141831.jpg",
+    "card_photos/250703_Banff/250705_PXL_20250705_182103755.MP.jpg",
+    "card_photos/250703_Banff/250705_PXL_20250705_183209899.jpg",
+    "card_photos/250703_Banff/250705_PXL_20250705_183619779.MP.jpg",
+    "card_photos/250703_Banff/250705_PXL_20250705_185343679.jpg",
+    "card_photos/250703_Banff/250705_PXL_20250705_223855676.jpg",
+    "card_photos/250703_Banff/250705_PXL_20250705_230415683.jpg",
+    "card_photos/250703_Banff/250705_PXL_20250706_005858618.jpg",
+    "card_photos/250703_Banff/250706_PXL_20250706_163322558.MP.jpg",
+    "card_photos/250703_Banff/250706_PXL_20250706_174151185.jpg",
+    "card_photos/250703_Banff/250706_PXL_20250706_174603870.jpg",
+    "card_photos/250703_Banff/250706_PXL_20250706_180318806.jpg",
+    "card_photos/250703_Banff/250706_PXL_20250706_181218140.jpg",
+    "card_photos/250703_Banff/250706_PXL_20250706_185609123.jpg",
+    "card_photos/250703_Banff/250706_PXL_20250706_190204695.MP.jpg",
+    "card_photos/250703_Banff/250706_PXL_20250706_210959198.jpg",
+    "card_photos/250703_Banff/250706_PXL_20250707_003804271.jpg"
+  ],
+  "250830_Coloma": [
+    "card_photos/250830_Coloma/20250830_170130.jpg",
+    "card_photos/250830_Coloma/PXL_20250830_173435148.MP.jpg",
+    "card_photos/250830_Coloma/PXL_20250831_001451618.jpg"
+  ],
+  "250831_Sacramento": [
+    "card_photos/250831_Sacramento/PXL_20250831_231549478.MP.jpg"
+  ],
+  "250928_LakeBerryessa": [
+    "card_photos/250928_LakeBerryessa/PXL_20250928_170038938.jpg",
+    "card_photos/250928_LakeBerryessa/PXL_20250928_190510379.jpg",
+    "card_photos/250928_LakeBerryessa/PXL_20250928_210022726.jpg",
+    "card_photos/250928_LakeBerryessa/PXL_20250928_211150745.jpg",
+    "card_photos/250928_LakeBerryessa/PXL_20250928_225350612.jpg",
+    "card_photos/250928_LakeBerryessa/PXL_20250929_000348552.jpg",
+    "card_photos/250928_LakeBerryessa/PXL_20250929_003749308.jpg"
+  ],
+  "251011_Alameda": [
+    "card_photos/251011_Alameda/PXL_20251011_173041061.jpg"
+  ],
+  "251012_Sacramento": [
+    "card_photos/251012_Sacramento/20251012_004638.jpg",
+    "card_photos/251012_Sacramento/20251012_102101.jpg",
+    "card_photos/251012_Sacramento/PXL_20251012_201545852.jpg",
+    "card_photos/251012_Sacramento/PXL_20251012_230104806.jpg",
+    "card_photos/251012_Sacramento/PXL_20251013_005443135.MP.jpg"
+  ],
+  "251018_Mendocino": [
+    "card_photos/251018_Mendocino/PXL_20251018_203614549.jpg",
+    "card_photos/251018_Mendocino/PXL_20251018_204003464.MP.jpg",
+    "card_photos/251018_Mendocino/PXL_20251018_213445825.jpg",
+    "card_photos/251018_Mendocino/PXL_20251019_013142113.jpg",
+    "card_photos/251018_Mendocino/PXL_20251019_013205110.MP.jpg",
+    "card_photos/251018_Mendocino/PXL_20251019_013749015.jpg",
+    "card_photos/251018_Mendocino/PXL_20251019_182642200.jpg",
+    "card_photos/251018_Mendocino/PXL_20251019_184533215.jpg",
+    "card_photos/251018_Mendocino/PXL_20251019_190201938.jpg",
+    "card_photos/251018_Mendocino/PXL_20251020_082329763.jpg"
+  ],
+  "251225_Taoyuan": [
+    "card_photos/251225_Taoyuan/PXL_20251224_064911228.jpg",
+    "card_photos/251225_Taoyuan/PXL_20251224_220816843.jpg",
+    "card_photos/251225_Taoyuan/PXL_20251227_014131869.jpg",
+    "card_photos/251225_Taoyuan/PXL_20251227_095658743.jpg",
+    "card_photos/251225_Taoyuan/p3.jpg",
+    "card_photos/251225_Taoyuan/p4.jpg"
+  ],
+  "251230_Taichung": [
+    "card_photos/251230_Taichung/PXL_20251230_033148041.jpg",
+    "card_photos/251230_Taichung/PXL_20251230_093019327.jpg",
+    "card_photos/251230_Taichung/PXL_20251230_095908456.jpg",
+    "card_photos/251230_Taichung/PXL_20251230_132648818.jpg",
+    "card_photos/251230_Taichung/PXL_20251230_141655401.jpg",
+    "card_photos/251230_Taichung/PXL_20251230_141803576.jpg",
+    "card_photos/251230_Taichung/p4.jpg"
+  ],
+  "260107_Tokyo": [
+    "card_photos/260107_Tokyo/PXL_20260107_043403484.jpg",
+    "card_photos/260107_Tokyo/PXL_20260107_070447842.jpg",
+    "card_photos/260107_Tokyo/PXL_20260108_033109853.jpg",
+    "card_photos/260107_Tokyo/PXL_20260108_053815603.jpg",
+    "card_photos/260107_Tokyo/PXL_20260108_071548419.jpg",
+    "card_photos/260107_Tokyo/PXL_20260108_080131529.MP.jpg",
+    "card_photos/260107_Tokyo/20260108_134309.jpg",
+    "card_photos/260107_Tokyo/20260108_143858.jpg",
+    "card_photos/260107_Tokyo/20260108_180551.jpg",
+    "card_photos/260107_Tokyo/PXL_20260109_033947371.jpg",
+    "card_photos/260107_Tokyo/PXL_20260109_072931603.jpg",
+    "card_photos/260107_Tokyo/PXL_20260109_073840293.jpg",
+    "card_photos/260107_Tokyo/PXL_20260109_075206238.jpg",
+    "card_photos/260107_Tokyo/PXL_20260109_082711853.jpg",
+    "card_photos/260107_Tokyo/PXL_20260109_083044157.jpg",
+    "card_photos/260107_Tokyo/20260109_105349.jpg",
+    "card_photos/260107_Tokyo/PXL_20260109_105356606.MP.jpg",
+    "card_photos/260107_Tokyo/20260109_162916.jpg",
+    "card_photos/260107_Tokyo/p0.jpg",
+    "card_photos/260107_Tokyo/p1.jpg",
+    "card_photos/260107_Tokyo/p4.jpg"
+  ],
+  "260110_Karuizawa": [
+    "card_photos/260110_Karuizawa/PXL_20260110_054238372.MP.jpg",
+    "card_photos/260110_Karuizawa/PXL_20260110_075326130.MP.jpg",
+    "card_photos/260110_Karuizawa/20260110_103616.jpg",
+    "card_photos/260110_Karuizawa/20260110_140111.jpg",
+    "card_photos/260110_Karuizawa/PXL_20260111_054416357.MP.jpg",
+    "card_photos/260110_Karuizawa/PXL_20260111_093744831.MP.jpg",
+    "card_photos/260110_Karuizawa/PXL_20260111_115346537.MP.jpg",
+    "card_photos/260110_Karuizawa/PXL_20260112_081926476.jpg",
+    "card_photos/260110_Karuizawa/PXL_20260112_104249363.MP.jpg",
+    "card_photos/260110_Karuizawa/20260112_122701.jpg",
+    "card_photos/260110_Karuizawa/p0.jpg",
+    "card_photos/260110_Karuizawa/p2.jpg",
+    "card_photos/260110_Karuizawa/p3.jpg",
+    "card_photos/260110_Karuizawa/p4.jpg"
+  ],
+  "260113_Tokyo": [
+    "card_photos/260113_Tokyo/PXL_20260113_025634758.jpg",
+    "card_photos/260113_Tokyo/PXL_20260113_061539362.jpg",
+    "card_photos/260113_Tokyo/PXL_20260113_071609643.jpg",
+    "card_photos/260113_Tokyo/PXL_20260113_083700950.jpg",
+    "card_photos/260113_Tokyo/PXL_20260113_100300278.jpg",
+    "card_photos/260113_Tokyo/PXL_20260113_113014944.jpg",
+    "card_photos/260113_Tokyo/p0.jpg",
+    "card_photos/260113_Tokyo/p1.jpg",
+    "card_photos/260113_Tokyo/p2.jpg",
+    "card_photos/260113_Tokyo/p3.jpg",
+    "card_photos/260113_Tokyo/p4.jpg"
+  ],
+  "260114_Narita": [
+    "card_photos/260114_Narita/PXL_20260114_073220386.jpg",
+    "card_photos/260114_Narita/PXL_20260114_073636316.jpg",
+    "card_photos/260114_Narita/PXL_20260114_121313160.MP.jpg",
+    "card_photos/260114_Narita/20260114_164426.jpg"
+  ],
+  "260118_Oakland": [
+    "card_photos/260118_Oakland/p0.jpg",
+    "card_photos/260118_Oakland/p4.jpg"
+  ],
+  "260301_Modesto": [
+    "card_photos/260301_Modesto/PXL_20260301_221646844.jpg",
+    "card_photos/260301_Modesto/PXL_20260302_005715101.jpg",
+    "card_photos/260301_Modesto/p0.jpg",
+    "card_photos/260301_Modesto/p2.jpg",
+    "card_photos/260301_Modesto/p4.jpg"
+  ],
+  "260314_Heavenly": [
+    "card_photos/260314_Heavenly/PXL_20260314_225522852.jpg",
+    "card_photos/260314_Heavenly/PXL_20260315_203310405.MP.jpg",
+    "card_photos/260314_Heavenly/PXL_20260315_204106746.MP.jpg",
+    "card_photos/260314_Heavenly/PXL_20260315_204120424.jpg",
+    "card_photos/260314_Heavenly/p0.jpg",
+    "card_photos/260314_Heavenly/p1.jpg",
+    "card_photos/260314_Heavenly/p2.jpg",
+    "card_photos/260314_Heavenly/p3.jpg",
+    "card_photos/260314_Heavenly/p4.jpg"
+  ],
+  "260324_SantaClara": [
+    "card_photos/260324_SantaClara/p0.jpg",
+    "card_photos/260324_SantaClara/p2.jpg",
+    "card_photos/260324_SantaClara/p3.jpg"
+  ],
+  "260411_Fremont": [
+    "card_photos/260411_Fremont/p0.jpg",
+    "card_photos/260411_Fremont/p1.jpg",
+    "card_photos/260411_Fremont/p2.jpg",
+    "card_photos/260411_Fremont/p3.jpg",
+    "card_photos/260411_Fremont/p4.jpg"
+  ],
+  "260509_Brentwood": [
+    "card_photos/260509_Brentwood/PXL_20260509_212531516.mp4",
+    "card_photos/260509_Brentwood/p0.jpg",
+    "card_photos/260509_Brentwood/p1.jpg",
+    "card_photos/260509_Brentwood/p2.jpg",
+    "card_photos/260509_Brentwood/p3.jpg",
+    "card_photos/260509_Brentwood/p4.jpg"
+  ],
+  "260531_Cupertino": [
+    "card_photos/260531_Cupertino/PXL_20260531_215318445.MP.jpg",
+    "card_photos/260531_Cupertino/PXL_20260601_020148745.jpg",
+    "card_photos/260531_Cupertino/p2.jpg"
+  ],
+  "260608_SanFrancisco": [
+    "card_photos/260608_SanFrancisco/PXL_20260609_015534463.jpg",
+    "card_photos/260608_SanFrancisco/PXL_20260609_024004625.jpg",
+    "card_photos/260608_SanFrancisco/PXL_20260609_041739769.jpg",
+    "card_photos/260608_SanFrancisco/PXL_20260609_042019497.jpg",
+    "card_photos/260608_SanFrancisco/PXL_20260609_043413430.jpg",
+    "card_photos/260608_SanFrancisco/PXL_20260609_043441609.jpg",
+    "card_photos/260608_SanFrancisco/p0.jpg",
+    "card_photos/260608_SanFrancisco/p1.jpg"
+  ],
+  "260701_BigIsland": [
+    "card_photos/260701_BigIsland/PXL_20260701_134535265.MP.jpg",
+    "card_photos/260701_BigIsland/PXL_20260702_045230162.jpg",
+    "card_photos/260701_BigIsland/PXL_20260702_214216645.jpg",
+    "card_photos/260701_BigIsland/PXL_20260702_234844434.MP.jpg",
+    "card_photos/260701_BigIsland/PXL_20260703_030916663.MP.jpg",
+    "card_photos/260701_BigIsland/PXL_20260704_032555227.jpg",
+    "card_photos/260701_BigIsland/PXL_20260704_220724573.jpg",
+    "card_photos/260701_BigIsland/PXL_20260704_225035193.MP.jpg",
+    "card_photos/260701_BigIsland/PXL_20260705_002800219.MP.jpg",
+    "card_photos/260701_BigIsland/PXL_20260705_030504609.jpg",
+    "card_photos/260701_BigIsland/PXL_20260705_031047117.MP.jpg",
+    "card_photos/260701_BigIsland/PXL_20260705_033511289.jpg",
+    "card_photos/260701_BigIsland/PXL_20260705_051014122.MP.jpg",
+    "card_photos/260701_BigIsland/PXL_20260705_051039648.MP.jpg",
+    "card_photos/260701_BigIsland/PXL_20260705_051749300.jpg",
+    "card_photos/260701_BigIsland/PXL_20260705_052113701.jpg",
+    "card_photos/260701_BigIsland/PXL_20260705_211332197.MP.jpg",
+    "card_photos/260701_BigIsland/PXL_20260706_000056641.MP.jpg"
+  ],
+  "260706_Oahu": [
+    "card_photos/260706_Oahu/PXL_20260706_033357237.jpg",
+    "card_photos/260706_Oahu/PXL_20260707_013512007.MP.jpg",
+    "card_photos/260706_Oahu/PXL_20260707_014705795.jpg",
+    "card_photos/260706_Oahu/PXL_20260707_015259735.jpg",
+    "card_photos/260706_Oahu/PXL_20260707_041254039.MP.jpg",
+    "card_photos/260706_Oahu/PXL_20260707_204849850.jpg",
+    "card_photos/260706_Oahu/PXL_20260707_212045898.MP.jpg",
+    "card_photos/260706_Oahu/PXL_20260707_221510096.jpg",
+    "card_photos/260706_Oahu/PXL_20260707_224312259.jpg",
+    "card_photos/260706_Oahu/PXL_20260707_224708878.jpg",
+    "card_photos/260706_Oahu/PXL_20260708_034933690.jpg",
+    "card_photos/260706_Oahu/PXL_20260708_040402851.jpg",
+    "card_photos/260706_Oahu/PXL_20260708_040826087.jpg",
+    "card_photos/260706_Oahu/PXL_20260708_042918197.jpg",
+    "card_photos/260706_Oahu/PXL_20260708_061419234.jpg",
+    "card_photos/260706_Oahu/PXL_20260708_215302033.jpg",
+    "card_photos/260706_Oahu/PXL_20260708_230453861.MP.jpg",
+    "card_photos/260706_Oahu/PXL_20260708_233520053.jpg",
+    "card_photos/260706_Oahu/PXL_20260708_235124266.MP.jpg",
+    "card_photos/260706_Oahu/PXL_20260709_015037083.jpg",
+    "card_photos/260706_Oahu/PXL_20260709_035344912.MP.jpg",
+    "card_photos/260706_Oahu/PXL_20260709_223738937.jpg"
+  ],
+  "260710_Yosemite": [
+    "card_photos/260710_Yosemite/PXL_20260710_193558536.MP.jpg",
+    "card_photos/260710_Yosemite/PXL_20260710_201244599.MP.jpg",
+    "card_photos/260710_Yosemite/PXL_20260710_225101384.jpg",
+    "card_photos/260710_Yosemite/PXL_20260711_004218841.jpg",
+    "card_photos/260710_Yosemite/PXL_20260711_004234289.jpg",
+    "card_photos/260710_Yosemite/PXL_20260711_011326701.jpg"
+  ],
+  "260711_SequoiaAndKingsNationalPark": [
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260711_192910571.jpg",
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260711_193356984.jpg",
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260711_194004724.jpg",
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260711_220817198.jpg",
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260711_225326390.jpg",
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260711_230851053.jpg",
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260711_231759465.jpg",
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260712_205144880.MP.jpg",
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260712_210015078.jpg",
+    "card_photos/260711_SequoiaAndKingsNationalPark/PXL_20260712_211349568.jpg"
+  ],
+  "260712_SanFrancisco": [
+    "card_photos/260712_SanFrancisco/PXL_20260713_034947417.MP.jpg",
+    "card_photos/260712_SanFrancisco/PXL_20260713_041841042.NIGHT.jpg",
+    "card_photos/260712_SanFrancisco/PXL_20260713_042544992.NIGHT.jpg",
+    "card_photos/260712_SanFrancisco/PXL_20260713_042617783.NIGHT.jpg"
+  ],
+  "260815_LakeTahoe": [
+    "card_photos/260815_LakeTahoe/PXL_20260815_011001124.jpg",
+    "card_photos/260815_LakeTahoe/PXL_20260815_020215901.jpg",
+    "card_photos/260815_LakeTahoe/PXL_20260815_045615053.jpg",
+    "card_photos/260815_LakeTahoe/PXL_20260815_062210229.jpg",
+    "card_photos/260815_LakeTahoe/PXL_20260815_201247036.jpg",
+    "card_photos/260815_LakeTahoe/PXL_20260816_042610552.jpg",
+    "card_photos/260815_LakeTahoe/p0.jpg",
+    "card_photos/260815_LakeTahoe/p2.jpg",
+    "card_photos/260815_LakeTahoe/IMG_5521.jpg"
+  ],
+  "260827_SanJose": [
+    "card_photos/260827_SanJose/PXL_20260828_023132643.MP.jpg",
+    "card_photos/260827_SanJose/p0.jpg"
+  ],
+  "260926_SanFrancisco": [
+    "card_photos/260926_SanFrancisco/p3.jpg",
+    "card_photos/260926_SanFrancisco/p4.jpg"
+  ],
+  "261004_Saratoga": [
+    "card_photos/261004_Saratoga/PXL_20261004_181938035.jpg",
+    "card_photos/261004_Saratoga/p0.jpg"
+  ],
+  "badminton": [
+    "card_photos/badminton/PXL_20240120_053712154.LS.mp4",
+    "card_photos/badminton/PXL_20240306_054352389.MP.jpg",
+    "card_photos/badminton/PXL_20240306_054355110.MP.jpg",
+    "card_photos/badminton/PXL_20240519_181807238.MP.jpg",
+    "card_photos/badminton/PXL_20240913_034229995.jpg",
+    "card_photos/badminton/PXL_20240920_033155895.jpg",
+    "card_photos/badminton/PXL_20241002_023236976.jpg",
+    "card_photos/badminton/PXL_20250330_013452912.jpg",
+    "card_photos/badminton/PXL_20250801_022010265.jpg",
+    "card_photos/badminton/PXL_20250808_024519650.MP.jpg",
+    "card_photos/badminton/PXL_20250827_023159694.MP.jpg",
+    "card_photos/badminton/PXL_20250829_043708291.jpg",
+    "card_photos/badminton/PXL_20260403_060809687.MP.jpg",
+    "card_photos/badminton/PXL_20260807_060315642.jpg"
+  ],
+  "dream_alaska": [
+    "card_photos/dream_alaska/images.jpeg",
+    "card_photos/dream_alaska/p0.jpg",
+    "card_photos/dream_alaska/p1.jpg"
+  ],
+  "dream_aruba": [
+    "card_photos/dream_aruba/aruba-manchebo-beach-coast-sunny-day.jpg",
+    "card_photos/dream_aruba/de-palm-island-aruba.jpg",
+    "card_photos/dream_aruba/images (1).jpeg",
+    "card_photos/dream_aruba/images.jpeg",
+    "card_photos/dream_aruba/p1.jpg"
+  ],
+  "dream_bolivia": [
+    "card_photos/dream_bolivia/7355056170_4358cdd73d_b.jpg",
+    "card_photos/dream_bolivia/images.jpeg",
+    "card_photos/dream_bolivia/p0.jpg",
+    "card_photos/dream_bolivia/p1.jpg",
+    "card_photos/dream_bolivia/17591_1352.jpg"
+  ],
+  "dream_newzealand": [
+    "card_photos/dream_newzealand/images.jpeg",
+    "card_photos/dream_newzealand/p0.jpg",
+    "card_photos/dream_newzealand/p1.jpg"
+  ],
+  "dream_tanzania": [
+    "card_photos/dream_tanzania/istockphoto-1140829787-612x612.jpg",
+    "card_photos/dream_tanzania/63.jpg",
+    "card_photos/dream_tanzania/p0.jpg",
+    "card_photos/dream_tanzania/p1.jpg",
+    "card_photos/dream_tanzania/istockphoto-958201790-612x612.jpg"
+  ],
+  "home": [
+    "card_photos/home/20230917_130548.jpg",
+    "card_photos/home/PXL_20240127_225000234.MP.jpg",
+    "card_photos/home/PXL_20240127_231453509.MP.jpg",
+    "card_photos/home/PXL_20240305_065102098.MP.jpg",
+    "card_photos/home/PXL_20241010_041524829.jpg",
+    "card_photos/home/PXL_20241010_041646276.MP.jpg",
+    "card_photos/home/PXL_20241124_052338698.jpg",
+    "card_photos/home/PXL_20241227_221849877.MP.jpg",
+    "card_photos/home/PXL_20250102_010251318.jpg",
+    "card_photos/home/20250123_001019.jpg",
+    "card_photos/home/20250317_223501.jpg",
+    "card_photos/home/PXL_20250501_022246631.MP.jpg",
+    "card_photos/home/PXL_20250601_025839786.MP.jpg",
+    "card_photos/home/PXL_20250719_030243171.jpg",
+    "card_photos/home/PXL_20250724_052258890.MP.jpg",
+    "card_photos/home/PXL_20250731_015050306.MP.jpg",
+    "card_photos/home/PXL_20250814_043356644.jpg",
+    "card_photos/home/PXL_20250904_041344685.jpg",
+    "card_photos/home/PXL_20251020_202505614.jpg",
+    "card_photos/home/PXL_20260129_080510866.MP.jpg",
+    "card_photos/home/PXL_20260327_074035625.MP.jpg",
+    "card_photos/home/PXL_20260328_022749415.jpg",
+    "card_photos/home/PXL_20260329_035820507.MP.jpg",
+    "card_photos/home/PXL_20260331_030537990.jpg",
+    "card_photos/home/PXL_20260530_192647373.MP.jpg",
+    "card_photos/home/PXL_20260718_035832615.jpg",
+    "card_photos/home/PXL_20260902_044303029.jpg",
+    "card_photos/home/PXL_20260907_004238562.jpg",
+    "card_photos/home/PXL_20260919_224300239.MP.jpg",
+    "card_photos/home/PXL_20260924_030433845.jpg",
+    "card_photos/home/PXL_20261001_194124327.MP.jpg",
+    "card_photos/home/PXL_20261003_002958393.jpg",
+    "card_photos/home/PXL_20261006_032102483.jpg",
+    "card_photos/home/PXL_20261009_064639766.jpg",
+    "card_photos/home/p3.jpg"
+  ],
+  "tesla": [
+    "card_photos/tesla/PXL_20240123_205458470.MP.jpg",
+    "card_photos/tesla/PXL_20240725_192304985.jpg",
+    "card_photos/tesla/PXL_20240904_195258530.jpg",
+    "card_photos/tesla/PXL_20241126_201453805.jpg",
+    "card_photos/tesla/20250317_181305.jpg",
+    "card_photos/tesla/PXL_20250425_193107261.jpg",
+    "card_photos/tesla/PXL_20250710_192050729.jpg",
+    "card_photos/tesla/PXL_20250906_004847707.MP.jpg",
+    "card_photos/tesla/PXL_20251120_203736676.jpg",
+    "card_photos/tesla/PXL_20251204_203523791.MP.jpg",
+    "card_photos/tesla/t02.jpg",
+    "card_photos/tesla/t03.jpg",
+    "card_photos/tesla/t04.jpg",
+    "card_photos/tesla/t05.jpg",
+    "card_photos/tesla/t07.jpg",
+    "card_photos/tesla/t08.jpg",
+    "card_photos/tesla/t09.jpg"
   ]
 }

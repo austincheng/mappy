@@ -32,7 +32,22 @@ const IMG_RE = /\.(jpe?g|heic|png)$/i;
 const isImg = f => IMG_RE.test(f) && !f.startsWith(".");
 
 function slugFor(p, i) {
-  return (p.name + "_" + (p.date || p.kind || i)).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  const MONTHS = { january:1,february:2,march:3,april:4,may:5,june:6,july:7,
+    august:8,september:9,october:10,november:11,december:12 };
+  const cityOf = (name) => (name || "").split(",")[0].trim()
+    .replace(/[^A-Za-z0-9]+/g, " ").split(" ").filter(Boolean)
+    .map(w => w[0].toUpperCase() + w.slice(1)).join("");
+  const yymmdd = (date) => {
+    const m = (date || "").toLowerCase().match(/([a-z]+)\s+(\d+),\s*(\d{4})/);
+    if (!m) return null; const mo = MONTHS[m[1]]; if (!mo) return null;
+    return String(parseInt(m[3],10)%100).padStart(2,"0")
+      + String(mo).padStart(2,"0") + String(parseInt(m[2],10)).padStart(2,"0");
+  };
+  if (p.kind === "home") return "home";
+  if (p.kind === "badminton") return "badminton";
+  if (p.kind === "dream") return "dream_" + cityOf(p.name).toLowerCase();
+  const ymd = yymmdd(p.date);
+  return ymd ? ymd + "_" + cityOf(p.name) : cityOf(p.name);
 }
 
 // pick N items spread evenly across a sorted list

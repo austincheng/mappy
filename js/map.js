@@ -123,7 +123,7 @@
     .filter(i => kindOf(i) === "memory")
     .sort((a, b) => parseDate(PLACES.visited[a].date) - parseDate(PLACES.visited[b].date));
   const homeBadmintonIdx = PLACES.visited.map((p, i) => i)
-    .filter(i => kindOf(i) === "home" || kindOf(i) === "badminton");   // consumable
+    .filter(i => kindOf(i) === "home" || kindOf(i) === "badminton" || kindOf(i) === "tesla");   // consumable
   const dreamIdx = PLACES.visited.map((p, i) => i)
     .filter(i => kindOf(i) === "dream");                                // permanent
 
@@ -1072,6 +1072,69 @@
     ctx.restore();
   }
 
+  function drawTeslaMarker(x, y, size, opts = {}) {
+    const cy = y + markerBob(size, opts.phase);
+    const s = (size / 10) * (opts.hovered ? 1.18 : 1);
+    ctx.save(); ctx.translate(x, cy); ctx.scale(s, s);
+    const BLUE = "#1b2e8c", BLUE_DK = "#101d66", INK = "#111318";
+    const GLASS = "#dfe6ee", WHEEL = "#17191d";
+    ctx.lineJoin = "round"; ctx.lineCap = "round";
+
+    // ---- Model 3 sedan silhouette (low, long fastback, facing left) ----
+    ctx.beginPath();
+    ctx.moveTo(-11.4, 2.6);                       // front bumper bottom
+    ctx.quadraticCurveTo(-12.0, 1.0, -11.0, 0.4);
+    ctx.quadraticCurveTo(-10.2, -0.1, -8.6, -0.5);    // low hood
+    ctx.quadraticCurveTo(-6.4, -0.9, -4.6, -1.2);
+    ctx.quadraticCurveTo(-2.6, -5.1, 1.4, -5.3);      // raked windshield -> low roof
+    ctx.quadraticCurveTo(5.4, -5.3, 8.6, -3.6);       // long flat roof
+    ctx.quadraticCurveTo(11.2, -2.5, 11.9, -0.3);     // sloped fastback trunk
+    ctx.lineTo(11.8, 2.6);                        // tail bottom
+    ctx.closePath();
+    const g = ctx.createLinearGradient(0, -5, 0, 3);
+    g.addColorStop(0, "#2a3fb0"); g.addColorStop(1, BLUE_DK);
+    ctx.fillStyle = g; ctx.fill();
+    ctx.lineWidth = 1.4; ctx.strokeStyle = INK; ctx.stroke();
+
+    // ---- greenhouse: windshield + long side glass, split by B-pillar ----
+    ctx.fillStyle = GLASS; ctx.strokeStyle = INK; ctx.lineWidth = 1.0;
+    // front side glass
+    ctx.beginPath();
+    ctx.moveTo(-4.0, -1.3);
+    ctx.quadraticCurveTo(-2.3, -4.6, 1.1, -4.75);
+    ctx.lineTo(1.5, -1.5); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    // rear side glass (longer, tapering to the fastback)
+    ctx.beginPath();
+    ctx.moveTo(2.2, -4.7);
+    ctx.quadraticCurveTo(5.6, -4.7, 8.2, -3.3);
+    ctx.quadraticCurveTo(6.0, -1.6, 2.5, -1.5); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+
+    // ---- details: slim headlight, charge-port hint, beltline, door seam ----
+    ctx.strokeStyle = INK; ctx.lineWidth = 0.8;
+    // slim swept headlight
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath(); ctx.moveTo(-7.3, -0.1); ctx.quadraticCurveTo(-5.6, -0.7, -4.7, 0.2);
+    ctx.quadraticCurveTo(-5.9, 0.5, -7.3, -0.1); ctx.closePath(); ctx.fill(); ctx.stroke();
+    // lower bumper intake line
+    ctx.beginPath(); ctx.moveTo(-11.0, 1.9); ctx.quadraticCurveTo(-7.5, 2.5, -4.0, 2.1); ctx.stroke();
+    // beltline crease along the doors
+    ctx.beginPath(); ctx.moveTo(-3.8, -0.9); ctx.quadraticCurveTo(3.5, -0.3, 10.4, -0.6); ctx.stroke();
+    // door seam
+    ctx.beginPath(); ctx.moveTo(1.7, -1.4); ctx.lineTo(2.0, 2.2); ctx.stroke();
+
+    // ---- glossy black wheels with spoke hint ----
+    for (const wx of [-6.4, 6.6]) {
+      ctx.beginPath(); ctx.arc(wx, 2.7, 2.8, 0, Math.PI*2); ctx.fillStyle = WHEEL; ctx.fill();
+      ctx.strokeStyle = INK; ctx.lineWidth = 0.6; ctx.stroke();
+      ctx.fillStyle = "#2c3038"; ctx.beginPath(); ctx.arc(wx, 2.7, 1.3, 0, Math.PI*2); ctx.fill();
+      ctx.strokeStyle = "#3a3f48"; ctx.lineWidth = 0.5;
+      for (let k = 0; k < 5; k++) { const a = k*Math.PI*2/5; ctx.beginPath(); ctx.moveTo(wx, 2.7); ctx.lineTo(wx+Math.cos(a)*1.2, 2.7+Math.sin(a)*1.2); ctx.stroke(); }
+    }
+    ctx.restore();
+  }
+
   // Dispatch a marker by pin kind. Memory/here = heart.
   function drawMarker(kind, x, y, size, opts = {}) {
     const HEART_FILL = "#ff5c7a", HEART_DARK = "#e03a5c";
@@ -1079,6 +1142,7 @@
       case "dream": drawStarMarker(x, y, size, opts); break;
       case "home": drawHomeMarker(x, y, size, opts); break;
       case "badminton": drawShuttleMarker(x, y, size, opts); break;
+      case "tesla": drawTeslaMarker(x, y, size, opts); break;
       default: drawHeartMarker(x, y, size, HEART_FILL, HEART_DARK, opts);
     }
   }
@@ -1164,13 +1228,31 @@
   const bgA = () => document.getElementById("memory-bg-a");
   const bgB = () => document.getElementById("memory-bg-b");
   let slideList = [], slideIdx = 0, slideTimer = null, slideFront = "a";
-  const SLIDE_HOLD = 1400;   // ms each photo is shown (fade is 0.5s via CSS)
+  let SLIDE_HOLD = 1400;   // ms each photo is shown (adaptive; fade is 0.5s via CSS)
 
   function placeSlug(p) {
-    const i = PLACES.visited.indexOf(p);
-    return (p.name + "_" + (p.date || p.kind || i)).toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    const MONTHS = { january:1,february:2,march:3,april:4,may:5,june:6,july:7,
+      august:8,september:9,october:10,november:11,december:12 };
+    const cityOf = (name) => (name || "").split(",")[0].trim()
+      .replace(/[^A-Za-z0-9]+/g, " ").split(" ").filter(Boolean)
+      .map(w => w[0].toUpperCase() + w.slice(1)).join("");
+    const yymmdd = (date) => {
+      const m = (date || "").toLowerCase().match(/([a-z]+)\s+(\d+),\s*(\d{4})/);
+      if (!m) return null;
+      const mo = MONTHS[m[1]]; if (!mo) return null;
+      return String(parseInt(m[3],10)%100).padStart(2,"0")
+        + String(mo).padStart(2,"0") + String(parseInt(m[2],10)).padStart(2,"0");
+    };
+    if (p.kind === "home") return "home";
+    if (p.kind === "badminton") return "badminton";
+    if (p.kind === "tesla") return "tesla";
+    if (p.kind === "dream") return "dream_" + cityOf(p.name).toLowerCase();
+    const ymd = yymmdd(p.date);
+    return ymd ? ymd + "_" + cityOf(p.name) : cityOf(p.name);
   }
+
+  const vidEl = () => document.getElementById("memory-video");
+  const isVideo = (src) => /\.(mp4|mov|m4v|webm)$/i.test(src || "");
 
   function setLayer(which, src) {
     const img = which === "a" ? slideA() : slideB();
@@ -1184,26 +1266,65 @@
     img.classList.remove("active"); bg.classList.remove("active");
   }
 
+  // Adaptive hold: lots of photos -> quicker; few photos -> linger a bit.
+  function holdFor(count) {
+    if (count <= 3) return 2200;
+    if (count <= 6) return 1600;
+    if (count <= 12) return 1200;
+    if (count <= 24) return 950;
+    return 750;                        // big trip folders breeze through
+  }
+
+  function showPhoto(idx) {
+    const v = vidEl();
+    v.pause(); v.classList.remove("active"); v.style.display = "none";
+    [slideA(), slideB(), bgA(), bgB()].forEach(el => el.style.display = "");
+    const back = slideFront === "a" ? "b" : "a";
+    setLayer(back, slideList[idx]);
+    clearLayer(slideFront);
+    slideFront = back;
+  }
+  function showVideo(idx) {
+    // hide the photo layers, show+play the video; advance when it ends.
+    [slideA(), slideB()].forEach(el => el.classList.remove("active"));
+    const v = vidEl();
+    bgA().classList.remove("active"); bgB().classList.remove("active");
+    v.style.display = ""; v.classList.add("active");
+    v.src = slideList[idx];
+    v.currentTime = 0;
+    const onEnd = () => { v.removeEventListener("ended", onEnd); if (slideList.length > 1) advanceSlide(); };
+    v.addEventListener("ended", onEnd);
+    const p = v.play(); if (p && p.catch) p.catch(() => {});
+  }
+
   function startSlideshow(photos) {
     stopSlideshow();
     slideList = photos || []; slideIdx = 0; slideFront = "a";
     [slideA(), slideB(), bgA(), bgB()].forEach(el => el.classList.remove("active"));
+    const v = vidEl(); v.pause(); v.classList.remove("active"); v.style.display = "none";
     const empty = !slideList.length;
     [slideA(), slideB(), bgA(), bgB()].forEach(el => el.style.display = empty ? "none" : "");
     if (empty) return;
-    setLayer("a", slideList[0]);
-    if (slideList.length > 1) slideTimer = setInterval(advanceSlide, SLIDE_HOLD);
+    SLIDE_HOLD = holdFor(slideList.length);
+    presentSlide(0);
+  }
+  function presentSlide(idx) {
+    if (slideTimer) { clearTimeout(slideTimer); slideTimer = null; }
+    if (isVideo(slideList[idx])) {
+      showVideo(idx);                  // advances on 'ended'
+    } else {
+      showPhoto(idx);
+      if (slideList.length > 1) slideTimer = setTimeout(advanceSlide, SLIDE_HOLD);
+    }
   }
   function advanceSlide() {
     if (slideList.length < 2) return;
     slideIdx = (slideIdx + 1) % slideList.length;
-    const front = slideFront, back = slideFront === "a" ? "b" : "a";
-    setLayer(back, slideList[slideIdx]);
-    clearLayer(front);
-    slideFront = back;
+    presentSlide(slideIdx);
   }
   function stopSlideshow() {
-    if (slideTimer) { clearInterval(slideTimer); slideTimer = null; }
+    if (slideTimer) { clearTimeout(slideTimer); slideTimer = null; }
+    const v = vidEl(); if (v) { v.pause(); v.removeAttribute("src"); v.load && v.load(); }
   }
 
   function hideMemory() {
@@ -1308,8 +1429,9 @@
     if (dragMoved) return; // was a pan, not a click
     const h = hitTest(e.clientX, e.clientY);
     if (!h) {
-      // Clicked empty map: dismiss the open pin and zoom fully out.
-      closeAndZoomOut();
+      // Clicked empty map: only act if a pin is currently open. Dismiss it
+      // (and zoom out unless it was a Bay pin — closeAndZoomOut handles that).
+      if (openIndex != null) closeAndZoomOut();
       return;
     }
     if (h.kind === "visited") discover(h.index);
