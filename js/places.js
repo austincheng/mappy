@@ -35,7 +35,7 @@ const PLACES = {
     { kind:"memory", name:"Yosemite, CA", coords:[37.8651,-119.5383], date:"May 4, 2024", note:"Visiting Yosemite National Park with friends.", folder:"photos/240504_Yosemite" },
     { kind:"memory", name:"San Jose, CA", coords:[37.3300,-121.8900], date:"June 9, 2024", note:"We win a badminton tournament together!", folder:"photos/240609_TCAAT_Tournament_Haircut" },
     { kind:"memory", name:"Seattle, WA", coords:[47.6062,-122.3321], date:"June 15, 2024", note:"A road trip north for Victor & Rhea's wedding.", folder:"photos/240615_Victor_Rhea_Wedding" },
-    { kind:"memory", name:"Las Vegas, NV", coords:[36.1699,-115.1398], date:"June 20, 2024", note:"Our Southwest road trip — Vegas, Hoover Dam & the Grand Canyon.", folder:"photos/240620_LasVegas_HooverDam_GrandCanyon" },
+    { kind:"memory", name:"Las Vegas, NV", coords:[36.1699,-115.1398], date:"June 20, 2024", note:"Our Western National Parks road trip — Vegas, Hoover Dam & the Grand Canyon.", folder:"photos/240620_LasVegas_HooverDam_GrandCanyon" },
     { kind:"memory", name:"Grand Canyon, AZ", coords:[36.1069,-112.1129], date:"June 21, 2024", note:"Standing at the edge of the Grand Canyon together.", folder:"photos/240621_Grand_Canyon" },
     { kind:"memory", name:"Page, AZ", coords:[36.9147,-111.4558], date:"June 22, 2024", note:"Antelope Canyon, Horseshoe Bend & Lake Powell.", folder:"photos/240622_AntelopeCanyon_HorseshoeBend_LakePowell_Page" },
     { kind:"memory", name:"Coyote Buttes, AZ", coords:[36.9960,-112.0063], date:"June 24, 2024", note:"Hiking The Wave at Vermillion Cliffs.", folder:"photos/240624_The_Wave" },
@@ -47,6 +47,7 @@ const PLACES = {
     { kind:"memory", name:"Tibet, China", nameZh:"西藏", coords:[29.6520,91.1721], date:"October 24, 2024", note:"I sometimes travel with my parents — missing you from afar.", folder:"photos/241024_SFO" },
     { kind:"memory", name:"Los Angeles, CA", coords:[34.0522,-118.2437], date:"November 28, 2024", note:"Our second year in a row in Los Angeles for the holidays.", folder:"photos/241128_Los_Angeles" },
     { kind:"memory", name:"Valley of Fire, NV", coords:[36.4817,-114.5250], date:"December 1, 2024", note:"Exploring Valley of Fire State Park on our own.", folder:"photos/241201_Valley_of_Fire_State_Park" },
+    { kind:"memory", name:"Iseltwald, Switzerland", coords:[46.6910,7.9560], date:"December 7, 2024", note:"A someday trip, inspired by Crash Landing on You (while eating taro balls).", folder:"photos/241207_Home_Taro_Balls" },
     { kind:"memory", name:"Lake Tahoe, CA", coords:[39.0968,-120.0324], date:"December 14, 2024", note:"Our first time snowboarding together!", folder:"photos/241214_Northstar" },
     { kind:"memory", name:"San Diego, CA", coords:[32.7157,-117.1611], date:"December 21, 2024", note:"Another trip down to SoCal for Christmas.", folder:"photos/241221_SanDiego_PrimosMexicanFood" },
     { kind:"memory", name:"San Diego, CA", coords:[32.7310,-117.1490], date:"December 23, 2024", note:"Exploring San Diego & Balboa Park.", folder:"photos/241223_BalboaPark_NewportBeach_Irvine" },
@@ -76,7 +77,7 @@ const PLACES = {
     { kind:"memory", name:"Modesto, CA", coords:[37.6391,-120.9969], date:"March 1, 2026", note:"Picking tulips in Modesto.", folder:"photos/260301_Modesto" },
     { kind:"memory", name:"Heavenly, CA", coords:[38.9353,-119.9400], date:"March 15, 2026", note:"A little more snowboarding, just us.", folder:"photos/260315_Heavenly" },
     { kind:"memory", name:"Santa Clara, CA", coords:[37.3541,-121.9552], date:"March 24, 2026", note:"Our \u201cofficial\u201d marriage at the Santa Clara County Clerk's Office.", folder:"photos/260324_SantaClaraCountyClerksOffice_Home" },
-    { kind:"memory", name:"Fremont, CA", coords:[37.5520,-121.9800], date:"April 11, 2026", note:"Playing Pokémon GO at Lake Elizabeth.", folder:"photos/260411_LakeElizabeth_A+" },
+    { kind:"memory", name:"Fremont, CA", coords:[37.5520,-121.9800], date:"April 11, 2026", note:"After playing Pokémon GO at Lake Elizabeth.", folder:"photos/260411_LakeElizabeth_A+" },
     { kind:"memory", name:"Brentwood, CA", coords:[37.9319,-121.6958], date:"May 9, 2026", note:"Picking mulberries in Brentwood.", folder:"photos/260509_VeryMulberry_Teazentea" },
     { kind:"memory", name:"Cupertino, CA", coords:[37.3220,-122.0580], date:"May 31, 2026", note:"Our first time paddleboarding at Stevens Creek Reservoir.", folder:"photos/260531_StevensCreekReservoirSUP_CurryHyuga" },
     { kind:"memory", name:"San Francisco, CA", coords:[37.7786,-122.3893], date:"June 8, 2026", note:"The first of many Giants games!", folder:"photos/260608_GiantsGame" },
@@ -92,12 +93,11 @@ const PLACES = {
     { kind:"badminton", name:"Santa Clara, CA", coords:[37.3600,-121.9700], note:"So much of our badminton fun happens at Bintang Santa Clara." },
 
     // ----- Dream / someday pins (stars) -----
-    { kind:"dream", name:"Iseltwald, Switzerland", coords:[46.6910,7.9560], note:"A someday trip, inspired by Crash Landing on You (over taro balls)." },
     { kind:"dream", name:"Bolivia", coords:[-16.2902,-63.5887], note:"Our next adventure — Coco's learning Spanish for it." },
-    { kind:"dream", name:"Aruba", coords:[12.5211,-69.9683], zoom:28, note:"Our honeymoon someday — at least that's what we said in all those sales presentations." },
+    { kind:"dream", name:"Aruba", coords:[12.5211,-69.9683], zoom:28, note:"Our honeymoon? At least that's what we said in all those sales presentations." },
     { kind:"dream", name:"Tanzania", coords:[-6.3690,34.8888], note:"A safari we keep dreaming about." },
     { kind:"dream", name:"New Zealand", coords:[-44.0,170.5], note:"Exploring the grasslands of New Zealand, someday." },
-    { kind:"dream", name:"Alaska", coords:[64.2008,-149.4937], note:"Seeing the Northern Lights together." }
+    { kind:"dream", name:"Alaska", coords:[64.2008,-149.4937], note:"We wish to see the Northern Lights together." }
   ],
 
   future: [],

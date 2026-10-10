@@ -302,16 +302,9 @@
     // Scatter trees/hills on land-ish latitudes/longitudes. We test against the
     // projection at draw time; here we just pick candidate lon/lat + type.
     const rnd = seededRand(1337);
-    const spots = [
-      // rough continental sweet-spots so decorations mostly land on green
-      [-100, 45], [-110, 38], [-60, -10], [-55, -20], [10, 50], [25, 55],
-      [90, 60], [100, 45], [20, 5], [30, -10], [135, -25], [78, 22],
-      [-95, 30], [-70, 5], [45, 45], [60, 55], [115, 25], [25, -28],
-      [-85, 48], [-105, 52], [-75, -25], [-45, -8], [5, 42], [18, 60],
-      [40, 30], [55, 40], [72, 50], [95, 35], [120, 48], [140, 40],
-      [10, -5], [35, -22], [-62, -32], [128, -20], [-115, 42], [68, 28]
-    ];
-    const TYPES = ["tree", "tree", "tree", "hill", "mountain", "palm", "balloon", "sun", "cactus"];
+    // Scattered trees/hills/mountains removed per request — leave empty.
+    const spots = [];
+    const TYPES = ["tree"];
     decorations = spots.map((s) => ({
       lon: s[0] + (rnd() - 0.5) * 10,
       lat: s[1] + (rnd() - 0.5) * 7,
@@ -333,19 +326,22 @@
     }));
 
     // Animated landmarks at real coordinates — concentrated where pins are
-    // sparse so the map feels full and worldly. [lon, lat, type].
+    // sparse so the map feels full and worldly. [lon, lat, type, size].
+    // Removed where pins already live (Paris, Tokyo, Tanzania, Alaska).
     landmarks = [
-      [2.29, 48.86, "eiffel"],     // Paris
-      [-0.12, 51.50, "bigben"],    // London
-      [139.74, 35.66, "tower"],    // Tokyo Tower
-      [31.13, 29.98, "pyramids"],  // Giza, Egypt
-      [-43.21, -22.95, "christ"],  // Rio de Janeiro
-      [78.04, 27.17, "taj"],       // Taj Mahal, India
-      [-74.04, 40.69, "liberty"],  // New York
-      [151.21, -33.86, "opera"],   // Sydney
-      [36.5, -4.5, "acacia"],      // Serengeti, Tanzania
-      [-150, 64, "aurora"]         // Alaska
-    ].map((l) => ({ lon: l[0], lat: l[1], type: l[2], phase: rnd() * Math.PI * 2 }));
+      [-0.12, 51.50, "bigben", 1.3],    // London (UK — no pin)
+      [-79, 44, "liberty", 1.9],        // inland near Toronto (US/Canada NE)
+      [134, -25, "opera", 2.6],         // centered in Australia — bigger
+      [24, 20, "pyramids", 2.2],        // Egypt/Libya/Chad/Sudan cross
+      [80, 25, "taj", 2.3],             // India/Nepal region — bigger
+      [-60, -5, "christ", 2.0],         // northern South America / N. Brazil
+      [100, 60, "stbasil", 1.8],        // Russia (Moscow-ish, fills Siberia span)
+      [104, 13, "angkor", 1.7],         // Southeast Asia (Angkor Wat, Cambodia)
+      [47, 25, "mosque", 1.7],          // Middle East (Arabian peninsula)
+      [16, 63, "longship", 1.7],        // Scandinavia (Norway/Sweden/Finland)
+      [-71, -45, "peak", 1.9],          // Patagonia (Argentina/Chile)
+      [24, -24, "elephant", 1.8]        // Southern Africa (South Africa/Botswana)
+    ].map((l) => ({ lon: l[0], lat: l[1], type: l[2], size: l[3] || 1.3, phase: rnd() * Math.PI * 2 }));
 
     // Little hearts sprinkled across the land (Option: sprinkle).
     const heartSpots = [
@@ -604,12 +600,14 @@
     ctx.restore();
   }
   function drawLiberty(x, y, s) {
-    ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = "#7fc6a9";
-    ctx.beginPath(); ctx.arc(0,-7,2,0,Math.PI*2); ctx.fill(); // head
-    ctx.fillRect(-2,-5,4,11); // robe
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    ctx.strokeStyle = "#5a3522"; ctx.lineWidth = 0.7;   // dark outline for contrast
+    ctx.fillStyle = "#c8622e";                           // warm copper (pops on green)
+    ctx.beginPath(); ctx.arc(0,-7,2,0,Math.PI*2); ctx.fill(); ctx.stroke(); // head
+    ctx.fillRect(-2,-5,4,11); ctx.strokeRect(-2,-5,4,11); // robe
     ctx.save(); ctx.translate(2,-6); ctx.rotate(-0.5); ctx.fillRect(0,-6,1.4,6);
     ctx.fillStyle="#ffd84d"; ctx.beginPath(); ctx.moveTo(0.7,-6); ctx.lineTo(2.5,-10); ctx.lineTo(-1,-10); ctx.closePath(); ctx.fill(); ctx.restore();
-    ctx.fillStyle="#6bbf9d"; ctx.fillRect(-4,6,8,3);
+    ctx.fillStyle="#8a4a2a"; ctx.fillRect(-4,6,8,3);     // pedestal
     ctx.restore();
   }
   function drawBigBen(x, y, s) {
@@ -639,6 +637,138 @@
       for (let xx=-12; xx<=12; xx+=2){ const yy = -6 + Math.sin((xx*0.4)+(t||0)*2 + i)*2.2 + i*3; if(xx===-12)ctx.moveTo(xx,yy); else ctx.lineTo(xx,yy); }
       ctx.stroke();
     }
+    ctx.restore();
+  }
+
+  // St. Basil's Cathedral (Russia) — colorful onion domes
+  function drawStBasil(x, y, s) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    const domes = [[-6, "#e8574a"], [0, "#4a8fe8"], [6, "#5bbf6a"]];
+    for (const [dx, col] of domes) {
+      ctx.fillStyle = "#d8c9a0"; ctx.fillRect(dx - 2, -2, 4, 10); // tower
+      ctx.fillStyle = col;                                        // onion dome
+      ctx.beginPath();
+      ctx.moveTo(dx - 3, -2);
+      ctx.quadraticCurveTo(dx - 3.5, -8, dx, -11);
+      ctx.quadraticCurveTo(dx + 3.5, -8, dx + 3, -2);
+      ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = "#b9843f"; ctx.lineWidth = 0.6; ctx.beginPath(); ctx.moveTo(dx, -11); ctx.lineTo(dx, -13); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // Angkor Wat (SE Asia) — three stacked temple towers
+  function drawAngkor(x, y, s) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    ctx.fillStyle = "#b8a07a"; ctx.strokeStyle = "#8a6f4a"; ctx.lineWidth = 0.7;
+    ctx.fillRect(-11, 4, 22, 5);                 // base
+    function tower(dx, h) {
+      ctx.beginPath();
+      ctx.moveTo(dx - 2.5, 4); ctx.lineTo(dx - 1.4, 4 - h); ctx.lineTo(dx, 4 - h - 2.5);
+      ctx.lineTo(dx + 1.4, 4 - h); ctx.lineTo(dx + 2.5, 4); ctx.closePath();
+      ctx.fill(); ctx.stroke();
+    }
+    tower(-7, 9); tower(7, 9); tower(0, 14);
+    ctx.restore();
+  }
+
+  // Simple mosque (Middle East) — dome + minaret
+  function drawMosque(x, y, s) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    ctx.fillStyle = "#eadfca"; ctx.strokeStyle = "#c6b188"; ctx.lineWidth = 0.7;
+    ctx.fillRect(-8, 0, 16, 8);                  // building
+    ctx.beginPath(); ctx.arc(0, 0, 5, Math.PI, 0); ctx.fillStyle = "#d8b24a"; ctx.fill(); // gold dome
+    ctx.beginPath(); ctx.moveTo(0, -5); ctx.lineTo(0, -8); ctx.strokeStyle = "#b9843f"; ctx.stroke(); // finial
+    ctx.fillStyle = "#eadfca"; ctx.fillRect(9, -6, 2.4, 14); // minaret
+    ctx.beginPath(); ctx.arc(10.2, -6, 1.6, Math.PI, 0); ctx.fillStyle = "#d8b24a"; ctx.fill();
+    ctx.restore();
+  }
+
+  // Great Wall — a crenellated line following waypoints across northern China.
+  const GREAT_WALL = [
+    [97, 40], [103, 39.5], [108, 40], [112, 40.5], [116, 40.3],
+    [119, 40], [122, 40.2], [124, 40.5]
+  ];
+  function drawGreatWall(z) {
+    const pts = GREAT_WALL.map(c => projection(c)).filter(Boolean);
+    if (pts.length < 2) return;
+    ctx.save();
+    // base wall
+    ctx.lineJoin = "round"; ctx.lineCap = "round";
+    ctx.strokeStyle = "#8a7a63";
+    ctx.lineWidth = Math.max(2, 3 * z);
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.stroke();
+    // lighter top edge
+    ctx.strokeStyle = "#b7a888";
+    ctx.lineWidth = Math.max(1, 1.4 * z);
+    ctx.stroke();
+    // crenellations: little blocks spaced along the path
+    ctx.fillStyle = "#6f6150";
+    const step = 10 * z;
+    for (let i = 1; i < pts.length; i++) {
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i];
+      const segLen = Math.hypot(x1 - x0, y1 - y0);
+      const n = Math.max(1, Math.floor(segLen / step));
+      for (let j = 0; j <= n; j++) {
+        const t = j / n;
+        const bx = x0 + (x1 - x0) * t, by = y0 + (y1 - y0) * t;
+        const w = Math.max(1.4, 1.8 * z);
+        ctx.fillRect(bx - w / 2, by - w / 2 - 1.5 * z, w, w);
+      }
+    }
+    ctx.restore();
+  }
+
+  // Viking longship (Scandinavia)
+  function drawLongship(x, y, s) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    // hull
+    ctx.fillStyle = "#7a5230"; ctx.strokeStyle = "#5a3a20"; ctx.lineWidth = 0.7;
+    ctx.beginPath();
+    ctx.moveTo(-11, 2); ctx.quadraticCurveTo(-13, -3, -10, -4);  // bow curl
+    ctx.lineTo(10, -4); ctx.quadraticCurveTo(13, -3, 11, 2);     // stern curl
+    ctx.lineTo(7, 6); ctx.lineTo(-7, 6); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    // shields along the side
+    for (let i = -3; i <= 3; i++) { ctx.fillStyle = i % 2 ? "#c23b3b" : "#d8b24a"; ctx.beginPath(); ctx.arc(i * 2.6, -1, 1.1, 0, Math.PI * 2); ctx.fill(); }
+    // mast + square sail
+    ctx.strokeStyle = "#5a3a20"; ctx.beginPath(); ctx.moveTo(0, -4); ctx.lineTo(0, -15); ctx.stroke();
+    ctx.fillStyle = "#eceae0"; ctx.fillRect(-6, -14, 12, 8);
+    ctx.strokeStyle = "#c23b3b"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, -14); ctx.lineTo(0, -6); ctx.stroke();
+    ctx.restore();
+  }
+
+  // Snowy mountain peak (Patagonia / Andes)
+  function drawPeak(x, y, s) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    ctx.fillStyle = "#8f98a6"; ctx.strokeStyle = "#6b7482"; ctx.lineWidth = 0.8;
+    ctx.beginPath(); ctx.moveTo(-12, 8); ctx.lineTo(-3, -8); ctx.lineTo(3, 2); ctx.lineTo(8, -4); ctx.lineTo(14, 8); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    // snow caps
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath(); ctx.moveTo(-3, -8); ctx.lineTo(-6, -2); ctx.lineTo(-1, -3.5); ctx.lineTo(0, -1.5); ctx.lineTo(2, -3); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(8, -4); ctx.lineTo(5.5, 0); ctx.lineTo(8, -0.8); ctx.lineTo(10.5, 0); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+
+  // Elephant (Southern Africa)
+  function drawElephant(x, y, s) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+    ctx.fillStyle = "#9a9aa2"; ctx.strokeStyle = "#70707a"; ctx.lineWidth = 0.7;
+    // body
+    ctx.beginPath(); ctx.ellipse(0, 0, 9, 6, 0, 0, Math.PI * 2); ctx.fill();
+    // legs
+    ctx.fillRect(-7, 4, 3, 6); ctx.fillRect(-1, 4, 3, 6); ctx.fillRect(4.5, 4, 3, 6);
+    // head
+    ctx.beginPath(); ctx.arc(9, -2, 5, 0, Math.PI * 2); ctx.fill();
+    // ear
+    ctx.beginPath(); ctx.ellipse(8, -3, 3, 4, 0, 0, Math.PI * 2); ctx.fillStyle = "#8a8a93"; ctx.fill();
+    // trunk
+    ctx.strokeStyle = "#9a9aa2"; ctx.lineWidth = 2.6; ctx.lineCap = "round";
+    ctx.beginPath(); ctx.moveTo(13, -1); ctx.quadraticCurveTo(16, 4, 14, 9); ctx.stroke();
     ctx.restore();
   }
 
@@ -815,22 +945,27 @@
     landmarks.forEach((lm) => {
       const p = projection([lm.lon, lm.lat]);
       if (!p) return;
-      const lz = z * 1.3;
+      const lz = z * lm.size;
       const bob = Math.sin(driftT * 1.2 + lm.phase) * 0.5 * z;
       const x = p[0], y = p[1] + bob;
       switch (lm.type) {
-        case "eiffel": drawEiffel(x, y, lz); break;
-        case "tower": drawTower(x, y, lz); break;
         case "pyramids": drawPyramids(x, y, lz); break;
         case "christ": drawChrist(x, y, lz); break;
         case "taj": drawTaj(x, y, lz); break;
         case "liberty": drawLiberty(x, y, lz); break;
         case "bigben": drawBigBen(x, y, lz); break;
         case "opera": drawOpera(x, y, lz); break;
-        case "acacia": drawAcacia(x, y, lz); break;
-        case "aurora": drawAurora(x, y, lz, driftT); break;
+        case "stbasil": drawStBasil(x, y, lz); break;
+        case "angkor": drawAngkor(x, y, lz); break;
+        case "mosque": drawMosque(x, y, lz); break;
+        case "longship": drawLongship(x, y, lz); break;
+        case "peak": drawPeak(x, y, lz); break;
+        case "elephant": drawElephant(x, y, lz); break;
       }
     });
+
+    // Great Wall — a crenellated line across northern China.
+    drawGreatWall(z);
 
     drawPins(z);
 
@@ -959,7 +1094,7 @@
     // Icon size flows gently from ~22px (world view) to ~24px (zoomed in),
     // staying roughly constant on screen so it's comfortable at any zoom.
     const zoomT = Math.max(0, Math.min(1, (camera.scale - 1) / 8));
-    const hz = 2.2 + 0.2 * zoomT;
+    const hz = 1.8 + 0.18 * zoomT;
 
     // Candidates = the capped rolling window (home/badminton/memories, which
     // already enforces <=8 global and <=3 Bay counting all three) + permanent
