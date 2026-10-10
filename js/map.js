@@ -173,16 +173,27 @@
   //  heart (the earlier one is the active face). Because stories are taken in
   //  order, a far-future repeat (e.g. a 2026 story at a 2023 location) is NOT
   //  in the window and never stacks — it simply appears later in the timeline.
-  const MAX_STORIES = 8, MAX_CA_LOCS = 3;
+  //  SPAN CAP: the window may never span more than MAX_SPAN positions from the
+  //  oldest undismissed story to the newest shown. This stops her from only
+  //  clicking the newer (often Bay) stories while old ones linger — she must
+  //  clear the oldest before the window can creep forward, which forces an
+  //  early zoom-out instead of endless local clicking.
+  const MAX_STORIES = 8, MAX_CA_LOCS = 3, MAX_SPAN = 12;
+  // position of each index within consumableOrder (chronological rank)
+  const orderPos = new Map();
+  consumableOrder.forEach((i, p) => orderPos.set(i, p));
   function windowStories() {
     const picked = [];
     const caLocs = new Set();
+    let firstPos = null;
     for (const i of consumableOrder) {           // already in chronological order
       if (dismissed.has(i)) continue;
       const isCA = inBay(i);
       const k = locKey(i);
       if (picked.length >= MAX_STORIES) break;    // 9th story -> stop
+      if (firstPos !== null && orderPos.get(i) - firstPos > MAX_SPAN) break; // too far from oldest -> stop
       if (isCA && !caLocs.has(k) && caLocs.size >= MAX_CA_LOCS) break; // 4th distinct Bay loc -> stop
+      if (firstPos === null) firstPos = orderPos.get(i);
       picked.push(i);
       if (isCA) caLocs.add(k);
     }
