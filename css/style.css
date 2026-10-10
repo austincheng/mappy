@@ -1,0 +1,128 @@
+/* =============================================================
+ * style.css — Map of Us (stylized canvas map)
+ * ============================================================= */
+
+:root {
+  --gold: #d9a441;
+  --ink: #1a1a1a;
+  --paper: #fffaf2;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #49c3ec;
+  font-family: -apple-system, "Helvetica Neue", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+/* ---- Canvas map ---- */
+#map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #49c3ec;
+  z-index: 1;
+  cursor: grab;
+}
+#map:active { cursor: grabbing; }
+
+/* ---- Fixed title: pinned to the top-center of the screen ---- */
+.map-title {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1500;
+  margin: 0;
+  padding: 10px 30px;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ff5c7a;
+  background: #ffffff;
+  border: 2px solid #ffd0dc;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* ---- Progress hint ---- */
+.progress {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  color: var(--paper);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  background: rgba(0,0,0,0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+/* ---- Memory card ---- */
+.memory-card {
+  position: absolute;
+  z-index: 1200;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  width: min(92vw, 420px);
+  background: var(--paper);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.memory-card.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.memory-photo {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  background: #e9e2d6;
+}
+.memory-body { padding: 14px 18px 18px; }
+.memory-place { font-size: 20px; font-weight: 600; }
+.memory-date { font-size: 13px; color: #8a7f6d; margin-top: 2px; }
+.memory-note { font-size: 15px; margin-top: 10px; line-height: 1.45; }
+.memory-close {
+  position: absolute;
+  top: 8px; right: 10px;
+  z-index: 2;
+  border: none;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ---- Stage (later phases mount here) ---- */
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2000;
+  background: #000;
+}
+
+.hidden { display: none !important; }
