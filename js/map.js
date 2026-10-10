@@ -1318,16 +1318,20 @@
 
   // Dismiss the open pin (window advances) and ease back out to the full map.
   function closeAndZoomOut() {
+    // Was the just-open pin in the Bay? (check before dismissOpen clears it)
+    const wasBay = openIndex != null && inBay(openIndex);
     hideMemory();
     dismissOpen();
-    if (!hereRevealed) {
+    if (!hereRevealed && !wasBay) {
+      // Non-Bay: ease back out to the full map to look elsewhere.
       userInteracting = false;
       camera.tScale = 1;
-      camera.tLon = camera.lon;    // keep current center; just zoom out
+      camera.tLon = camera.lon;
       camera.tLat = camera.lat;
       camera.flyDur = 0.9;
       startFly();
     }
+    // Bay: stay zoomed in (many stacked stories) — just dismiss, no zoom-out.
   }
 
   document.getElementById("memory-close").addEventListener("click", closeAndZoomOut);
