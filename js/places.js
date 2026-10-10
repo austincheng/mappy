@@ -17,7 +17,7 @@
 const PLACES = {
   // The chronological journey (hearts). kind defaults to "memory".
   visited: [
-    { kind:"memory", name:"Milpitas, CA", coords:[37.4284,-121.9066], date:"June 19, 2023", note:"We met at Bintang Milpitas.", folder:"photos" },
+    { kind:"memory", name:"Milpitas, CA", coords:[37.4284,-121.9066], date:"June 19, 2023", note:"We met at Bintang Milpitas.", folder:"photos/240824_Bintang" },
     { kind:"memory", name:"Santa Clara, CA", coords:[37.3541,-121.9552], date:"August 6, 2023", note:"Our first date at Beque.", folder:"photos/230806_First_Date_Beque" },
     { kind:"memory", name:"Sunnyvale, CA", coords:[37.3688,-122.0363], date:"August 15, 2023", note:"Our first day together.", folder:"photos/230815_First_Day_Rokko_PhoSaigon" },
     { kind:"memory", name:"San Francisco, CA", coords:[37.7749,-122.4194], date:"September 24, 2023", note:"A date night in San Francisco.", folder:"photos/230924_SF_TonysPizzaNapoletana_MountTamalpais_Shooting_Star" },

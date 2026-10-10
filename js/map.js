@@ -95,6 +95,7 @@
 
   let world = null, projection = null, path = null;
   let caDetail = null; // detailed California coastline (loaded at boot)
+  let photoManifest = null; // slug -> [photo paths] from card_photos/manifest.json
   const CA_BB = { minLon: -125.5, maxLon: -114, minLat: 32, maxLat: 42.5 };
   const CARIB_BB = { minLon: -70.3, maxLon: -68.0, minLat: 11.9, maxLat: 12.9 };
   // High-res coastline overlays drawn when zoomed in over their region.
@@ -1142,21 +1143,60 @@
   // ---- Memory card ----
   function showMemory(place) {
     const card = document.getElementById("memory-card");
-    const photo = document.getElementById("memory-photo");
-    if (place.photo) {
-      photo.src = place.photo; photo.style.display = "";
-      photo.onerror = () => { photo.style.display = "none"; };
-    } else { photo.style.display = "none"; }
     document.getElementById("memory-place").textContent = place.nameZh
       ? `${place.name} · ${place.nameZh}` : place.name;
     document.getElementById("memory-date").textContent = place.date || "";
     document.getElementById("memory-note").textContent = place.note || "";
+
+    // Resolve this place's curated photos from the manifest (by slug), falling
+    // back to a single `place.photo` if present.
+    const slug = placeSlug(place);
+    let photos = (photoManifest && photoManifest[slug]) || (place.photo ? [place.photo] : []);
+    startSlideshow(photos);
+
     card.classList.remove("hidden");
     requestAnimationFrame(() => card.classList.add("show"));
   }
+
+  // ----- Auto-advancing cross-fade slideshow inside the card -----
+  const slideA = () => document.getElementById("memory-photo-a");
+  const slideB = () => document.getElementById("memory-photo-b");
+  let slideList = [], slideIdx = 0, slideTimer = null, slideFront = "a";
+
+  function placeSlug(p) {
+    const i = PLACES.visited.indexOf(p);
+    return (p.name + "_" + (p.date || p.kind || i)).toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  function startSlideshow(photos) {
+    stopSlideshow();
+    slideList = photos || []; slideIdx = 0; slideFront = "a";
+    const a = slideA(), b = slideB();
+    a.classList.remove("active"); b.classList.remove("active");
+    if (!slideList.length) { a.style.display = b.style.display = "none"; return; }
+    a.style.display = b.style.display = "";
+    a.src = slideList[0]; a.classList.add("active");
+    if (slideList.length > 1) slideTimer = setInterval(advanceSlide, 2600);
+  }
+  function advanceSlide() {
+    if (slideList.length < 2) return;
+    slideIdx = (slideIdx + 1) % slideList.length;
+    const front = slideFront === "a" ? slideA() : slideB();
+    const back = slideFront === "a" ? slideB() : slideA();
+    back.src = slideList[slideIdx];
+    back.classList.add("active");
+    front.classList.remove("active");
+    slideFront = slideFront === "a" ? "b" : "a";
+  }
+  function stopSlideshow() {
+    if (slideTimer) { clearInterval(slideTimer); slideTimer = null; }
+  }
+
   function hideMemory() {
     const card = document.getElementById("memory-card");
     card.classList.remove("show");
+    stopSlideshow();
     setTimeout(() => card.classList.add("hidden"), 350);
   }
 
@@ -1313,4 +1353,10 @@
       .then(geo => { layer.geo = geo; })
       .catch(err => console.warn("Detail layer not loaded:", layer.file, err));
   });
+
+  // Curated photos for the memory cards (slug -> [paths]).
+  fetch("card_photos/manifest.json")
+    .then(r => r.json())
+    .then(m => { photoManifest = m; })
+    .catch(err => console.warn("Photo manifest not loaded:", err));
 })();

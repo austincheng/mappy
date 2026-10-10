@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Map of Us</title>
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
   <link rel="stylesheet" href="css/happiano.css?v=8" />
 </head>
 <body>
@@ -23,7 +23,10 @@
   <!-- Memory card that blooms when a point is clicked -->
   <div id="memory-card" class="memory-card hidden">
     <button id="memory-close" class="memory-close" aria-label="close">&times;</button>
-    <img id="memory-photo" class="memory-photo" alt="" />
+    <div id="memory-slideshow" class="memory-slideshow">
+      <img id="memory-photo-a" class="memory-photo slide" alt="" />
+      <img id="memory-photo-b" class="memory-photo slide" alt="" />
+    </div>
     <div class="memory-body">
       <div id="memory-place" class="memory-place"></div>
       <div id="memory-date" class="memory-date"></div>
@@ -42,9 +45,9 @@
   <script src="libs/d3-geo.min.js"></script>
   <script src="libs/audiosynth.js"></script>
   <script src="libs/mojscore.js"></script>
-  <script src="js/places.js?v=6"></script>
+  <script src="js/places.js?v=7"></script>
   <script src="js/sequencer.js?v=2"></script>
   <script src="js/happiano.js?v=7"></script>
-  <script src="js/map.js?v=36"></script>
+  <script src="js/map.js?v=37"></script>
 </body>
 </html>
