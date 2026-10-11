@@ -1465,8 +1465,8 @@
     // to SLOW_MS for the last ~RAMP photos. Build cumulative times so we can
     // look up the current photo by elapsed ms.
     const n = HG.photos.length || 1;
-    const SLOW_MS = 1000, FAST_MS = 60, RAMP = 20;    // gentler ramp: more photos near 1s at the ends
-    const smooth = (t) => t*t*t*(t*(t*6 - 15) + 10);  // 0..1 ease
+    const SLOW_MS = 1000, FAST_MS = 60, RAMP = 35;    // longer ramp: many photos at mid speeds before max/min
+    const smooth = (t) => t * t * (3 - 2 * t);        // gentler smoothstep (dwells on the mids)
     HG.dwell = [];
     for (let i = 0; i < n; i++) {
       const fromStart = i;                 // photos in from the beginning
