@@ -1248,6 +1248,7 @@
     const MONTHS = { january:1,february:2,march:3,april:4,may:5,june:6,july:7,
       august:8,september:9,october:10,november:11,december:12 };
     const cityOf = (name) => (name || "").split(",")[0].trim()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")   // strip accents (Húsavík -> Husavik)
       .replace(/[^A-Za-z0-9]+/g, " ").split(" ").filter(Boolean)
       .map(w => w[0].toUpperCase() + w.slice(1)).join("");
     const yymmdd = (date) => {
