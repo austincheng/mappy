@@ -16,14 +16,16 @@
   "230815_Sunnyvale": [
     "card_photos/230815_Sunnyvale/20230815_124830.jpg",
     "card_photos/230815_Sunnyvale/20230815_124917.jpg",
-    "card_photos/230815_Sunnyvale/20230815_125524_1.jpg"
+    "card_photos/230815_Sunnyvale/20230815_125524_1.jpg",
+    "card_photos/230815_Sunnyvale/IMG_0266.jpg"
   ],
   "230924_SanFrancisco": [
     "card_photos/230924_SanFrancisco/20230924_164835.jpg",
     "card_photos/230924_SanFrancisco/20230924_185259.jpg",
     "card_photos/230924_SanFrancisco/20230924_231531_1.jpg",
     "card_photos/230924_SanFrancisco/p2.jpg",
-    "card_photos/230924_SanFrancisco/p4.jpg"
+    "card_photos/230924_SanFrancisco/p4.jpg",
+    "card_photos/230924_SanFrancisco/IMG_1102.jpg"
   ],
   "230928_Maui": [
     "card_photos/230928_Maui/230928_20230928_080141.jpg",
@@ -113,6 +115,10 @@
     "card_photos/240120_Fremont/PXL_20240121_101637703.MP.jpg"
   ],
   "240217_Fremont": [
+    "card_photos/240217_Fremont/LINE_ALBUM_2172024_TBC_vs_SVKBC_240228_71.jpg",
+    "card_photos/240217_Fremont/LINE_ALBUM_2172024_TBC_vs_SVKBC_240228_74.jpg",
+    "card_photos/240217_Fremont/LINE_ALBUM_2172024_TBC_vs_SVKBC_240228_101.jpg",
+    "card_photos/240217_Fremont/LINE_ALBUM_2172024_TBC_vs_SVKBC_240228_241.jpg",
     "card_photos/240217_Fremont/IMG_7747.jpg"
   ],
   "240225_MountHamilton": [
@@ -212,6 +218,7 @@
     "card_photos/240907_HenryCowellStatePark/PXL_20240908_073625430.jpg",
     "card_photos/240907_HenryCowellStatePark/PXL_20240908_172326515.jpg",
     "card_photos/240907_HenryCowellStatePark/PXL_20240908_195042334.jpg",
+    "card_photos/240907_HenryCowellStatePark/IMG_7287.jpg",
     "card_photos/240907_HenryCowellStatePark/IMG_7292.jpg"
   ],
   "240908_Oakland": [
@@ -315,7 +322,6 @@
     "card_photos/250618_Reykjavik/250618_PXL_20250618_133716698.jpg",
     "card_photos/250618_Reykjavik/250618_PXL_20250618_152213217.jpg",
     "card_photos/250618_Reykjavik/250618_PXL_20250618_160323184.MP.jpg",
-    "card_photos/250618_Reykjavik/250618_PXL_20250618_165632872.MP.jpg",
     "card_photos/250618_Reykjavik/250618_PXL_20250618_220223972.jpg",
     "card_photos/250618_Reykjavik/250619_PXL_20250619_110352187.jpg",
     "card_photos/250618_Reykjavik/250619_PXL_20250619_133607432.jpg",
@@ -325,7 +331,6 @@
     "card_photos/250618_Reykjavik/250620_PXL_20250620_174017066.jpg",
     "card_photos/250618_Reykjavik/250620_PXL_20250620_201855649.MP.jpg",
     "card_photos/250618_Reykjavik/250620_PXL_20250620_202417872.MP.jpg",
-    "card_photos/250618_Reykjavik/250620_20250620_213647.jpg",
     "card_photos/250618_Reykjavik/250621_20250621_072351.jpg",
     "card_photos/250618_Reykjavik/250621_PXL_20250621_104344820.jpg",
     "card_photos/250618_Reykjavik/250621_PXL_20250621_135050203.jpg",
@@ -456,7 +461,6 @@
     "card_photos/250703_Banff/250704_PXL_20250704_233622006.jpg",
     "card_photos/250703_Banff/250704_PXL_20250704_234245788.jpg",
     "card_photos/250703_Banff/250704_PXL_20250705_011447643.jpg",
-    "card_photos/250703_Banff/250705_20250705_141831.jpg",
     "card_photos/250703_Banff/250705_PXL_20250705_182103755.MP.jpg",
     "card_photos/250703_Banff/250705_PXL_20250705_183209899.jpg",
     "card_photos/250703_Banff/250705_PXL_20250705_183619779.MP.jpg",
@@ -724,7 +728,9 @@
     "card_photos/260815_LakeTahoe/PXL_20260816_042610552.jpg",
     "card_photos/260815_LakeTahoe/p0.jpg",
     "card_photos/260815_LakeTahoe/p2.jpg",
-    "card_photos/260815_LakeTahoe/IMG_5521.jpg"
+    "card_photos/260815_LakeTahoe/IMG_5521.jpg",
+    "card_photos/260815_LakeTahoe/IMG_6055.jpg",
+    "card_photos/260815_LakeTahoe/IMG_6119.jpg"
   ],
   "260827_SanJose": [
     "card_photos/260827_SanJose/PXL_20260828_023132643.MP.jpg",
@@ -736,7 +742,8 @@
   ],
   "261004_Saratoga": [
     "card_photos/261004_Saratoga/PXL_20261004_181938035.jpg",
-    "card_photos/261004_Saratoga/p0.jpg"
+    "card_photos/261004_Saratoga/p0.jpg",
+    "card_photos/261004_Saratoga/IMG_0465.MP.jpg"
   ],
   "badminton": [
     "card_photos/badminton/PXL_20240120_053712154.LS.mp4",
@@ -820,7 +827,9 @@
     "card_photos/home/PXL_20261003_002958393.jpg",
     "card_photos/home/PXL_20261006_032102483.jpg",
     "card_photos/home/PXL_20261009_064639766.jpg",
-    "card_photos/home/p3.jpg"
+    "card_photos/home/p3.jpg",
+    "card_photos/home/IMG_2111.jpg",
+    "card_photos/home/IMG_2185.jpg"
   ],
   "tesla": [
     "card_photos/tesla/PXL_20240123_205458470.MP.jpg",
