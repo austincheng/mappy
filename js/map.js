@@ -1,5 +1,5 @@
 /* =============================================================
- * map.js — PHASE 1: the cute, animated "Map of Us"
+ * map.js — PHASE 1: the cute, animated "Mappy"
  * -------------------------------------------------------------
  * A flat, storybook world map rendered on <canvas>:
  *   - Friendly green land with a soft drop-shadow edge (sticker

@@ -1,4 +1,4 @@
-# Map of Us
+# Mappy
 
 A stylized, animated map of the special places we've been — the first phase
 of the proposal experience.
