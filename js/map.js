@@ -96,6 +96,7 @@
   let world = null, projection = null, path = null;
   let caDetail = null; // detailed California coastline (loaded at boot)
   let photoManifest = null; // slug -> [photo paths] from card_photos/manifest.json
+  let finalSlideshow = null; // chronological [paths] from final_slideshow/manifest.json
   const CA_BB = { minLon: -125.5, maxLon: -114, minLat: 32, maxLat: 42.5 };
   const CARIB_BB = { minLon: -70.3, maxLon: -68.0, minLat: 11.9, maxLat: 12.9 };
   const FAROE_BB = { minLon: -7.8, maxLon: -6.2, minLat: 61.3, maxLat: 62.5 };
@@ -1010,6 +1011,8 @@
       ctx.restore();
     }
 
+    drawHeartsGather();
+
     requestAnimationFrame(draw);
   }
 
@@ -1385,14 +1388,205 @@
       openIndex = null;
     }
     const allMemoriesDone = memoryOrder.every(i => dismissed.has(i));
-    if (allMemoriesDone && !hereRevealed) {
-      setTimeout(revealHere, 400);
+    if (allMemoriesDone && !hereRevealed && !HG.active && !HG.done) {
+      setTimeout(startHeartsGather, 400);   // play the bridge animation, then revealHere()
     }
   }
 
   function revealHere() {
     hideMemory(); hereRevealed = true;
     centerOn(PLACES.here.coords[1], PLACES.here.coords[0], 4);
+  }
+
+  // ============================================================
+  //  HEARTS GATHER — the bridge animation before the final heart.
+  //  Beats: hush -> sparkle-in -> rise into a rotating ring ->
+  //  fast photo slideshow inside the ring -> collapse & bloom at
+  //  "here". Drawn as a full-screen overlay on top of the map.
+  // ============================================================
+  const HG = {
+    active: false, t0: 0, hearts: [], photos: [], imgs: [], ready: false,
+    photoIdx: 0, lastPhotoAt: 0, done: false,
+    PHOTO_MS: 420,                 // recomputed at start to fit SLIDE_MAX
+    SLIDE_MAX: 10000,              // slideshow never exceeds 10s
+    HUSH: 2500, SPARKLE: 4000, RISE: 2200,  // slow dreamy buildup (ms)
+  };
+
+  function buildChronoPhotos() {
+    // The montage is a prebuilt, one-photo-per-day set in chronological order
+    // (./final_slideshow, a sibling of card_photos; files named YYMMDD.jpg with
+    // the day-of placeholder last as 999999_final.jpg). Loaded from its own
+    // final_slideshow/manifest.json.
+    const arr = finalSlideshow || [];
+    return arr.filter(src => !/\.(mp4|mov|m4v|webm)$/i.test(src));
+  }
+
+  function startHeartsGather() {
+    HG.active = true; HG.done = false; HG.t0 = performance.now();
+    HG.photoIdx = 0; HG.lastPhotoAt = 0; HG.ready = false;
+    // spawn hearts scattered randomly across the screen
+    const N = 46;
+    HG.hearts = Array.from({ length: N }, (_, i) => ({
+      x: Math.random() * W, y: Math.random() * H,
+      sz: 6 + Math.random() * 10,
+      twinkle: Math.random() * Math.PI * 2,
+      ringAng: (i / N) * Math.PI * 2,         // its slot on the ring
+      sx: 0, sy: 0,                           // start pos captured at rise
+      delay: Math.random() * 600,
+    }));
+    // chronological photos — ALL of them, in order (life-flashing-by montage)
+    HG.photos = buildChronoPhotos();
+    HG.imgs = HG.photos.map(src => { const im = new Image(); im.src = src; return im; });
+    HG.ready = true;
+    // Per-photo DWELL schedule: hold the first ~RAMP photos near SLOW_MS (~1s),
+    // ease down to FAST_MS through the middle, then symmetrically ramp back up
+    // to SLOW_MS for the last ~RAMP photos. Build cumulative times so we can
+    // look up the current photo by elapsed ms.
+    const n = HG.photos.length || 1;
+    const SLOW_MS = 1000, FAST_MS = 60, RAMP = 20;    // gentler ramp: more photos near 1s at the ends
+    const smooth = (t) => t*t*t*(t*(t*6 - 15) + 10);  // 0..1 ease
+    HG.dwell = [];
+    for (let i = 0; i < n; i++) {
+      const fromStart = i;                 // photos in from the beginning
+      const fromEnd = n - 1 - i;           // photos in from the end
+      const edge = Math.min(fromStart, fromEnd);
+      // p=0 at the very edges (slow), p=1 once we're RAMP photos in (fast)
+      const p = Math.min(1, edge / RAMP);
+      const ms = SLOW_MS + (FAST_MS - SLOW_MS) * smooth(p);
+      HG.dwell.push(ms);
+    }
+    HG.cum = [0];
+    for (let i = 0; i < n; i++) HG.cum.push(HG.cum[i] + HG.dwell[i]);
+    HG.slideshowMs = HG.cum[n];            // natural total (longer; that's fine)
+  }
+
+  function easeInOut(t){ return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2; }
+
+  function drawHeartsGather() {
+    if (!HG.active) return;
+    const now = performance.now();
+    const el = now - HG.t0;
+    const cx = W / 2, cy = H / 2;
+    const ringR = Math.min(W, H) * 0.34;
+
+    // dim the map underneath (deepens through the hush, holds dreamy)
+    const dim = Math.min(0.55, el / HG.HUSH * 0.55);
+    ctx.save();
+    ctx.fillStyle = `rgba(14,16,24,${dim})`;
+    ctx.fillRect(0, 0, W, H);
+
+    const tSparkleEnd = HG.HUSH + HG.SPARKLE;
+    const tRiseEnd = tSparkleEnd + HG.RISE;
+    const LAST_HOLD = 2500;                 // linger on the final photo before combining
+    const tSlideEnd = tRiseEnd + (HG.slideshowMs || 6000) + LAST_HOLD;
+    const tBloomEnd = tSlideEnd + 1600;
+
+    // ---- center photo slideshow (during ring phase) ----
+    if (el >= tRiseEnd && el < tSlideEnd && HG.imgs.length) {
+      const since = el - tRiseEnd;
+      const dur = HG.slideshowMs || 6000;
+      // Index via the per-photo DWELL schedule (slow ends, fast middle). Walk
+      // the cumulative-time array to find which photo 'since' falls in.
+      let idx = 0;
+      if (HG.cum) {
+        // binary-ish linear scan (n is small enough); clamp to last
+        while (idx < HG.imgs.length - 1 && since >= HG.cum[idx + 1]) idx++;
+      }
+      idx = Math.min(HG.imgs.length - 1, idx);
+      const im = HG.imgs[idx];
+      if (im && im.complete && im.naturalWidth) {
+        const ar = im.naturalWidth / im.naturalHeight;
+        // Fit the photo fully INSIDE the circle: a w×h rect inscribed in a
+        // circle of radius R satisfies w²+h² = (2R)². Solve for w,h given the
+        // aspect ratio so even tall/wide images never poke past the ring.
+        const fitR = ringR * 0.86;                 // inset from the heart ring
+        const diag = 2 * fitR;
+        const h = diag / Math.sqrt(ar * ar + 1);
+        const w = h * ar;
+        ctx.save();
+        ctx.globalAlpha = 1;
+        const rx = cx - w/2, ry = cy - h/2, rr = 14;
+        ctx.beginPath();
+        ctx.moveTo(rx+rr,ry); ctx.arcTo(rx+w,ry,rx+w,ry+h,rr); ctx.arcTo(rx+w,ry+h,rx,ry+h,rr);
+        ctx.arcTo(rx,ry+h,rx,ry,rr); ctx.arcTo(rx,ry,rx+w,ry,rr); ctx.closePath();
+        ctx.save(); ctx.clip(); ctx.drawImage(im, rx, ry, w, h); ctx.restore();
+        ctx.lineWidth = 3; ctx.strokeStyle = "rgba(255,255,255,0.85)"; ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    // ---- the hearts ----
+    const ringSpin = el * 0.0006;    // slow rotation
+    for (const hpt of HG.hearts) {
+      let x = hpt.x, y = hpt.y, sz = hpt.sz, alpha = 1;
+
+      if (el < HG.HUSH) {
+        continue; // the hush: hearts not yet visible
+      } else if (el < tSparkleEnd) {
+        // sparkle in (staggered), twinkle in place
+        const p = Math.max(0, (el - HG.HUSH - hpt.delay) / (HG.SPARKLE - hpt.delay));
+        alpha = Math.min(1, p);
+        sz = hpt.sz * (0.6 + 0.4 * Math.min(1, p)) * (1 + 0.12 * Math.sin(now/300 + hpt.twinkle));
+      } else if (el < tRiseEnd) {
+        // rise & gather into the ring (swoop via eased interp from current to ring slot)
+        if (hpt.sx === 0 && hpt.sy === 0) { hpt.sx = hpt.x; hpt.sy = hpt.y; }
+        const p = easeInOut(Math.min(1, (el - tSparkleEnd) / HG.RISE));
+        const tx = cx + Math.cos(hpt.ringAng + ringSpin) * ringR;
+        const ty = cy + Math.sin(hpt.ringAng + ringSpin) * ringR;
+        // arc the path upward a touch for a flying feel
+        const arc = Math.sin(p * Math.PI) * -80;
+        x = hpt.sx + (tx - hpt.sx) * p;
+        y = hpt.sy + (ty - hpt.sy) * p + arc;
+        sz = hpt.sz * (1 + 0.3 * p);
+      } else if (el < tSlideEnd) {
+        // orbit the photo in the ring
+        x = cx + Math.cos(hpt.ringAng + ringSpin) * ringR;
+        y = cy + Math.sin(hpt.ringAng + ringSpin) * ringR;
+        sz = hpt.sz * 1.3 * (1 + 0.1 * Math.sin(now/300 + hpt.twinkle));
+      } else if (el < tBloomEnd) {
+        // collapse & spiral inward to the "here" point on screen
+        const p = easeInOut(Math.min(1, (el - tSlideEnd) / (tBloomEnd - tSlideEnd)));
+        const hp = projection([PLACES.here.coords[1], PLACES.here.coords[0]]);
+        const target = hp || [cx, cy];
+        const spiral = hpt.ringAng + ringSpin + p * Math.PI * 1.5;
+        const r = ringR * (1 - p);
+        x = (cx + Math.cos(spiral) * r) + (target[0] - cx) * p;
+        y = (cy + Math.sin(spiral) * r) + (target[1] - cy) * p;
+        sz = hpt.sz * (1.3 - 0.6 * p);
+        alpha = 1 - p * 0.3;
+      } else {
+        continue; // merged
+      }
+
+      ctx.globalAlpha = alpha;
+      drawHeartMarker(x, y, sz, "#ff5c7a", "#e03a5c", {});
+      // sparkle dot
+      if (Math.sin(now/200 + hpt.twinkle) > 0.6) {
+        ctx.globalAlpha = alpha * 0.9; ctx.fillStyle = "#fff";
+        ctx.beginPath(); ctx.arc(x + sz*0.3, y - sz*0.4, 1.2, 0, Math.PI*2); ctx.fill();
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    // ---- bloom: the one giant heart grows at "here" ----
+    if (el >= tSlideEnd) {
+      const p = easeInOut(Math.min(1, (el - tSlideEnd) / (tBloomEnd - tSlideEnd)));
+      const hp = projection([PLACES.here.coords[1], PLACES.here.coords[0]]) || [cx, cy];
+      const giant = 10 + p * Math.min(W, H) * 0.16;
+      ctx.save();
+      ctx.globalAlpha = p;
+      ctx.shadowColor = "rgba(255,120,150,0.8)"; ctx.shadowBlur = 30 * p;
+      drawHeartMarker(hp[0], hp[1], giant, "#ff5c7a", "#e03a5c", {});
+      ctx.restore();
+    }
+
+    ctx.restore();
+
+    // ---- finish: hand off to the final pin ----
+    if (el >= tBloomEnd && !HG.done) {
+      HG.done = true; HG.active = false;
+      revealHere();
+    }
   }
 
   function hitTest(mx, my) {
@@ -1524,6 +1718,8 @@
     }
     // ? : toggle the testing help overlay
     if (e.key === "?") toggleHelpOverlay();
+    // g : trigger the Hearts Gather bridge animation directly (testing)
+    if (e.key === "g" && !HG.active) { hideMemory(); openIndex = null; startHeartsGather(); }
   });
 
   // ---- Testing help overlay ----
@@ -1540,6 +1736,7 @@
       "n  advance one story (skip ahead)\n" +
       "b  go back one story\n" +
       "d  dismiss ALL stories (jump to end)\n" +
+      "g  play the Hearts Gather animation\n" +
       "v  mark all dream stars viewed\n" +
       "j  jump to story # (prompt)\n" +
       "c  clear progress + reload\n" +
@@ -1579,4 +1776,9 @@
     .then(r => r.json())
     .then(m => { photoManifest = m; })
     .catch(err => console.warn("Photo manifest not loaded:", err));
+
+  fetch("final_slideshow/manifest.json")
+    .then(r => r.json())
+    .then(m => { finalSlideshow = m; })
+    .catch(err => console.warn("Final slideshow manifest not loaded:", err));
 })();
