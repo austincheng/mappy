@@ -1482,6 +1482,38 @@
     HG.slideshowMs = HG.cum[n];            // natural total (longer; that's fine)
   }
 
+  // ---- Final-heart -> happiano transition: a DOM glow/light wash from the
+  // heart. Done as a DOM overlay (not canvas) so it sits ABOVE the happiano
+  // page and can dissolve into it. No changes to happiano itself.
+  const HT = { active: false };
+  function startHeartTransition() {
+    if (HT.active) return;
+    HT.active = true;
+    const hp = projection([PLACES.here.coords[1], PLACES.here.coords[0]]);
+    const x = hp ? hp[0] : W / 2, y = hp ? hp[1] : H / 2;
+
+    const o = document.createElement("div");
+    o.id = "heart-wash";
+    o.style.cssText =
+      "position:fixed;inset:0;z-index:99998;pointer-events:none;opacity:0;" +
+      "background:radial-gradient(circle at " + x + "px " + y + "px," +
+      "rgba(255,255,255,0.98) 0%, rgba(255,214,230,0.9) 30%, rgba(255,190,210,0.6) 55%, rgba(255,180,205,0) 80%);" +
+      "transition:opacity 1.0s ease-in;";
+    document.body.appendChild(o);
+    // kick the glow in
+    requestAnimationFrame(() => { o.style.opacity = "1"; });
+
+    // at the peak, swap to a flat white veil, hand off to happiano UNDER it,
+    // then fade the veil out to dissolve into the happiano page.
+    setTimeout(() => {
+      o.style.background = "rgba(255,245,250,0.96)";
+      o.style.transition = "opacity 0.75s ease-out";
+      Sequencer.go(Sequencer.PHASES.FINAL_PIN, { here: PLACES.here });
+      requestAnimationFrame(() => { o.style.opacity = "0"; });
+      setTimeout(() => { o.remove(); HT.active = false; }, 800);
+    }, 1050);
+  }
+
   function easeInOut(t){ return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2; }
 
   function drawHeartsGather() {
@@ -1705,7 +1737,7 @@
       return;
     }
     if (h.kind === "visited") discover(h.index);
-    else if (h.kind === "here") Sequencer.go(Sequencer.PHASES.FINAL_PIN, { here: PLACES.here });
+    else if (h.kind === "here") startHeartTransition();
   });
 
   // Are any un-dismissed CLICKABLE pins (hearts / home / tesla / badminton)
