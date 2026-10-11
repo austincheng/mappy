@@ -98,10 +98,12 @@
   let photoManifest = null; // slug -> [photo paths] from card_photos/manifest.json
   const CA_BB = { minLon: -125.5, maxLon: -114, minLat: 32, maxLat: 42.5 };
   const CARIB_BB = { minLon: -70.3, maxLon: -68.0, minLat: 11.9, maxLat: 12.9 };
+  const FAROE_BB = { minLon: -7.8, maxLon: -6.2, minLat: 61.3, maxLat: 62.5 };
   // High-res coastline overlays drawn when zoomed in over their region.
   const detailLayers = [
     { geo: null, bb: CA_BB,    file: "libs/california_detail.geojson" },
-    { geo: null, bb: CARIB_BB, file: "libs/caribbean_detail.geojson" }
+    { geo: null, bb: CARIB_BB, file: "libs/caribbean_detail.geojson" },
+    { geo: null, bb: FAROE_BB, file: "libs/faroe_detail.geojson" }
   ];
   let dpr = Math.max(1, window.devicePixelRatio || 1);
   let W = 0, H = 0, driftT = 0;
@@ -1450,27 +1452,28 @@
     else if (h.kind === "here") Sequencer.go(Sequencer.PHASES.FINAL_PIN, { here: PLACES.here });
   });
 
-  // Are any un-dismissed pins still visible in the CURRENT viewport? Used to
-  // decide whether dismissing should zoom out. If pins remain on screen at this
-  // zoom (e.g. the other 2 of 3 Taiwan dots, or more Bay stories), stay put so
-  // she can keep clicking; once none are left on screen, ease back out.
+  // Are any un-dismissed CLICKABLE pins (hearts / home / tesla / badminton)
+  // still visible in the CURRENT viewport? Dream STARS are intentionally
+  // excluded — they're permanent, so they should never hold the zoom. Used to
+  // decide whether dismissing should zoom out.
   function anyPinOnScreen() {
     const inView = (coords) => {
       const p = projection([coords[1], coords[0]]);
       return p && p[0] >= 0 && p[0] <= W && p[1] >= 0 && p[1] <= H;
     };
     for (const i of visibleWindow()) if (inView(PLACES.visited[i].coords)) return true;
-    for (const i of dreamIdx) if (!viewed.has(i) && inView(PLACES.visited[i].coords)) return true;
-    return false;
+    return false;   // stars (dreamIdx) deliberately NOT counted
   }
 
   // Dismiss the open pin (window advances) and ease back out to the full map
-  // ONLY if nothing is left to click in the current view.
+  // ONLY if nothing is left to click in the current view. A dream star ALWAYS
+  // zooms out (stars don't hold the view).
   function closeAndZoomOut() {
+    const wasDream = openIndex != null && kindOf(openIndex) === "dream";
     hideMemory();
     dismissOpen();                 // removes the just-open pin from the window first
-    if (!hereRevealed && !anyPinOnScreen()) {
-      // No pins left on screen at this zoom — ease back out to look elsewhere.
+    if (!hereRevealed && (wasDream || !anyPinOnScreen())) {
+      // No clickable pins left on screen (or it was a star) — ease back out.
       userInteracting = false;
       camera.tScale = 1;
       camera.tLon = camera.lon;
@@ -1478,7 +1481,7 @@
       camera.flyDur = 0.9;
       startFly();
     }
-    // Otherwise pins remain visible here — stay zoomed in so she can keep going.
+    // Otherwise clickable pins remain visible here — stay zoomed in.
   }
 
   document.getElementById("memory-close").addEventListener("click", closeAndZoomOut);
