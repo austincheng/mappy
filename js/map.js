@@ -1208,13 +1208,35 @@
       hit.visited.push({ x: p[0], y: p[1] - sz * 0.18, r: Math.max(12, 14 * hz), index: cand.index });
     }
 
-    // final "here" — heart, a little larger
+    // final "here" — heart, a little larger, with a persistent glow + sparkle
     if (hereRevealed) {
       const h = PLACES.here;
       const p = projection([h.coords[1], h.coords[0]]);
       if (p) {
-        const sz = 15 * hz;
+        const now = performance.now();
+        const sz = (15 * hz) * (1 + 0.05 * Math.sin(now / 180));   // gentle pulse
+        // soft breathing glow behind the heart
+        ctx.save();
+        ctx.shadowColor = "rgba(255,120,150,0.9)";
+        ctx.shadowBlur = 20 + 12 * (0.5 + 0.5 * Math.sin(now / 200));
         drawMarker("memory", p[0], p[1], sz, { hovered: hovered && hovered.kind === "here" });
+        ctx.restore();
+        // radiating twinkles around it
+        ctx.save(); ctx.globalCompositeOperation = "lighter"; ctx.fillStyle = "#fff";
+        const SP = 10;
+        for (let i = 0; i < SP; i++) {
+          const ang = (i / SP) * Math.PI * 2 + now / 2600;
+          const tw = 0.5 + 0.5 * Math.sin(now / 150 + i * 1.7);
+          const dist = sz * (1.4 + 0.25 * Math.sin(now / 300 + i));
+          const sx = p[0] + Math.cos(ang) * dist, sy = p[1] + Math.sin(ang) * dist;
+          const r = (1 + 1.6 * tw);
+          ctx.globalAlpha = tw;
+          ctx.beginPath();
+          ctx.moveTo(sx, sy - r*2); ctx.lineTo(sx + r*0.5, sy); ctx.lineTo(sx, sy + r*2); ctx.lineTo(sx - r*0.5, sy); ctx.closePath(); ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(sx - r*2, sy); ctx.lineTo(sx, sy + r*0.5); ctx.lineTo(sx + r*2, sy); ctx.lineTo(sx, sy - r*0.5); ctx.closePath(); ctx.fill();
+        }
+        ctx.restore();
         hit.here = { x: p[0], y: p[1] - sz * 0.18, r: Math.max(14, 17 * hz) };
       }
     }
@@ -1387,8 +1409,8 @@
       else dismissed.add(openIndex);
       openIndex = null;
     }
-    const allMemoriesDone = memoryOrder.every(i => dismissed.has(i));
-    if (allMemoriesDone && !hereRevealed && !HG.active && !HG.done) {
+    const allDone = consumableOrder.every(i => dismissed.has(i));
+    if (allDone && !hereRevealed && !HG.active && !HG.done) {
       setTimeout(startHeartsGather, 400);   // play the bridge animation, then revealHere()
     }
   }
@@ -1479,7 +1501,7 @@
     const tRiseEnd = tSparkleEnd + HG.RISE;
     const LAST_HOLD = 2500;                 // linger on the final photo before combining
     const tSlideEnd = tRiseEnd + (HG.slideshowMs || 6000) + LAST_HOLD;
-    const tBloomEnd = tSlideEnd + 1600;
+    const tBloomEnd = tSlideEnd + 2800;    // give the flash + sparkle room to shine
 
     // ---- center photo slideshow (during ring phase) ----
     if (el >= tRiseEnd && el < tSlideEnd && HG.imgs.length) {
@@ -1568,15 +1590,54 @@
     }
     ctx.globalAlpha = 1;
 
-    // ---- bloom: the one giant heart grows at "here" ----
+    // ---- bloom: the one giant heart grows at "here", with a flash & sparkle ----
     if (el >= tSlideEnd) {
-      const p = easeInOut(Math.min(1, (el - tSlideEnd) / (tBloomEnd - tSlideEnd)));
+      const bp = (el - tSlideEnd) / (tBloomEnd - tSlideEnd);  // 0..1 raw
+      const p = easeInOut(Math.min(1, bp));
       const hp = projection([PLACES.here.coords[1], PLACES.here.coords[0]]) || [cx, cy];
-      const giant = 10 + p * Math.min(W, H) * 0.16;
+
+      // (a) FLASH: bright radial burst at the moment of convergence, fades fast
+      const flash = Math.max(0, 1 - bp / 0.35);               // strong at start, gone by 35%
+      if (flash > 0) {
+        const fr = Math.min(W, H) * (0.1 + 0.5 * (1 - flash));
+        const g = ctx.createRadialGradient(hp[0], hp[1], 0, hp[0], hp[1], fr);
+        g.addColorStop(0, `rgba(255,255,255,${0.9 * flash})`);
+        g.addColorStop(0.4, `rgba(255,200,220,${0.5 * flash})`);
+        g.addColorStop(1, "rgba(255,160,190,0)");
+        ctx.save(); ctx.globalCompositeOperation = "lighter";
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(hp[0], hp[1], fr, 0, Math.PI*2); ctx.fill();
+        ctx.restore();
+      }
+
+      // (b) the giant heart, with a shimmering pulse
+      const pulse = 1 + 0.06 * Math.sin(now / 110);
+      const giant = (10 + p * Math.min(W, H) * 0.16) * pulse;
       ctx.save();
       ctx.globalAlpha = p;
-      ctx.shadowColor = "rgba(255,120,150,0.8)"; ctx.shadowBlur = 30 * p;
+      ctx.shadowColor = "rgba(255,120,150,0.9)";
+      ctx.shadowBlur = (26 + 10 * Math.sin(now / 160)) * p;    // breathing glow
       drawHeartMarker(hp[0], hp[1], giant, "#ff5c7a", "#e03a5c", {});
+      ctx.restore();
+
+      // (c) SPARKLES radiating out from the heart (twinkling star points)
+      const SP = 16;
+      ctx.save(); ctx.globalCompositeOperation = "lighter";
+      for (let i = 0; i < SP; i++) {
+        const ang = (i / SP) * Math.PI * 2 + bp * 0.6;
+        const dist = giant * (1.1 + 1.6 * p) + Math.sin(now / 180 + i) * giant * 0.15;
+        const tw = 0.5 + 0.5 * Math.sin(now / 120 + i * 1.7);  // per-sparkle twinkle
+        const sx = hp[0] + Math.cos(ang) * dist, sy = hp[1] + Math.sin(ang) * dist;
+        const r = (1.5 + 2.5 * tw) * (0.6 + 0.4 * p);
+        ctx.globalAlpha = p * tw;
+        // 4-point sparkle
+        ctx.fillStyle = "#fff";
+        ctx.beginPath();
+        ctx.moveTo(sx, sy - r*2); ctx.lineTo(sx + r*0.5, sy); ctx.lineTo(sx, sy + r*2); ctx.lineTo(sx - r*0.5, sy);
+        ctx.closePath(); ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(sx - r*2, sy); ctx.lineTo(sx, sy + r*0.5); ctx.lineTo(sx + r*2, sy); ctx.lineTo(sx, sy - r*0.5);
+        ctx.closePath(); ctx.fill();
+      }
       ctx.restore();
     }
 
@@ -1719,7 +1780,18 @@
     // ? : toggle the testing help overlay
     if (e.key === "?") toggleHelpOverlay();
     // g : trigger the Hearts Gather bridge animation directly (testing)
-    if (e.key === "g" && !HG.active) { hideMemory(); openIndex = null; startHeartsGather(); }
+    if (e.key === "g" && !HG.active) {
+      // mirror the real trigger state: dismiss every consumable pin (home,
+      // tesla, badminton, memories) so the map is empty behind the animation
+      // (dreams stay as permanent stars).
+      consumableOrder.forEach(i => dismissed.add(i));
+      hideMemory(); openIndex = null; startHeartsGather();
+    }
+    // s : skip the montage straight to the final-heart bloom (while HG is playing)
+    if (e.key === "s" && HG.active) {
+      const tSlideEnd = HG.HUSH + HG.SPARKLE + HG.RISE + (HG.slideshowMs || 6000) + 2500;
+      HG.t0 = performance.now() - tSlideEnd;   // jump elapsed time to the bloom start
+    }
   });
 
   // ---- Testing help overlay ----
@@ -1737,6 +1809,7 @@
       "b  go back one story\n" +
       "d  dismiss ALL stories (jump to end)\n" +
       "g  play the Hearts Gather animation\n" +
+      "s  (during Hearts Gather) skip montage to the final heart\n" +
       "v  mark all dream stars viewed\n" +
       "j  jump to story # (prompt)\n" +
       "c  clear progress + reload\n" +
