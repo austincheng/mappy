@@ -1494,7 +1494,59 @@
     if (e.key === "0") { userInteracting = false; camera.tScale = 1; camera.tLon = camera.lon; camera.tLat = camera.lat; camera.flyDur = 0.9; startFly(); }
     if (e.key === "h" && !hereRevealed) { PLACES.visited.forEach((_, i) => dismissed.add(i)); revealHere(); }
     if (e.key === "r") location.reload();
+
+    // ---------- TESTING TOGGLES ----------
+    // n : advance the window one step (dismiss the oldest visible story) without opening it
+    if (e.key === "n") {
+      const w = windowStories();
+      if (w.length) { dismissed.add(w[0]); hideMemory(); openIndex = null; }
+    }
+    // b : go BACK one step (un-dismiss the most recently dismissed story)
+    if (e.key === "b") {
+      const last = [...dismissed].pop();
+      if (last != null) dismissed.delete(last);
+    }
+    // d : dismiss ALL remaining stories (jump to the end — stars + here available)
+    if (e.key === "d") { PLACES.visited.forEach((p, i) => { if (kindOf(i) !== "dream") dismissed.add(i); }); hideMemory(); openIndex = null; }
+    // v : mark ALL dream stars as viewed (test the recolored state)
+    if (e.key === "v") { dreamIdx.forEach(i => viewed.add(i)); }
+    // c : CLEAR all progress (reset dismissed + viewed, back to the start)
+    if (e.key === "c") { dismissed.clear(); viewed.clear(); hereRevealed = false; hideMemory(); openIndex = null; location.reload(); }
+    // j : jump — prompt for a story number (1-based, chronological) and open it
+    if (e.key === "j") {
+      const list = consumableOrder;
+      const n = parseInt(window.prompt("Jump to story # (1.." + list.length + "):"), 10);
+      if (n >= 1 && n <= list.length) {
+        // dismiss everything before it so the window surfaces it, then open
+        for (let k = 0; k < n - 1; k++) dismissed.add(list[k]);
+        discover(list[n - 1]);
+      }
+    }
+    // ? : toggle the testing help overlay
+    if (e.key === "?") toggleHelpOverlay();
   });
+
+  // ---- Testing help overlay ----
+  function toggleHelpOverlay() {
+    let el = document.getElementById("test-help");
+    if (el) { el.remove(); return; }
+    el = document.createElement("div");
+    el.id = "test-help";
+    el.style.cssText = "position:fixed;bottom:14px;left:14px;z-index:9999;background:rgba(20,22,30,0.86);" +
+      "color:#fff;font:12px/1.5 ui-monospace,monospace;padding:12px 14px;border-radius:10px;max-width:300px;" +
+      "box-shadow:0 6px 24px rgba(0,0,0,0.4);pointer-events:none;white-space:pre;";
+    el.textContent =
+      "TESTING KEYS  (press ? to hide)\n" +
+      "n  advance one story (skip ahead)\n" +
+      "b  go back one story\n" +
+      "d  dismiss ALL stories (jump to end)\n" +
+      "v  mark all dream stars viewed\n" +
+      "j  jump to story # (prompt)\n" +
+      "c  clear progress + reload\n" +
+      "h  reveal the final 'here' pin\n" +
+      "0  reset view   +/-  zoom   r  reload";
+    document.body.appendChild(el);
+  }
 
   window.addEventListener("resize", resize);
 
