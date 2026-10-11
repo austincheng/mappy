@@ -1450,14 +1450,27 @@
     else if (h.kind === "here") Sequencer.go(Sequencer.PHASES.FINAL_PIN, { here: PLACES.here });
   });
 
-  // Dismiss the open pin (window advances) and ease back out to the full map.
+  // Are any un-dismissed pins still visible in the CURRENT viewport? Used to
+  // decide whether dismissing should zoom out. If pins remain on screen at this
+  // zoom (e.g. the other 2 of 3 Taiwan dots, or more Bay stories), stay put so
+  // she can keep clicking; once none are left on screen, ease back out.
+  function anyPinOnScreen() {
+    const inView = (coords) => {
+      const p = projection([coords[1], coords[0]]);
+      return p && p[0] >= 0 && p[0] <= W && p[1] >= 0 && p[1] <= H;
+    };
+    for (const i of visibleWindow()) if (inView(PLACES.visited[i].coords)) return true;
+    for (const i of dreamIdx) if (!viewed.has(i) && inView(PLACES.visited[i].coords)) return true;
+    return false;
+  }
+
+  // Dismiss the open pin (window advances) and ease back out to the full map
+  // ONLY if nothing is left to click in the current view.
   function closeAndZoomOut() {
-    // Was the just-open pin in the Bay? (check before dismissOpen clears it)
-    const wasBay = openIndex != null && inBay(openIndex);
     hideMemory();
-    dismissOpen();
-    if (!hereRevealed && !wasBay) {
-      // Non-Bay: ease back out to the full map to look elsewhere.
+    dismissOpen();                 // removes the just-open pin from the window first
+    if (!hereRevealed && !anyPinOnScreen()) {
+      // No pins left on screen at this zoom — ease back out to look elsewhere.
       userInteracting = false;
       camera.tScale = 1;
       camera.tLon = camera.lon;
@@ -1465,7 +1478,7 @@
       camera.flyDur = 0.9;
       startFly();
     }
-    // Bay: stay zoomed in (many stacked stories) — just dismiss, no zoom-out.
+    // Otherwise pins remain visible here — stay zoomed in so she can keep going.
   }
 
   document.getElementById("memory-close").addEventListener("click", closeAndZoomOut);
