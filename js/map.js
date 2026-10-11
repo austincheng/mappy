@@ -1267,6 +1267,7 @@
   const bgA = () => document.getElementById("memory-bg-a");
   const bgB = () => document.getElementById("memory-bg-b");
   let slideList = [], slideIdx = 0, slideTimer = null, slideFront = "a";
+  let slideToken = 0;      // increments each advance; guards async image decode races
   let SLIDE_HOLD = 1400;   // ms each photo is shown (adaptive; fade is 0.5s via CSS)
 
   function placeSlug(p) {
@@ -1320,9 +1321,31 @@
     v.pause(); v.classList.remove("active"); v.style.display = "none";
     [slideA(), slideB(), bgA(), bgB()].forEach(el => el.style.display = "");
     const back = slideFront === "a" ? "b" : "a";
-    setLayer(back, slideList[idx]);
-    clearLayer(slideFront);
-    slideFront = back;
+    const img = back === "a" ? slideA() : slideB();
+    const bg  = back === "a" ? bgA() : bgB();
+    const src = slideList[idx];
+    const token = ++slideToken;        // guard against races if we advance again
+
+    const reveal = () => {
+      if (token !== slideToken) return;        // a newer slide took over; skip
+      img.src = src; bg.src = src;
+      img.classList.add("active"); bg.classList.add("active");
+      clearLayer(slideFront);                  // fade out the old front
+      slideFront = back;
+    };
+
+    // Decode the new image FIRST so the cross-fade never animates a blank img
+    // (that caused the "flash then the photo appears" skip). Fall back to a
+    // short timeout if decode isn't supported/fails.
+    const probe = new Image();
+    probe.src = src;
+    if (probe.decode) {
+      probe.decode().then(reveal).catch(reveal);
+    } else if (probe.complete) {
+      reveal();
+    } else {
+      probe.onload = reveal; probe.onerror = reveal;
+    }
   }
   function showVideo(idx) {
     // hide the photo layers, show+play the video; advance when it ends.
@@ -1339,7 +1362,7 @@
 
   function startSlideshow(photos) {
     stopSlideshow();
-    slideList = photos || []; slideIdx = 0; slideFront = "a";
+    slideList = photos || []; slideIdx = 0; slideFront = "a"; slideToken++;
     [slideA(), slideB(), bgA(), bgB()].forEach(el => el.classList.remove("active"));
     const v = vidEl(); v.pause(); v.classList.remove("active"); v.style.display = "none";
     const empty = !slideList.length;
