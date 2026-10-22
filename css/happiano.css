@@ -22,6 +22,22 @@
   color: #3a1324;
   overflow: hidden;
   user-select: none;
+  --dim-dur: 6.36s;               /* set from JS to match the piano length */
+  transition: background-color var(--dim-dur) linear;
+}
+
+/* dim: the page's own pink background fades to black and its content fades
+   out, in lockstep with the piano (duration set by --dim-dur from JS). */
+#happiano.hap-dimming { background-color: #000; }
+#happiano .hap-top,
+#happiano .hap-center,
+#happiano .hap-keyboard-holder {
+  transition: opacity var(--dim-dur) linear;
+}
+#happiano.hap-dimming .hap-top,
+#happiano.hap-dimming .hap-center,
+#happiano.hap-dimming .hap-keyboard-holder {
+  opacity: 0;
 }
 
 /* ---- Top row: title (left/center) + heart (right) ---- */
@@ -242,3 +258,32 @@
   margin-top: 5px;
   box-shadow: none;
 }
+
+
+/* =============================================================
+ * Transition: the happiano page dims itself (see #happiano.hap-dimming
+ * above), then the music video fades in on top.
+ * ============================================================= */
+
+/* fullscreen video, fades in on top of the dim */
+.hap-video-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 4100;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.hap-video-wrap.show { opacity: 1; }
+.hap-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* show the whole frame, letterboxed if needed */
+  background: #000;
+}
+
+/* keep the happiano page out of the way under the video */
+.hap-under-video { visibility: hidden; }

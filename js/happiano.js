@@ -79,6 +79,96 @@ const Happiano = (() => {
     if (el) el.classList.remove("active");
   }
 
+  /* ---- CHORUS melody of "Coco, My Everyday" — the simple sung line:
+   * F F F G A# C C D, repeated twice. Octave 4 base (C/D land in octave 5 =
+   * offset +1). The opening "F F F G A#" runs at DOUBLE speed, then "C C D"
+   * slows back down. Small rests between notes, longer rest between repeats.
+   * Each step is [noteText, holdMs, gapMs]. */
+  const PHRASE = [
+    // F F F G A# — twice as fast
+    ["F,0", 140, 70], ["F,0", 140, 70], ["F,0", 140, 90],
+    ["G,0", 150, 80], ["A#,0", 160, 120],
+    // C C D — normal pace
+    ["C,1", 340, 160], ["C,1", 340, 200], ["D,1", 560, 420],
+  ];
+  const INTRO_SEQUENCE = [...PHRASE, ...PHRASE];
+
+  let sequenceTimers = [];
+  let sequencePlaying = false;
+
+  function stopSequence() {
+    sequenceTimers.forEach((t) => clearTimeout(t));
+    sequenceTimers = [];
+    sequencePlaying = false;
+    // release any still-highlighted keys
+    pressed.forEach((nt) => releaseNote(nt));
+  }
+
+  // Auto-play the intro: for each step, highlight the key + sound it, release
+  // after holdMs, then advance. onComplete() fires after the last note (plus a
+  // short beat). Returns immediately (non-blocking).
+  function playSequence(seq, onComplete) {
+    if (sequencePlaying) return;
+    sequencePlaying = true;
+    let t = 0;
+    seq.forEach((step) => {
+      const [noteText, holdMs, gapMs] = step;
+      sequenceTimers.push(setTimeout(() => playNote(noteText), t));
+      sequenceTimers.push(setTimeout(() => releaseNote(noteText), t + holdMs));
+      t += holdMs + gapMs;
+    });
+    sequenceTimers.push(setTimeout(() => {
+      sequencePlaying = false;
+      if (typeof onComplete === "function") onComplete();
+    }, t + 400)); // small beat after the last note before the hand-off
+  }
+
+  /* ---- transition: let the piano play its FIRST HALF untouched, then fade the
+   * happiano page to dark over the SECOND HALF, finishing as the piano ends;
+   * then the video takes over. --- */
+  const MUSIC_VIDEO_SRC = "music_video/music_video_captioned_instrumental.mp4";
+
+  // total duration of the piano melody (ms).
+  const SEQUENCE_MS = INTRO_SEQUENCE.reduce((a, s) => a + s[1] + s[2], 0);
+  const DIM_START_MS = SEQUENCE_MS / 2;          // dimming begins at the midpoint
+  const DIM_DUR_MS = SEQUENCE_MS - DIM_START_MS; // and runs over the second half
+
+  let transitionStarted = false;
+
+  function startMusicVideo() {
+    if (transitionStarted) return;   // only once
+    transitionStarted = true;
+
+    // 1) the happiano page's OWN pink background fades to black and its content
+    //    fades out, over the SECOND HALF of the piano (set --dim-dur to match).
+    if (root) {
+      root.style.setProperty("--dim-dur", DIM_DUR_MS / 1000 + "s");
+      // double-rAF so the browser registers the pre-transition state first,
+      // guaranteeing the transition actually animates (no instant jump).
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => root.classList.add("hap-dimming"))
+      );
+    }
+
+    // 2) when the fade (and piano) finish, mount the fullscreen video and play.
+    setTimeout(() => {
+      const wrap = document.createElement("div");
+      wrap.className = "hap-video-wrap";
+      const video = document.createElement("video");
+      video.className = "hap-video";
+      video.src = MUSIC_VIDEO_SRC;
+      video.playsInline = true;
+      video.controls = false;
+      video.setAttribute("playsinline", "");
+      wrap.appendChild(video);
+      document.body.appendChild(wrap);
+      requestAnimationFrame(() => wrap.classList.add("show"));
+      video.play().catch((e) => console.warn("[happiano] video play blocked:", e));
+      // keep the happiano page hidden underneath
+      if (root) root.classList.add("hap-under-video");
+    }, DIM_DUR_MS); // fade (second half) finishes with the piano, then video
+  }
+
   /* ---- build the full 3-octave labeled keyboard ---- */
   function buildKeyboard(kb) {
     let whiteIndex = 0;
@@ -353,7 +443,13 @@ const Happiano = (() => {
     const heart = root.querySelector("#hap-heart");
     if (heart) {
       setupHeartAnimation(heart);
-      heart.addEventListener("click", () => heartBurst());
+      heart.addEventListener("click", () => {
+        heartBurst();
+        playSequence(INTRO_SEQUENCE);   // synth the piano melody
+        // first half plays untouched; dim begins at the midpoint and finishes
+        // as the piano ends, then the video takes over.
+        setTimeout(startMusicVideo, DIM_START_MS);
+      });
     }
 
     window.addEventListener("keydown", onKeyDown);

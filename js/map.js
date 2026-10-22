@@ -52,6 +52,22 @@
   };
   const MIN_SCALE = 0.9, MAX_SCALE = 80;
 
+  // ---- Language: Chinese when browser is zh*, or ?lang=zh / #zh override ----
+  const LANG_ZH = (() => {
+    const q = new URLSearchParams(location.search).get("lang");
+    if (q) return /^zh/i.test(q);
+    if (/[?&#]zh\b/i.test(location.hash)) return true;
+    return /^zh/i.test(navigator.language || "");
+  })();
+  const ZH_MONTHS = { january:"1月",february:"2月",march:"3月",april:"4月",may:"5月",
+    june:"6月",july:"7月",august:"8月",september:"9月",october:"10月",november:"11月",december:"12月" };
+  function zhDate(date) {
+    // "August 6, 2023" -> "2023年8月6日"
+    const m = (date || "").toLowerCase().match(/([a-z]+)\s+(\d+),\s*(\d{4})/);
+    if (!m || !ZH_MONTHS[m[1]]) return date;
+    return m[3] + "年" + ZH_MONTHS[m[1]] + m[2] + "日";
+  }
+
   // ---- Heart options (subtle only) ----
   //  sprinkle    : scatter little hearts across the land (cute, subtle)
   //  pinkOutline : soft pink glowing outline around the continents
@@ -1245,11 +1261,14 @@
   // ---- Memory card ----
   function showMemory(place) {
     const card = document.getElementById("memory-card");
-    // English-only display for now. nameZh is retained in the data for a
-    // future full-Chinese translation layer, but never shown inline here.
-    document.getElementById("memory-place").textContent = place.name;
-    document.getElementById("memory-date").textContent = place.date || "";
-    document.getElementById("memory-note").textContent = place.note || "";
+    // Language: Chinese when the browser is zh* (or ?lang=zh / #zh override),
+    // else English. Chinese strings fall back to English if not yet provided.
+    document.getElementById("memory-place").textContent =
+      (LANG_ZH && place.nameZh) ? place.nameZh : place.name;
+    document.getElementById("memory-date").textContent =
+      (LANG_ZH ? zhDate(place.date) : place.date) || "";
+    document.getElementById("memory-note").textContent =
+      (LANG_ZH && place.noteZh) ? place.noteZh : (place.note || "");
 
     // Resolve this place's curated photos from the manifest (by slug), falling
     // back to a single `place.photo` if present.
