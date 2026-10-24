@@ -276,8 +276,9 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.8s ease;
+  pointer-events: none;      /* don't block the piano while preloading (hidden) */
 }
-.hap-video-wrap.show { opacity: 1; }
+.hap-video-wrap.show { opacity: 1; pointer-events: auto; }
 .hap-video {
   width: 100%;
   height: 100%;

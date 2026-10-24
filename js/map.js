@@ -1478,8 +1478,9 @@
 
   function buildChronoPhotos() {
     // The montage is a prebuilt, one-photo-per-day set in chronological order
-    // (./final_slideshow, a sibling of card_photos; files named YYMMDD.jpg with
-    // the day-of placeholder last as 999999_final.jpg). Loaded from its own
+    // (./final_slideshow, a sibling of card_photos; files named YYMMDD.jpg).
+    // The day-of photo is appended as the last slide by fetch_day_photos.py
+    // (emailed with "Final" in the subject). No stock placeholder. Loaded from
     // final_slideshow/manifest.json.
     const arr = finalSlideshow || [];
     return arr.filter(src => !/\.(mp4|mov|m4v|webm)$/i.test(src));
@@ -1817,7 +1818,11 @@
   document.getElementById("memory-close").addEventListener("click", closeAndZoomOut);
 
   // Keyboard: +/- zoom (centered), h = reveal here, r = reset, 0 = reset view
+  // In presentation mode (?present or #present) ALL shortcuts are disabled so a
+  // stray keypress can't disrupt the proposal.
+  const PRESENT_MODE = /[?&#]present\b/i.test(location.search + location.hash);
   window.addEventListener("keydown", (e) => {
+    if (PRESENT_MODE) return;           // presentation: ignore every shortcut
     if (e.key === "=" || e.key === "+") zoomAt(W / 2, H / 2, 1.3);
     if (e.key === "-" || e.key === "_") zoomAt(W / 2, H / 2, 1 / 1.3);
     if (e.key === "0") { userInteracting = false; camera.tScale = 1; camera.tLon = camera.lon; camera.tLat = camera.lat; camera.flyDur = 0.9; startFly(); }
@@ -1919,12 +1924,13 @@
   });
 
   // Curated photos for the memory cards (slug -> [paths]).
-  fetch("card_photos/manifest.json")
+  // Cache-bust so a freshly-updated manifest (e.g. day-of photo) is always read.
+  fetch("card_photos/manifest.json?t=" + Date.now(), { cache: "no-store" })
     .then(r => r.json())
     .then(m => { photoManifest = m; })
     .catch(err => console.warn("Photo manifest not loaded:", err));
 
-  fetch("final_slideshow/manifest.json")
+  fetch("final_slideshow/manifest.json?t=" + Date.now(), { cache: "no-store" })
     .then(r => r.json())
     .then(m => { finalSlideshow = m; })
     .catch(err => console.warn("Final slideshow manifest not loaded:", err));

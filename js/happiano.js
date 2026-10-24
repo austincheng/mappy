@@ -16,7 +16,7 @@
  * ============================================================= */
 
 const Happiano = (() => {
-  const XI_NUMBER = 1151;              // 夕 — the current day-count
+  const XI_NUMBER = 1167;              // 夕 — the current day-count
   const TITLE = `今天是我們${XI_NUMBER}夕...`;  // top-row title
 
   const CENTER_OCTAVE = 4;             // middle C
@@ -125,8 +125,10 @@ const Happiano = (() => {
 
   /* ---- transition: let the piano play its FIRST HALF untouched, then fade the
    * happiano page to dark over the SECOND HALF, finishing as the piano ends;
-   * then the video takes over. --- */
+   * then the video takes over. When the video ends it freezes on its last
+   * frame and the instrumental loops underneath. --- */
   const MUSIC_VIDEO_SRC = "music_video/music_video_captioned_instrumental.mp4";
+  const LOOP_AUDIO_SRC = "song/instrumental.mp3";   // loops after the video ends
 
   // total duration of the piano melody (ms).
   const SEQUENCE_MS = INTRO_SEQUENCE.reduce((a, s) => a + s[1] + s[2], 0);
@@ -134,10 +136,43 @@ const Happiano = (() => {
   const DIM_DUR_MS = SEQUENCE_MS - DIM_START_MS; // and runs over the second half
 
   let transitionStarted = false;
+  let videoWrap = null;    // created + buffering as early as the heart click
+  let videoEl = null;
+
+  // Create the video element and start buffering it immediately. Called at the
+  // heart click so it has the ENTIRE piano sequence (~6s) to preload — the
+  // faststart MP4 then reaches a playable state well before it's revealed.
+  function preloadVideo() {
+    if (videoEl) return;             // only once
+    videoWrap = document.createElement("div");
+    videoWrap.className = "hap-video-wrap";
+    videoEl = document.createElement("video");
+    videoEl.className = "hap-video";
+    videoEl.src = MUSIC_VIDEO_SRC;
+    videoEl.preload = "auto";
+    videoEl.playsInline = true;
+    videoEl.controls = false;
+    videoEl.setAttribute("playsinline", "");
+    videoWrap.appendChild(videoEl);
+    document.body.appendChild(videoWrap);   // present but transparent (no .show)
+    try { videoEl.load(); } catch (e) {}
+
+    // When the song video ends, keep its LAST FRAME on screen (a paused <video>
+    // holds its final frame), pause ~5s in silence, then loop the instrumental.
+    videoEl.addEventListener("ended", () => {
+      videoEl.pause();                 // hold the last frame (no black/rewind)
+      setTimeout(() => {
+        const loop = new Audio(LOOP_AUDIO_SRC);
+        loop.loop = true;
+        loop.play().catch((e) => console.warn("[happiano] loop audio blocked:", e));
+      }, 5000);                        // 5s pause before the loop starts
+    });
+  }
 
   function startMusicVideo() {
     if (transitionStarted) return;   // only once
     transitionStarted = true;
+    preloadVideo();                  // ensure the video exists (no-op if already)
 
     // 1) the happiano page's OWN pink background fades to black and its content
     //    fades out, over the SECOND HALF of the piano (set --dim-dur to match).
@@ -150,22 +185,12 @@ const Happiano = (() => {
       );
     }
 
-    // 2) when the fade (and piano) finish, mount the fullscreen video and play.
+    // 2) when the fade (and piano) finish, reveal the (already-buffering) video
+    //    and play it. The wrap is opaque black and snaps in instantly over the
+    //    already-black page, so nothing (e.g. the map) flashes through.
     setTimeout(() => {
-      const wrap = document.createElement("div");
-      wrap.className = "hap-video-wrap";
-      const video = document.createElement("video");
-      video.className = "hap-video";
-      video.src = MUSIC_VIDEO_SRC;
-      video.playsInline = true;
-      video.controls = false;
-      video.setAttribute("playsinline", "");
-      wrap.appendChild(video);
-      document.body.appendChild(wrap);
-      requestAnimationFrame(() => wrap.classList.add("show"));
-      video.play().catch((e) => console.warn("[happiano] video play blocked:", e));
-      // keep the happiano page hidden underneath
-      if (root) root.classList.add("hap-under-video");
+      videoWrap.classList.add("show");
+      videoEl.play().catch((e) => console.warn("[happiano] video play blocked:", e));
     }, DIM_DUR_MS); // fade (second half) finishes with the piano, then video
   }
 
@@ -205,13 +230,19 @@ const Happiano = (() => {
 
   /* ---- computer-keyboard play ---- */
   let metaDown = false;
+  // presentation mode (?present / #present): disable computer-keyboard play so
+  // a stray keypress can't trigger piano notes during the proposal. The piano
+  // still works by mouse/touch, and still auto-plays on the heart click.
+  const PRESENT_MODE = /[?&#]present\b/i.test(location.search + location.hash);
   function onKeyDown(e) {
+    if (PRESENT_MODE) return;
     const up = (e.key || "").toUpperCase();
     if (up === "META" || up === "CONTROL") { metaDown = true; return; }
     if (metaDown || e.repeat) return;
     if (up in KEY_TO_NOTE) playNote(KEY_TO_NOTE[up]);
   }
   function onKeyUp(e) {
+    if (PRESENT_MODE) return;
     const up = (e.key || "").toUpperCase();
     if (up === "META" || up === "CONTROL") { metaDown = false; return; }
     if (up in KEY_TO_NOTE) releaseNote(KEY_TO_NOTE[up]);
@@ -445,6 +476,7 @@ const Happiano = (() => {
       setupHeartAnimation(heart);
       heart.addEventListener("click", () => {
         heartBurst();
+        preloadVideo();                 // start buffering the video immediately
         playSequence(INTRO_SEQUENCE);   // synth the piano melody
         // first half plays untouched; dim begins at the midpoint and finishes
         // as the piano ends, then the video takes over.
@@ -458,7 +490,7 @@ const Happiano = (() => {
     built = true;
   }
 
-  function show() { build(); if (root) root.classList.remove("hidden"); startPolling(); }
+  function show() { build(); if (root) root.classList.remove("hidden"); startPolling(); preloadVideo(); }
   function hide() { if (root) root.classList.add("hidden"); stopPolling(); }
 
   if (typeof Sequencer !== "undefined") {
